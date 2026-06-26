@@ -42,7 +42,8 @@ export function Hero() {
           transition={{ duration: 0.8, ease: EASE }}
           className="hero-kicker"
         >
-          {SITE.role}
+          <span className="hero-copy-desktop">{SITE.role}</span>
+          <span className="hero-copy-mobile">{SITE.heroKickerMobile}</span>
         </motion.p>
 
         <motion.h1
@@ -61,14 +62,15 @@ export function Hero() {
           transition={{ duration: 0.75, delay: 0.14, ease: EASE }}
           className="hero-lead"
         >
-          {SITE.heroLead}
+          <span className="hero-copy-desktop">{SITE.heroLead}</span>
+          <span className="hero-copy-mobile">{SITE.heroLeadMobile}</span>
         </motion.p>
 
         <motion.p
           initial={motionEnabled ? { opacity: 0, y: 20 } : false}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2, ease: EASE }}
-          className="hero-body"
+          className="hero-body hero-copy-desktop"
         >
           {SITE.heroBody}
         </motion.p>
@@ -76,14 +78,18 @@ export function Hero() {
         <motion.div
           initial={motionEnabled ? { opacity: 0, y: 16 } : false}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.65, delay: 0.28, ease: EASE }}
+          transition={{ duration: 0.65, delay: 0.2, ease: EASE }}
           className="hero-actions"
         >
           <a href="#work" className="btn btn--primary">
-            View transformation work
+            <span className="hero-copy-desktop">View transformation work</span>
+            <span className="hero-copy-mobile">View work</span>
           </a>
-          <a href="#journey" className="btn btn--ghost">
+          <a href="#journey" className="btn btn--ghost hero-copy-desktop">
             Career phases
+          </a>
+          <a href="#journey" className="hero-mobile-link hero-copy-mobile">
+            Career journey
           </a>
         </motion.div>
       </motion.div>

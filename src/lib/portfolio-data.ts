@@ -102,8 +102,11 @@ export const SITE = {
   tagline: 'Head of UI/UX, Head of Design & Creative Director',
   heroLead:
     'I design, modernise and scale digital gambling experiences across casino, sportsbook, poker, payments, loyalty and player experience.',
+  heroLeadMobile:
+    'Design leadership for casino, sportsbook, poker and player experience at scale.',
   heroBody:
     'From hands-on game design and UI through design systems, product strategy, customer research and team leadership, then founding Jurnii AI and building AI-assisted design-to-dev workflows at BetOnline.',
+  heroKickerMobile: 'Head of Design · Creative Director',
   credibilityLine:
     'Head of Design · BetOnline · Founder of Jurnii AI · AI design-to-dev · Remote from Sotogrande, Spain',
   portfolioYear: '2K26',
