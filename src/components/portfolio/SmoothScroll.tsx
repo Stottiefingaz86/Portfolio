@@ -9,18 +9,28 @@ export function useLenis() {
   return useContext(LenisContext);
 }
 
+function shouldUseLenis() {
+  if (typeof window === 'undefined') return false;
+
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const coarsePointer = window.matchMedia('(pointer: coarse)').matches;
+  const narrowViewport = window.matchMedia('(max-width: 767px)').matches;
+
+  return !reducedMotion && !coarsePointer && !narrowViewport;
+}
+
 export function SmoothScroll({ children }: { children: React.ReactNode }) {
   const [lenis, setLenis] = useState<Lenis | null>(null);
 
   useEffect(() => {
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const coarsePointer = window.matchMedia('(pointer: coarse)').matches;
-    const narrowViewport = window.matchMedia('(max-width: 767px)').matches;
-    const useSmoothScroll = !reducedMotion && !coarsePointer && !narrowViewport;
+    if (!shouldUseLenis()) {
+      setLenis(null);
+      return;
+    }
 
     const instance = new Lenis({
-      lerp: useSmoothScroll ? 0.085 : 1,
-      smoothWheel: useSmoothScroll,
+      lerp: 0.085,
+      smoothWheel: true,
     });
 
     setLenis(instance);

@@ -25,12 +25,15 @@ function getInitialLayout(viewport: PreviewViewport) {
     };
   }
 
-  const width = Math.max(280, Math.min(window.innerWidth, viewport === 'mobile' ? 320 : 960));
-  const scale = width / sourceWidth;
+  const hostGuess =
+    viewport === 'mobile'
+      ? Math.min(window.innerWidth * 0.74, 264)
+      : Math.max(320, Math.min(window.innerWidth, 960));
+  const scale = hostGuess / sourceWidth;
 
   return {
     scale,
-    frameHeight: (viewport === 'mobile' ? 560 : 640) / scale,
+    frameHeight: (viewport === 'mobile' ? 520 : 640) / Math.max(scale, 0.1),
     panX: 0,
     ready: false,
   };

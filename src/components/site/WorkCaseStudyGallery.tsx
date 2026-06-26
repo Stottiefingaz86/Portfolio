@@ -8,6 +8,7 @@ import {
   WORK_TEXT_STACK_CASE_STUDIES,
   type CaseStudy,
 } from '@/lib/portfolio-data';
+import { useMobile } from '@/hooks/use-mobile';
 import { cn } from '@/lib/utils';
 import { WorkSitePreview } from '@/components/site/WorkSitePreview';
 import { useWorkHoverLight } from '@/components/site/useWorkHoverLight';
@@ -21,9 +22,11 @@ function caseStudyImageClassName(study: CaseStudy) {
 }
 
 function CaseStudyMedia({ study, priority }: { study: CaseStudy; priority?: boolean }) {
+  const isMobile = useMobile();
+
   if (study.previewUrl) {
-    return (
-      <>
+    if (isMobile) {
+      return (
         <div className="work-site-preview-mobile">
           <WorkSitePreview
             url={study.previewUrl}
@@ -31,10 +34,13 @@ function CaseStudyMedia({ study, priority }: { study: CaseStudy; priority?: bool
             viewport="mobile"
           />
         </div>
-        <div className="work-site-preview-desktop">
-          <WorkSitePreview url={study.previewUrl} title={study.title} />
-        </div>
-      </>
+      );
+    }
+
+    return (
+      <div className="work-site-preview-desktop">
+        <WorkSitePreview url={study.previewUrl} title={study.title} />
+      </div>
     );
   }
 

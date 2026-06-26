@@ -3,6 +3,7 @@
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 
+import { useMobile } from '@/hooks/use-mobile';
 import { SITE } from '@/lib/portfolio-data';
 
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -10,8 +11,15 @@ const EASE = [0.16, 1, 0.3, 1] as const;
 export function Hero() {
   const ref = useRef<HTMLElement>(null);
   const reduced = useReducedMotion();
-  const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] });
-  const y = useTransform(scrollYProgress, [0, 1], reduced ? [0, 0] : [0, 96], { clamp: true });
+  const isMobile = useMobile();
+  const motionEnabled = !reduced && !isMobile;
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ['start start', 'end start'],
+  });
+  const y = useTransform(scrollYProgress, [0, 1], motionEnabled ? [0, 96] : [0, 0], {
+    clamp: true,
+  });
 
   return (
     <section ref={ref} id="top" className="hero" aria-label="Introduction">
@@ -27,9 +35,9 @@ export function Hero() {
         <span className="hero-side-mark-vertical">/ PORTFOLIO</span>
       </aside>
 
-      <motion.div style={{ y }} className="hero-content">
+      <motion.div style={motionEnabled ? { y } : undefined} className="hero-content">
         <motion.p
-          initial={reduced ? false : { opacity: 0, y: 20 }}
+          initial={motionEnabled ? { opacity: 0, y: 20 } : false}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: EASE }}
           className="hero-kicker"
@@ -38,7 +46,7 @@ export function Hero() {
         </motion.p>
 
         <motion.h1
-          initial={reduced ? false : { opacity: 0, y: 40 }}
+          initial={motionEnabled ? { opacity: 0, y: 40 } : false}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.95, delay: 0.06, ease: EASE }}
           className="hero-title"
@@ -48,7 +56,7 @@ export function Hero() {
         </motion.h1>
 
         <motion.p
-          initial={reduced ? false : { opacity: 0, y: 24 }}
+          initial={motionEnabled ? { opacity: 0, y: 24 } : false}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.75, delay: 0.14, ease: EASE }}
           className="hero-lead"
@@ -57,7 +65,7 @@ export function Hero() {
         </motion.p>
 
         <motion.p
-          initial={reduced ? false : { opacity: 0, y: 20 }}
+          initial={motionEnabled ? { opacity: 0, y: 20 } : false}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2, ease: EASE }}
           className="hero-body"
@@ -66,7 +74,7 @@ export function Hero() {
         </motion.p>
 
         <motion.div
-          initial={reduced ? false : { opacity: 0, y: 16 }}
+          initial={motionEnabled ? { opacity: 0, y: 16 } : false}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.65, delay: 0.28, ease: EASE }}
           className="hero-actions"

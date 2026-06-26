@@ -42,8 +42,8 @@
 
   html {
     @apply scroll-smooth antialiased;
+    width: 100%;
     overflow-x: clip;
-    max-width: 100%;
   }
 
   body {
@@ -52,13 +52,13 @@
     line-height: 1.6;
     color: var(--x-ink-soft);
     background: var(--x-canvas);
+    width: 100%;
     overflow-x: clip;
-    max-width: 100%;
   }
 
   .site-main {
+    width: 100%;
     overflow-x: clip;
-    max-width: 100%;
   }
 
   body::before {
@@ -88,14 +88,15 @@
 
 @layer components {
   .shell {
-    width: var(--shell);
+    width: min(100% - 2.5rem, 76rem);
     max-width: 100%;
     margin-inline: auto;
   }
 
   @media (max-width: 767px) {
-    :root {
-      --shell: min(100% - 2rem, 76rem);
+    .shell {
+      width: 100%;
+      padding-inline: 1.25rem;
     }
   }
 
@@ -350,12 +351,16 @@
   .hero {
     position: relative;
     display: flex;
+    width: 100%;
+    max-width: 100%;
     min-height: 100svh;
+    min-height: 100dvh;
     align-items: center;
     justify-content: flex-start;
     padding-block: clamp(4.5rem, 10vh, 6rem);
-    padding-inline: max(1.25rem, calc((100% - var(--shell)) / 2));
+    padding-inline: max(1.25rem, calc((100% - min(100% - 2.5rem, 76rem)) / 2));
     overflow: hidden;
+    isolation: isolate;
   }
 
   .hero-bg {
@@ -432,33 +437,66 @@
   @media (max-width: 767px) {
     .hero {
       align-items: flex-end;
-      padding-block: clamp(5.5rem, 14vh, 7rem) clamp(2.5rem, 8vh, 4rem);
+      justify-content: stretch;
+      padding-inline: max(1.25rem, env(safe-area-inset-left, 0px))
+        max(1.25rem, env(safe-area-inset-right, 0px));
+      padding-block: calc(5rem + env(safe-area-inset-top, 0px)) clamp(2rem, 8vh, 3rem);
+      overflow-x: clip;
+      overflow-y: visible;
     }
 
     .hero-kicker {
-      font-size: 0.6875rem;
-      line-height: 1.5;
+      font-size: 0.625rem;
+      line-height: 1.55;
+      letter-spacing: 0.04em;
+      max-width: 100%;
+    }
+
+    .hero-title {
+      margin-top: 1rem;
       max-width: 100%;
     }
 
     .hero-title-line {
-      font-size: clamp(2.35rem, 12.8vw, 3.35rem);
-      font-variation-settings: "opsz" 48;
-      letter-spacing: -0.03em;
+      display: block;
+      width: 100%;
+      max-width: 100%;
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 10.5vw, 2.85rem);
+      font-weight: 600;
+      font-variation-settings: normal;
+      letter-spacing: -0.04em;
+      line-height: 0.96;
+      overflow-wrap: break-word;
+      text-wrap: wrap;
     }
 
-    .hero-lead,
+    .hero-lead {
+      max-width: 100%;
+      font-size: 1.0625rem;
+      line-height: 1.5;
+    }
+
     .hero-body {
       max-width: 100%;
+      font-size: 0.9375rem;
+      line-height: 1.6;
     }
 
     .hero-actions {
       flex-direction: column;
       align-items: stretch;
+      gap: 0.625rem;
+      margin-top: 1.5rem;
     }
 
     .hero-actions .btn {
       width: 100%;
+      min-height: 3.25rem;
+    }
+
+    h1, h2, h3 {
+      text-wrap: wrap;
     }
   }
 
@@ -1107,7 +1145,6 @@
   }
 
   .work-site-preview-desktop {
-    display: none;
     position: absolute;
     inset: 0;
   }
@@ -1118,7 +1155,7 @@
     justify-content: center;
     position: absolute;
     inset: 0;
-    padding: 1.25rem;
+    padding: 1rem;
     background: linear-gradient(
       180deg,
       oklch(0.1 0.014 260),
@@ -1129,23 +1166,13 @@
   .work-site-preview-mobile .work-site-preview {
     position: relative;
     inset: auto;
-    width: min(68%, 17.5rem);
-    height: min(88%, 26rem);
+    width: min(74%, 16.5rem);
+    height: min(90%, 24rem);
     border: 1px solid oklch(0.97 0.004 260 / 0.14);
     border-radius: 1.35rem;
     box-shadow:
       0 0 0 1px oklch(0 0 0 / 0.35),
-      0 28px 72px oklch(0 0 0 / 0.42);
-  }
-
-  @media (min-width: 768px) {
-    .work-site-preview-desktop {
-      display: block;
-    }
-
-    .work-site-preview-mobile {
-      display: none;
-    }
+      0 24px 64px oklch(0 0 0 / 0.42);
   }
 
   @media (max-width: 767px) {
@@ -1173,6 +1200,8 @@
 
   .work-site-preview-scaler {
     transform-origin: top left;
+    contain: layout style paint;
+    will-change: transform;
   }
 
   .work-site-preview-frame {
@@ -1971,5 +2000,60 @@
 
   .site-pad {
     padding-inline: clamp(1.25rem, 4vw, 2rem);
+  }
+
+  @media (max-width: 767px) {
+    .menu-trigger {
+      top: max(1.25rem, env(safe-area-inset-top, 0px));
+      right: max(1.25rem, env(safe-area-inset-right, 0px));
+    }
+
+    .section-header {
+      margin-bottom: 2rem;
+    }
+
+    .phases-stack {
+      gap: 3rem;
+    }
+
+    .phase-title {
+      font-size: clamp(1.5rem, 6.5vw, 2rem);
+    }
+
+    .phase-body {
+      font-size: 1rem;
+    }
+
+    .expertise-headline {
+      font-size: clamp(1.5rem, 6.5vw, 2rem);
+    }
+
+    .work-headline {
+      font-size: clamp(1.65rem, 7vw, 2.25rem);
+    }
+
+    .work-gallery-shell {
+      gap: 2rem;
+    }
+
+    .contact-links {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.625rem;
+    }
+
+    .contact-link {
+      font-size: clamp(1.25rem, 6.5vw, 1.75rem);
+      line-height: 1.2;
+    }
+
+    .site-footer {
+      padding-block: 2rem;
+    }
+
+    .site-footer-role,
+    .site-footer-copy {
+      line-height: 1.55;
+    }
   }
 }
