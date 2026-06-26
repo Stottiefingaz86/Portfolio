@@ -486,22 +486,23 @@
       display: block;
       width: 100%;
       max-width: 100%;
-      font-family: var(--font-display);
-      font-size: clamp(2.25rem, 10.5vw, 2.85rem);
-      font-weight: 600;
-      font-variation-settings: normal;
-      letter-spacing: -0.04em;
-      line-height: 0.92;
+      font-family: var(--font-hero);
+      font-size: clamp(3rem, 13.5vw, 4.25rem);
+      font-weight: 700;
+      font-variation-settings: "opsz" 72;
+      letter-spacing: -0.025em;
+      line-height: 0.88;
       overflow-wrap: break-word;
       text-wrap: wrap;
     }
 
     .hero-lead {
-      max-width: 28ch;
-      margin-top: 1.125rem;
-      font-size: 0.875rem;
+      max-width: 42ch;
+      margin-top: 1.25rem;
+      font-size: clamp(1rem, 4.2vw, 1.125rem);
       line-height: 1.55;
-      color: var(--x-muted);
+      letter-spacing: -0.02em;
+      color: var(--x-ink);
     }
 
     .hero-actions {
@@ -2281,11 +2282,12 @@
     }
 
     .hero-lead {
-      max-width: 28ch;
-      margin-top: 1.125rem;
-      font-size: 0.875rem;
+      max-width: 42ch;
+      margin-top: 1.25rem;
+      font-size: clamp(1rem, 4.2vw, 1.125rem);
       line-height: 1.55;
-      color: var(--x-muted);
+      letter-spacing: -0.02em;
+      color: var(--x-ink);
     }
 
     .hero-actions {

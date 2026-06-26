@@ -62,8 +62,7 @@ export function Hero() {
           transition={{ duration: 0.75, delay: 0.14, ease: EASE }}
           className="hero-lead"
         >
-          <span className="hero-copy-desktop">{SITE.heroLead}</span>
-          <span className="hero-copy-mobile">{SITE.heroLeadMobile}</span>
+          {SITE.heroLead}
         </motion.p>
 
         <motion.p
