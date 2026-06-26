@@ -103,7 +103,7 @@ export const SITE = {
   heroLead:
     'I design, modernise and scale digital gambling experiences across casino, sportsbook, poker, payments, loyalty and player experience.',
   heroLeadMobile:
-    'Design leadership for casino, sportsbook, poker and player experience at scale.',
+    'Head of Design for casino, sportsbook and player experience.',
   heroBody:
     'From hands-on game design and UI through design systems, product strategy, customer research and team leadership, then founding Jurnii AI and building AI-assisted design-to-dev workflows at BetOnline.',
   heroKickerMobile: 'Head of Design · Creative Director',

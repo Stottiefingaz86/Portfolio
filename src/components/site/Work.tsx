@@ -24,8 +24,11 @@ export function Work() {
         <div className="shell work-shell">
           <BlurFade inView delay={0.05} className="work-intro">
             <p className="section-kicker">Selected work</p>
-            <h2 className="work-headline">Case studies through product maturity.</h2>
-            <p className="work-deck">
+            <h2 className="work-headline">
+              <span className="hero-copy-desktop">Case studies through product maturity.</span>
+              <span className="hero-copy-mobile">Case studies</span>
+            </h2>
+            <p className="work-deck hero-copy-desktop">
               Constraints, decisions and outcomes across transformation, research, brand and AI,
               told as stages, not screenshots.
             </p>

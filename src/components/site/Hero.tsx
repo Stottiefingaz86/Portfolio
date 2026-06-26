@@ -88,9 +88,6 @@ export function Hero() {
           <a href="#journey" className="btn btn--ghost hero-copy-desktop">
             Career phases
           </a>
-          <a href="#journey" className="hero-mobile-link hero-copy-mobile">
-            Career journey
-          </a>
         </motion.div>
       </motion.div>
 

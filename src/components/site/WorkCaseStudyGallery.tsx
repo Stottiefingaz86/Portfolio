@@ -4,6 +4,7 @@ import { ArrowUpRightIcon } from 'lucide-react';
 import Image from 'next/image';
 
 import {
+  WORK_CASE_STUDIES,
   WORK_SPOTLIGHT_CASE_STUDIES,
   WORK_TEXT_STACK_CASE_STUDIES,
   type CaseStudy,
@@ -22,24 +23,14 @@ function caseStudyImageClassName(study: CaseStudy) {
 }
 
 function CaseStudyMedia({ study, priority }: { study: CaseStudy; priority?: boolean }) {
-  const isMobile = useMobile();
-
   if (study.previewUrl) {
-    if (isMobile) {
-      return (
-        <div className="work-site-preview-mobile">
-          <WorkSitePreview
-            url={study.previewUrl}
-            title={study.title}
-            viewport="mobile"
-          />
-        </div>
-      );
-    }
-
     return (
       <div className="work-site-preview-desktop">
-        <WorkSitePreview url={study.previewUrl} title={study.title} />
+        <WorkSitePreview
+          url={study.previewUrl}
+          title={study.title}
+          fallbackImage={study.image}
+        />
       </div>
     );
   }
@@ -133,6 +124,12 @@ function TextStackRow({
   );
 }
 
+function DesktopOnly({ children }: { children: React.ReactNode }) {
+  const isMobile = useMobile();
+  if (isMobile) return null;
+  return children;
+}
+
 export function WorkCaseStudyGallery({
   onOpen,
 }: {
@@ -142,14 +139,23 @@ export function WorkCaseStudyGallery({
 
   return (
     <div className="shell work-gallery-shell">
-      <div className="work-stack" aria-label="Featured case study">
-        {WORK_SPOTLIGHT_CASE_STUDIES.map((study, index) => (
-          <SpotlightCard key={study.id} study={study} index={index} onOpen={onOpen} />
+      <DesktopOnly>
+        <div className="work-stack work-gallery-desktop" aria-label="Featured case study">
+          {WORK_SPOTLIGHT_CASE_STUDIES.map((study, index) => (
+            <SpotlightCard key={study.id} study={study} index={index} onOpen={onOpen} />
+          ))}
+        </div>
+      </DesktopOnly>
+
+      <ul className="work-text-stack work-text-stack--mobile" aria-label="Case studies">
+        {WORK_CASE_STUDIES.map((study, index) => (
+          <TextStackRow key={study.id} study={study} index={index} onOpen={onOpen} />
         ))}
-      </div>
+      </ul>
 
       {WORK_TEXT_STACK_CASE_STUDIES.length > 0 ? (
-        <div className="work-text-shell">
+        <DesktopOnly>
+          <div className="work-text-shell work-gallery-desktop">
           <p className="work-text-kicker">
             {WORK_TEXT_STACK_CASE_STUDIES.length} more case{' '}
             {WORK_TEXT_STACK_CASE_STUDIES.length === 1 ? 'study' : 'studies'}
@@ -165,7 +171,8 @@ export function WorkCaseStudyGallery({
               />
             ))}
           </ul>
-        </div>
+          </div>
+        </DesktopOnly>
       ) : null}
     </div>
   );
