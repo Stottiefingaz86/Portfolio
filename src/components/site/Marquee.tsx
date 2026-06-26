@@ -1,7 +1,7 @@
 'use client';
 
 const ITEMS = [
-  'Head of Design · BetOnline',
+  'VP of UI/UX · BetOnline',
   'Founder · Jurnii AI',
   'Casino · Sportsbook · Poker',
   'Design systems · Governance',

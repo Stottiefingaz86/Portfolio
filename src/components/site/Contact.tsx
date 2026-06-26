@@ -9,7 +9,7 @@ export function Contact() {
         <SectionHeader
           kicker="Contact"
           title="Let's talk about what's next"
-          lead="Head of Design, Design Director, Creative Director and senior product design leadership across online gambling, digital product, AI and design-to-dev workflows."
+          lead="VP of UI/UX, Design Director, Creative Director and senior product design leadership across online gambling, digital product, AI and design-to-dev workflows."
         />
 
         <Reveal className="contact-links">

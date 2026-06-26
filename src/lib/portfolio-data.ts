@@ -97,18 +97,18 @@ export interface WhatIBringCard {
 export const SITE = {
   name: 'Christopher Hunt',
   legalName: 'Christopher Hunt',
-  role: 'VP of UI/UX · Head of Design · Creative Director',
-  roleLines: ['VP of UI/UX.', 'Head of Design.', 'Creative Director.'],
-  tagline: 'VP of UI/UX, Head of Design & Creative Director',
+  role: 'VP of UI/UX · Creative Director',
+  roleLines: ['VP of UI/UX.', 'Creative Director.'],
+  tagline: 'VP of UI/UX & Creative Director',
   heroLead:
     'I design, modernise and scale digital gambling experiences across casino, sportsbook, poker, payments, loyalty and player experience.',
   heroLeadMobile:
-    'Head of Design for casino, sportsbook and player experience.',
+    'VP of UI/UX for casino, sportsbook and player experience.',
   heroBody:
     'From hands-on game design and UI through design systems, product strategy, customer research and team leadership, then founding Jurnii AI and building AI-assisted design-to-dev workflows at BetOnline.',
-  heroKickerMobile: 'VP of UI/UX · Head of Design · Creative Director',
+  heroKickerMobile: 'VP of UI/UX · Creative Director',
   credibilityLine:
-    'VP of UI/UX · Head of Design · BetOnline · Founder of Jurnii AI · AI design-to-dev · Remote from Sotogrande, Spain',
+    'VP of UI/UX · BetOnline · Founder of Jurnii AI · AI design-to-dev · Remote from Sotogrande, Spain',
   portfolioYear: '2K26',
   subtitle:
     'I design, modernise and scale digital gambling experiences across casino, sportsbook, poker, payments, loyalty and player experience.',
@@ -122,14 +122,13 @@ export const SITE = {
 } as const;
 
 export const SEO = {
-  title: 'Christopher Hunt · VP of UI/UX, Head of Design & Creative Director',
+  title: 'Christopher Hunt · VP of UI/UX & Creative Director',
   description:
     'Portfolio of Christopher Hunt, VP of UI/UX and Creative Director-level design leader across online gambling, casino, sportsbook, poker, design systems and AI-powered customer experience.',
   keywords: [
     'Christopher Hunt',
     'VP of UI UX',
     'Head of UI UX',
-    'Head of Design',
     'Creative Director',
     'Design Director',
     'Product Design Leader',
@@ -346,7 +345,7 @@ I work closely with tools like Figma, Cursor and Mixpanel, combining design syst
   birthDateLabel: '13/07/1986',
   persona: {
     location: 'Remote · Spain',
-    focus: 'BetOnline · Head of Design',
+    focus: 'BetOnline · VP of UI/UX',
     goals: [
       'Build design maturity inside complex gambling organisations',
       'Connect craft, product judgment and commercial outcomes',
@@ -374,7 +373,7 @@ export const TIMELINE: TimelineEntry[] = [
   {
     id: 'betonline',
     phase: 'Product maturity',
-    role: 'VP of UI/UX · Head of Design',
+    role: 'VP of UI/UX',
     company: 'BetOnline / Offshore Brand Group',
     location: 'Remote · Sotogrande, Spain',
     summary:
