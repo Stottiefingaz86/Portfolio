@@ -2,6 +2,7 @@
 
 import {
   motion,
+  useInView,
   useReducedMotion,
   useScroll,
   useTransform,
@@ -10,6 +11,7 @@ import {
 import { useRef } from 'react';
 
 import { DESIGN_LEADERSHIP } from '@/lib/portfolio-data';
+import { cn } from '@/lib/utils';
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 const THESIS_LINES = [
@@ -98,6 +100,43 @@ function ScrollThesis({ reduced }: { reduced: boolean | null }) {
   );
 }
 
+function LeadershipTruth({
+  principle,
+  index,
+  reduced,
+}: {
+  principle: (typeof DESIGN_LEADERSHIP.principles)[number];
+  index: number;
+  reduced: boolean | null;
+}) {
+  const ref = useRef<HTMLElement>(null);
+  const inView = useInView(ref, { margin: '-42% 0px -42% 0px', amount: 0.35 });
+
+  return (
+    <motion.article
+      ref={ref}
+      initial={reduced ? false : { opacity: 0, y: 24 }}
+      animate={{ opacity: inView ? 1 : reduced ? 0.75 : 0.32 }}
+      transition={{ duration: 0.45, ease: EASE }}
+      className={cn(
+        'leadership-truth',
+        index % 2 === 1 && 'is-mirror',
+        inView && 'is-active',
+      )}
+    >
+      <span className="leadership-truth-keyword" aria-hidden>
+        {principle.keyword}
+      </span>
+
+      <div className="leadership-truth-copy">
+        <p className="leadership-truth-index">{String(index + 1).padStart(2, '0')}</p>
+        <h3>{principle.title}</h3>
+        <p>{principle.body}</p>
+      </div>
+    </motion.article>
+  );
+}
+
 export function Leadership() {
   const reduced = useReducedMotion();
 
@@ -111,26 +150,12 @@ export function Leadership() {
 
       <div className="leadership-truths" aria-label="Leadership principles">
         {DESIGN_LEADERSHIP.principles.map((principle, index) => (
-          <motion.article
+          <LeadershipTruth
             key={principle.title}
-            initial={reduced ? false : { opacity: 0, y: 32 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-15%' }}
-            transition={{ duration: 0.7, delay: index * 0.04, ease: EASE }}
-            className={`leadership-truth${index % 2 === 1 ? ' is-mirror' : ''}`}
-          >
-            <span className="leadership-truth-keyword" aria-hidden>
-              {principle.keyword}
-            </span>
-
-            <div className="leadership-truth-copy">
-              <p className="leadership-truth-index">
-                {String(index + 1).padStart(2, '0')}
-              </p>
-              <h3>{principle.title}</h3>
-              <p>{principle.body}</p>
-            </div>
-          </motion.article>
+            principle={principle}
+            index={index}
+            reduced={reduced}
+          />
         ))}
       </div>
     </section>

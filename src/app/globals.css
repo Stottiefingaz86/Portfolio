@@ -1627,6 +1627,18 @@
     opacity: 1;
   }
 
+  .leadership-truth.is-active::after {
+    opacity: 1;
+  }
+
+  .leadership-truth.is-active .leadership-truth-keyword {
+    color: oklch(0.88 0.12 190 / 0.14);
+  }
+
+  .leadership-truth.is-active .leadership-truth-index {
+    color: var(--x-accent);
+  }
+
   @media (min-width: 1024px) {
     .leadership-truth {
       grid-template-columns: minmax(0, 1fr) minmax(0, 26rem);
@@ -1678,6 +1690,10 @@
 
     .leadership-truth-keyword {
       font-size: clamp(2.75rem, 24vw, 4.5rem);
+    }
+
+    .leadership-truth.is-active .leadership-truth-keyword {
+      color: var(--x-accent);
     }
 
     .menu-trigger-label {
