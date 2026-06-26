@@ -2074,76 +2074,54 @@
     display: none;
   }
 
+  .mobile-tracker {
+    display: none;
+  }
+
   @media (max-width: 767px) {
     html {
-      scroll-padding-bottom: calc(5.5rem + env(safe-area-inset-bottom, 0px));
+      scroll-padding-bottom: calc(3rem + env(safe-area-inset-bottom, 0px));
     }
 
     .site-main {
-      padding-bottom: calc(5.75rem + env(safe-area-inset-bottom, 0px));
+      padding-bottom: calc(2.75rem + env(safe-area-inset-bottom, 0px));
     }
 
-    .mobile-dock {
-      display: block;
+    .mobile-tracker {
+      display: flex;
       position: fixed;
       inset-inline: 0;
       bottom: 0;
       z-index: calc(var(--z-nav) - 1);
-      padding:
-        0.5rem 1.25rem
-        calc(0.625rem + env(safe-area-inset-bottom, 0px));
+      justify-content: center;
+      padding-bottom: calc(0.875rem + env(safe-area-inset-bottom, 0px));
       pointer-events: none;
     }
 
-    .mobile-dock-bar {
-      position: relative;
-      width: 100%;
-      padding: 0.3125rem;
-      border: 1px solid oklch(0.97 0.004 260 / 0.1);
-      border-radius: 999px;
-      background: oklch(0.08 0.012 260 / 0.86);
-      backdrop-filter: blur(14px);
-      box-shadow: 0 10px 40px oklch(0 0 0 / 0.35);
-    }
-
-    .mobile-dock-indicator {
-      position: absolute;
-      top: 0.3125rem;
-      bottom: 0.3125rem;
-      border-radius: 999px;
-      background: oklch(0.97 0.004 260 / 0.07);
-      border: 1px solid oklch(0.88 0.12 190 / 0.16);
-      box-shadow: inset 0 1px 0 oklch(0.97 0.004 260 / 0.08);
-    }
-
-    .mobile-dock-list {
-      position: relative;
-      z-index: 1;
+    .mobile-tracker-list {
       display: flex;
-      align-items: center;
-      width: 100%;
+      align-items: flex-end;
+      gap: 0.4375rem;
       margin: 0;
       padding: 0;
       list-style: none;
     }
 
-    .mobile-dock-item {
+    .mobile-tracker-item {
       display: flex;
-      flex: 1;
-      align-items: center;
-      justify-content: center;
-      min-height: 2.5rem;
+      align-items: flex-end;
     }
 
-    .mobile-dock-icon {
-      width: 1.125rem;
-      height: 1.125rem;
-      color: oklch(0.97 0.004 260 / 0.34);
-      transition: color 220ms ease;
+    .mobile-tracker-line {
+      display: block;
+      width: 2px;
+      border-radius: 999px;
+      background: var(--x-accent);
+      transform-origin: bottom center;
     }
 
-    .mobile-dock-icon.is-active {
-      color: var(--x-accent);
+    .mobile-tracker-line.is-active {
+      width: 2px;
     }
 
     .section-header {
