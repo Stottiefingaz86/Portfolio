@@ -8,8 +8,6 @@ import { SITE } from '@/lib/portfolio-data';
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
-const HERO_PILLS = ['BetOnline', 'Jurnii AI', 'Design systems'] as const;
-
 export function Hero() {
   const ref = useRef<HTMLElement>(null);
   const reduced = useReducedMotion();
@@ -69,22 +67,10 @@ export function Hero() {
           {SITE.heroLead}
         </motion.p>
 
-        <motion.ul
-          initial={enterMotion ? { opacity: 0, y: 16 } : false}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.65, delay: 0.18, ease: EASE }}
-          className="hero-pills"
-          aria-label="Current focus"
-        >
-          {HERO_PILLS.map((pill) => (
-            <li key={pill}>{pill}</li>
-          ))}
-        </motion.ul>
-
         <motion.p
           initial={enterMotion ? { opacity: 0, y: 20 } : false}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.2, ease: EASE }}
+          transition={{ duration: 0.7, delay: 0.18, ease: EASE }}
           className="hero-body hero-copy-desktop"
         >
           {SITE.heroBody}
@@ -93,7 +79,7 @@ export function Hero() {
         <motion.div
           initial={enterMotion ? { opacity: 0, y: 16 } : false}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.65, delay: 0.24, ease: EASE }}
+          transition={{ duration: 0.65, delay: 0.22, ease: EASE }}
           className="hero-actions"
         >
           <a href="#work" className="btn btn--primary btn--hero">

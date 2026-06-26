@@ -406,10 +406,6 @@
     display: none;
   }
 
-  .hero-pills {
-    display: none;
-  }
-
   .hero-btn-arrow {
     display: none;
   }
@@ -516,28 +512,6 @@
       color: var(--x-accent);
       text-shadow: none;
       filter: none;
-    }
-
-    .hero-pills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-top: 1.125rem;
-      padding: 0;
-      list-style: none;
-    }
-
-    .hero-pills li {
-      padding: 0.3125rem 0.625rem;
-      border: 1px solid oklch(0.97 0.004 260 / 0.12);
-      border-radius: 999px;
-      background: oklch(0.97 0.004 260 / 0.04);
-      font-family: var(--font-mono);
-      font-size: 0.5625rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: oklch(0.97 0.004 260 / 0.72);
-      backdrop-filter: blur(8px);
     }
 
     .hero-actions .btn--hero {
