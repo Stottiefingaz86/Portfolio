@@ -1,5 +1,6 @@
 'use client';
 
+import { LayoutGroup, motion, useReducedMotion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
 import {
@@ -27,6 +28,9 @@ const DOCK_ITEMS = [
 
 const SECTION_IDS = DOCK_ITEMS.map((item) => item.id);
 
+const BLOB_SPRING = { type: 'spring', stiffness: 420, damping: 34, mass: 0.85 } as const;
+const ICON_SPRING = { type: 'spring', stiffness: 380, damping: 30, mass: 0.72 } as const;
+
 function getActiveSectionId() {
   const marker = window.innerHeight * 0.3;
   let activeId: (typeof SECTION_IDS)[number] = SECTION_IDS[0];
@@ -40,8 +44,25 @@ function getActiveSectionId() {
   return activeId;
 }
 
+function getIconMotion(id: (typeof SECTION_IDS)[number], activeId: (typeof SECTION_IDS)[number]) {
+  const isActive = id === activeId;
+
+  if (isActive) {
+    return {
+      scale: id === 'top' ? 1.42 : 1.18,
+      opacity: 1,
+    };
+  }
+
+  return {
+    scale: id === 'top' && activeId === 'top' ? 1.42 : 0.56,
+    opacity: 0.16,
+  };
+}
+
 export function MobileDock() {
   const isMobile = useMobile();
+  const reduced = useReducedMotion();
   const [activeId, setActiveId] = useState<(typeof SECTION_IDS)[number]>('top');
 
   useEffect(() => {
@@ -59,26 +80,58 @@ export function MobileDock() {
     };
   }, [isMobile]);
 
-  return (
-    <nav className="mobile-dock" aria-label="Mobile navigation">
-      <ul className="mobile-dock-list">
-        {DOCK_ITEMS.map(({ id, label, icon: Icon }) => {
-          const isActive = activeId === id;
+  if (!isMobile) return null;
 
-          return (
-            <li key={id}>
-              <a
-                href={`#${id}`}
-                className={cn('mobile-dock-link', isActive && 'is-active')}
-                aria-label={label}
-                aria-current={isActive ? 'location' : undefined}
+  return (
+    <nav className="mobile-dock" aria-label="Scroll progress">
+      <div className="mobile-dock-shell">
+        <LayoutGroup id="mobile-dock">
+          <ul className="mobile-dock-list">
+          {DOCK_ITEMS.map(({ id, label, icon: Icon }) => {
+            const isActive = activeId === id;
+            const motionState = getIconMotion(id, activeId);
+
+            return (
+              <li
+                key={id}
+                className={cn('mobile-dock-item', isActive && 'mobile-dock-item--active')}
               >
-                <Icon aria-hidden className="mobile-dock-icon" strokeWidth={1.75} />
-              </a>
-            </li>
-          );
-        })}
-      </ul>
+                <a
+                  href={`#${id}`}
+                  className="mobile-dock-link"
+                  aria-label={label}
+                  aria-current={isActive ? 'location' : undefined}
+                >
+                  {isActive ? (
+                    <motion.span
+                      layoutId="mobile-dock-blob"
+                      className="mobile-dock-blob"
+                      transition={reduced ? { duration: 0 } : BLOB_SPRING}
+                    />
+                  ) : null}
+
+                  <motion.span
+                    className="mobile-dock-icon-wrap"
+                    animate={
+                      reduced
+                        ? { scale: isActive ? 1 : 0.72, opacity: isActive ? 1 : 0.35 }
+                        : motionState
+                    }
+                    transition={reduced ? { duration: 0 } : ICON_SPRING}
+                  >
+                    <Icon
+                      aria-hidden
+                      className={cn('mobile-dock-icon', isActive && 'mobile-dock-icon--active')}
+                      strokeWidth={isActive ? 2 : 1.5}
+                    />
+                  </motion.span>
+                </a>
+              </li>
+            );
+          })}
+          </ul>
+        </LayoutGroup>
+      </div>
     </nav>
   );
 }
