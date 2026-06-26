@@ -1,6 +1,6 @@
 'use client';
 
-import { LayoutGroup, motion, useReducedMotion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
 import {
@@ -17,22 +17,22 @@ import { useMobile } from '@/hooks/use-mobile';
 import { cn } from '@/lib/utils';
 
 const DOCK_ITEMS = [
-  { id: 'top', label: 'Home', icon: HomeIcon },
-  { id: 'journey', label: 'Journey', icon: RouteIcon },
-  { id: 'expertise', label: 'Expertise', icon: LayersIcon },
-  { id: 'work', label: 'Work', icon: BriefcaseBusinessIcon },
-  { id: 'leadership', label: 'Leadership', icon: CompassIcon },
-  { id: 'about', label: 'About', icon: UserIcon },
-  { id: 'contact', label: 'Contact', icon: MailIcon },
+  { id: 'top', icon: HomeIcon },
+  { id: 'journey', icon: RouteIcon },
+  { id: 'expertise', icon: LayersIcon },
+  { id: 'work', icon: BriefcaseBusinessIcon },
+  { id: 'leadership', icon: CompassIcon },
+  { id: 'about', icon: UserIcon },
+  { id: 'contact', icon: MailIcon },
 ] as const;
 
 const SECTION_IDS = DOCK_ITEMS.map((item) => item.id);
+const SLOT_COUNT = DOCK_ITEMS.length;
 
-const BLOB_SPRING = { type: 'spring', stiffness: 420, damping: 34, mass: 0.85 } as const;
-const ICON_SPRING = { type: 'spring', stiffness: 380, damping: 30, mass: 0.72 } as const;
+const INDICATOR_SPRING = { type: 'spring', stiffness: 300, damping: 32, mass: 0.82 } as const;
 
 function getActiveSectionId() {
-  const marker = window.innerHeight * 0.3;
+  const marker = window.innerHeight * 0.32;
   let activeId: (typeof SECTION_IDS)[number] = SECTION_IDS[0];
 
   for (const id of SECTION_IDS) {
@@ -42,22 +42,6 @@ function getActiveSectionId() {
   }
 
   return activeId;
-}
-
-function getIconMotion(id: (typeof SECTION_IDS)[number], activeId: (typeof SECTION_IDS)[number]) {
-  const isActive = id === activeId;
-
-  if (isActive) {
-    return {
-      scale: id === 'top' ? 1.42 : 1.18,
-      opacity: 1,
-    };
-  }
-
-  return {
-    scale: id === 'top' && activeId === 'top' ? 1.42 : 0.56,
-    opacity: 0.16,
-  };
 }
 
 export function MobileDock() {
@@ -82,56 +66,37 @@ export function MobileDock() {
 
   if (!isMobile) return null;
 
+  const activeIndex = Math.max(
+    0,
+    DOCK_ITEMS.findIndex((item) => item.id === activeId),
+  );
+  const slotWidth = 100 / SLOT_COUNT;
+
   return (
-    <nav className="mobile-dock" aria-label="Scroll progress">
-      <div className="mobile-dock-shell">
-        <LayoutGroup id="mobile-dock">
-          <ul className="mobile-dock-list">
-          {DOCK_ITEMS.map(({ id, label, icon: Icon }) => {
-            const isActive = activeId === id;
-            const motionState = getIconMotion(id, activeId);
+    <div className="mobile-dock" aria-hidden="true">
+      <div className="mobile-dock-bar">
+        <motion.span
+          className="mobile-dock-indicator"
+          initial={false}
+          animate={{
+            left: `calc(${activeIndex * slotWidth}% + 3px)`,
+            width: `calc(${slotWidth}% - 6px)`,
+          }}
+          transition={reduced ? { duration: 0 } : INDICATOR_SPRING}
+        />
 
-            return (
-              <li
-                key={id}
-                className={cn('mobile-dock-item', isActive && 'mobile-dock-item--active')}
-              >
-                <a
-                  href={`#${id}`}
-                  className="mobile-dock-link"
-                  aria-label={label}
-                  aria-current={isActive ? 'location' : undefined}
-                >
-                  {isActive ? (
-                    <motion.span
-                      layoutId="mobile-dock-blob"
-                      className="mobile-dock-blob"
-                      transition={reduced ? { duration: 0 } : BLOB_SPRING}
-                    />
-                  ) : null}
-
-                  <motion.span
-                    className="mobile-dock-icon-wrap"
-                    animate={
-                      reduced
-                        ? { scale: isActive ? 1 : 0.72, opacity: isActive ? 1 : 0.35 }
-                        : motionState
-                    }
-                    transition={reduced ? { duration: 0 } : ICON_SPRING}
-                  >
-                    <Icon
-                      aria-hidden
-                      className={cn('mobile-dock-icon', isActive && 'mobile-dock-icon--active')}
-                      strokeWidth={isActive ? 2 : 1.5}
-                    />
-                  </motion.span>
-                </a>
-              </li>
-            );
-          })}
-          </ul>
-        </LayoutGroup>
+        <ul className="mobile-dock-list">
+          {DOCK_ITEMS.map(({ id, icon: Icon }, index) => (
+            <li key={id} className="mobile-dock-item">
+              <Icon
+                aria-hidden
+                className={cn('mobile-dock-icon', index === activeIndex && 'is-active')}
+                strokeWidth={index === activeIndex ? 2 : 1.65}
+              />
+            </li>
+          ))}
+        </ul>
       </div>
-    </nav>
+    </div>
   );
 }
