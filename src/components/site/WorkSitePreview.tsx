@@ -5,18 +5,32 @@ import { useLayoutEffect, useRef, useState } from 'react';
 import { cn } from '@/lib/utils';
 
 const DESKTOP_WIDTH = 1440;
+const MOBILE_WIDTH = 390;
 
-function getInitialLayout() {
+type PreviewViewport = 'desktop' | 'mobile';
+
+function getSourceWidth(viewport: PreviewViewport) {
+  return viewport === 'mobile' ? MOBILE_WIDTH : DESKTOP_WIDTH;
+}
+
+function getInitialLayout(viewport: PreviewViewport) {
+  const sourceWidth = getSourceWidth(viewport);
+
   if (typeof window === 'undefined') {
-    return { scale: 0.35, frameHeight: 900, panX: 0, ready: false };
+    return {
+      scale: viewport === 'mobile' ? 0.72 : 0.35,
+      frameHeight: viewport === 'mobile' ? 720 : 900,
+      panX: 0,
+      ready: false,
+    };
   }
 
-  const width = Math.max(320, Math.min(window.innerWidth, 960));
-  const scale = width / DESKTOP_WIDTH;
+  const width = Math.max(280, Math.min(window.innerWidth, viewport === 'mobile' ? 320 : 960));
+  const scale = width / sourceWidth;
 
   return {
     scale,
-    frameHeight: 640 / scale,
+    frameHeight: (viewport === 'mobile' ? 560 : 640) / scale,
     panX: 0,
     ready: false,
   };
@@ -26,13 +40,16 @@ export function WorkSitePreview({
   url,
   title,
   focus,
+  viewport = 'desktop',
 }: {
   url: string;
   title: string;
   focus?: 'vip-hub';
+  viewport?: PreviewViewport;
 }) {
+  const sourceWidth = getSourceWidth(viewport);
   const hostRef = useRef<HTMLDivElement>(null);
-  const [layout, setLayout] = useState(getInitialLayout);
+  const [layout, setLayout] = useState(() => getInitialLayout(viewport));
 
   useLayoutEffect(() => {
     const host = hostRef.current;
@@ -54,11 +71,11 @@ export function WorkSitePreview({
         return;
       }
 
-      const scale = width / DESKTOP_WIDTH;
-      const visibleDesktopWidth = width / scale;
+      const scale = width / sourceWidth;
+      const visibleSourceWidth = width / scale;
       const panX =
         focus === 'vip-hub'
-          ? Math.max(0, (DESKTOP_WIDTH - visibleDesktopWidth) * 0.5)
+          ? Math.max(0, (sourceWidth - visibleSourceWidth) * 0.5)
           : 0;
 
       setLayout({ scale, frameHeight: height / scale, panX, ready: true });
@@ -75,20 +92,20 @@ export function WorkSitePreview({
       observer.disconnect();
       window.removeEventListener('resize', update);
     };
-  }, [focus]);
+  }, [focus, sourceWidth]);
 
   const supportsZoom =
     typeof CSS !== 'undefined' && CSS.supports('zoom', '1');
 
   const scalerStyle = supportsZoom
     ? {
-        width: DESKTOP_WIDTH,
+        width: sourceWidth,
         height: layout.frameHeight,
         zoom: layout.scale,
         marginLeft: focus === 'vip-hub' ? -layout.panX : 0,
       }
     : {
-        width: DESKTOP_WIDTH,
+        width: sourceWidth,
         height: layout.frameHeight,
         transform: `scale(${layout.scale})`,
         transformOrigin: 'top left',
@@ -100,6 +117,7 @@ export function WorkSitePreview({
       ref={hostRef}
       className={cn(
         'work-site-preview',
+        viewport === 'mobile' && 'work-site-preview--mobile',
         !layout.ready && 'work-site-preview--pending',
         focus === 'vip-hub' && 'work-site-preview--hub-focus',
       )}

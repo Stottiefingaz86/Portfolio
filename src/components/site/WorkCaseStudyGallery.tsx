@@ -24,17 +24,16 @@ function CaseStudyMedia({ study, priority }: { study: CaseStudy; priority?: bool
   if (study.previewUrl) {
     return (
       <>
+        <div className="work-site-preview-mobile">
+          <WorkSitePreview
+            url={study.previewUrl}
+            title={study.title}
+            viewport="mobile"
+          />
+        </div>
         <div className="work-site-preview-desktop">
           <WorkSitePreview url={study.previewUrl} title={study.title} />
         </div>
-        <Image
-          src={study.image}
-          alt=""
-          fill
-          className={cn(caseStudyImageClassName(study), 'work-site-preview-fallback')}
-          sizes="100vw"
-          priority={priority}
-        />
       </>
     );
   }
