@@ -13,30 +13,16 @@ function getSourceWidth(viewport: PreviewViewport) {
   return viewport === 'mobile' ? MOBILE_WIDTH : DESKTOP_WIDTH;
 }
 
-function getInitialLayout(viewport: PreviewViewport) {
+function guessScale(viewport: PreviewViewport) {
+  if (typeof window === 'undefined') return 1;
+
   const sourceWidth = getSourceWidth(viewport);
-
-  if (typeof window === 'undefined') {
-    return {
-      scale: viewport === 'mobile' ? 0.72 : 0.35,
-      frameHeight: viewport === 'mobile' ? 720 : 900,
-      panX: 0,
-      ready: false,
-    };
-  }
-
   const hostGuess =
     viewport === 'mobile'
       ? Math.min(window.innerWidth * 0.74, 264)
       : Math.max(320, Math.min(window.innerWidth, 960));
-  const scale = hostGuess / sourceWidth;
 
-  return {
-    scale,
-    frameHeight: (viewport === 'mobile' ? 520 : 640) / Math.max(scale, 0.1),
-    panX: 0,
-    ready: false,
-  };
+  return hostGuess / sourceWidth;
 }
 
 export function WorkSitePreview({
@@ -52,7 +38,12 @@ export function WorkSitePreview({
 }) {
   const sourceWidth = getSourceWidth(viewport);
   const hostRef = useRef<HTMLDivElement>(null);
-  const [layout, setLayout] = useState(() => getInitialLayout(viewport));
+  const [layout, setLayout] = useState(() => ({
+    scale: guessScale(viewport),
+    frameHeight: viewport === 'mobile' ? 720 : 900,
+    panX: 0,
+    ready: false,
+  }));
 
   useLayoutEffect(() => {
     const host = hostRef.current;
@@ -61,10 +52,14 @@ export function WorkSitePreview({
     let rafId = 0;
 
     const measure = () => {
-      const parent = host.parentElement;
-      const width = host.clientWidth || parent?.clientWidth || 0;
-      const height = host.clientHeight || parent?.clientHeight || 0;
-      return { width, height };
+      let node: HTMLElement | null = host;
+      while (node) {
+        const width = node.clientWidth;
+        const height = node.clientHeight;
+        if (width > 0 && height > 0) return { width, height };
+        node = node.parentElement;
+      }
+      return { width: 0, height: 0 };
     };
 
     const update = () => {
@@ -97,23 +92,13 @@ export function WorkSitePreview({
     };
   }, [focus, sourceWidth]);
 
-  const supportsZoom =
-    typeof CSS !== 'undefined' && CSS.supports('zoom', '1');
-
-  const scalerStyle = supportsZoom
-    ? {
-        width: sourceWidth,
-        height: layout.frameHeight,
-        zoom: layout.scale,
-        marginLeft: focus === 'vip-hub' ? -layout.panX : 0,
-      }
-    : {
-        width: sourceWidth,
-        height: layout.frameHeight,
-        transform: `scale(${layout.scale})`,
-        transformOrigin: 'top left',
-        marginLeft: focus === 'vip-hub' ? -layout.panX * layout.scale : 0,
-      };
+  const scalerStyle = {
+    width: sourceWidth,
+    height: layout.frameHeight,
+    transform: `scale(${layout.scale})`,
+    transformOrigin: 'top left',
+    marginLeft: focus === 'vip-hub' ? -layout.panX * layout.scale : 0,
+  };
 
   return (
     <div
