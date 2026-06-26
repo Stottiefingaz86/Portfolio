@@ -2092,11 +2092,11 @@
 
   @media (max-width: 767px) {
     html {
-      scroll-padding-bottom: calc(3rem + env(safe-area-inset-bottom, 0px));
+      scroll-padding-bottom: calc(3.75rem + env(safe-area-inset-bottom, 0px));
     }
 
     .site-main {
-      padding-bottom: calc(2.75rem + env(safe-area-inset-bottom, 0px));
+      padding-bottom: calc(3.5rem + env(safe-area-inset-bottom, 0px));
     }
 
     .mobile-tracker {
@@ -2106,8 +2106,26 @@
       bottom: 0;
       z-index: calc(var(--z-nav) - 1);
       justify-content: center;
-      padding-bottom: calc(0.875rem + env(safe-area-inset-bottom, 0px));
+      align-items: flex-end;
+      padding:
+        2rem 1.25rem
+        calc(0.75rem + env(safe-area-inset-bottom, 0px));
       pointer-events: none;
+      background: linear-gradient(
+        to top,
+        oklch(0.05 0.01 260 / 0.98) 0%,
+        oklch(0.05 0.01 260 / 0.88) 38%,
+        oklch(0.05 0.01 260 / 0) 100%
+      );
+    }
+
+    .mobile-tracker-shell {
+      padding: 0.625rem 1rem;
+      border: 1px solid oklch(0.97 0.004 260 / 0.08);
+      border-radius: 999px;
+      background: oklch(0.07 0.012 260 / 0.96);
+      box-shadow: 0 8px 32px oklch(0 0 0 / 0.45);
+      backdrop-filter: blur(10px);
     }
 
     .mobile-tracker-list {

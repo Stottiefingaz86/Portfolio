@@ -62,7 +62,8 @@ export function MobileDock() {
 
   return (
     <div className="mobile-tracker" aria-hidden="true">
-      <ul className="mobile-tracker-list">
+      <div className="mobile-tracker-shell">
+        <ul className="mobile-tracker-list">
         {TRACKER_SECTIONS.map(({ id }, index) => {
           const isActive = index === activeIndex;
 
@@ -80,7 +81,8 @@ export function MobileDock() {
             </li>
           );
         })}
-      </ul>
+        </ul>
+      </div>
     </div>
   );
 }
