@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useLayoutEffect, useRef, useState } from 'react';
 
 import { cn } from '@/lib/utils';
 
@@ -16,16 +16,27 @@ export function WorkSitePreview({
   focus?: 'vip-hub';
 }) {
   const hostRef = useRef<HTMLDivElement>(null);
-  const [layout, setLayout] = useState({ scale: 0.38, frameHeight: 940, panX: 0 });
+  const [layout, setLayout] = useState({ scale: 1, frameHeight: 900, panX: 0 });
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const host = hostRef.current;
     if (!host) return;
 
+    let rafId = 0;
+
+    const measure = () => {
+      const parent = host.parentElement;
+      const width = host.clientWidth || parent?.clientWidth || 0;
+      const height = host.clientHeight || parent?.clientHeight || 0;
+      return { width, height };
+    };
+
     const update = () => {
-      const width = host.clientWidth;
-      const height = host.clientHeight;
-      if (!width || !height) return;
+      const { width, height } = measure();
+      if (!width || !height) {
+        rafId = requestAnimationFrame(update);
+        return;
+      }
 
       const scale = width / DESKTOP_WIDTH;
       const visibleDesktopWidth = width / scale;
@@ -40,7 +51,14 @@ export function WorkSitePreview({
     update();
     const observer = new ResizeObserver(update);
     observer.observe(host);
-    return () => observer.disconnect();
+    if (host.parentElement) observer.observe(host.parentElement);
+    window.addEventListener('resize', update);
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      observer.disconnect();
+      window.removeEventListener('resize', update);
+    };
   }, [focus]);
 
   const supportsZoom =

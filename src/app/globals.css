@@ -1024,6 +1024,9 @@
 
   .work-stack-media:has(.work-site-preview) {
     overflow: hidden;
+    align-self: stretch;
+    height: 100%;
+    min-height: min(40vh, 360px);
   }
 
   .work-stack-media {
@@ -1074,6 +1077,10 @@
 
   @media (min-width: 900px) {
     .work-stack-media {
+      min-height: min(58vh, 640px);
+    }
+
+    .work-stack-media:has(.work-site-preview) {
       min-height: min(58vh, 640px);
     }
   }
