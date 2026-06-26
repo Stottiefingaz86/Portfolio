@@ -436,11 +436,12 @@
 
   @media (max-width: 767px) {
     .hero {
-      align-items: flex-end;
-      justify-content: stretch;
+      min-height: auto;
+      align-items: flex-start;
+      justify-content: flex-start;
       padding-inline: max(1.25rem, env(safe-area-inset-left, 0px))
         max(1.25rem, env(safe-area-inset-right, 0px));
-      padding-block: calc(5rem + env(safe-area-inset-top, 0px)) clamp(2rem, 8vh, 3rem);
+      padding-block: calc(4.25rem + env(safe-area-inset-top, 0px)) 2.5rem;
       overflow-x: clip;
       overflow-y: visible;
     }
@@ -1631,6 +1632,18 @@
     .menu-trigger-label {
       display: none;
     }
+
+    .menu-trigger {
+      top: max(1rem, env(safe-area-inset-top, 0px));
+      right: max(1rem, env(safe-area-inset-right, 0px));
+      width: 2.75rem;
+      height: 2.75rem;
+      padding: 0;
+      gap: 0;
+      border-radius: 999px;
+      justify-content: center;
+      align-items: center;
+    }
   }
 
   .leadership-truth:hover .leadership-truth-keyword {
@@ -2003,13 +2016,16 @@
   }
 
   @media (max-width: 767px) {
-    .menu-trigger {
-      top: max(1.25rem, env(safe-area-inset-top, 0px));
-      right: max(1.25rem, env(safe-area-inset-right, 0px));
-    }
-
     .section-header {
       margin-bottom: 2rem;
+    }
+
+    .work-section {
+      padding-block: clamp(3rem, 8vw, 4rem);
+    }
+
+    .work-shell {
+      margin-bottom: 1.25rem;
     }
 
     .phases-stack {
@@ -2033,7 +2049,7 @@
     }
 
     .work-gallery-shell {
-      gap: 2rem;
+      gap: 1.5rem;
     }
 
     .contact-links {
