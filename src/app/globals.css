@@ -402,6 +402,18 @@
     mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, black, transparent);
   }
 
+  .hero-bg-spotlight {
+    display: none;
+  }
+
+  .hero-pills {
+    display: none;
+  }
+
+  .hero-btn-arrow {
+    display: none;
+  }
+
   .hero-content {
     position: relative;
     z-index: 1;
@@ -438,6 +450,157 @@
     .hero-actions .btn.hero-copy-desktop {
       display: none;
     }
+
+    .hero-bg-spotlight {
+      display: block;
+      position: absolute;
+      top: 18%;
+      left: -15%;
+      width: 130%;
+      height: 42%;
+      background:
+        radial-gradient(
+          ellipse 70% 100% at 35% 50%,
+          oklch(0.62 0.16 190 / 0.28) 0%,
+          oklch(0.45 0.12 200 / 0.12) 42%,
+          transparent 72%
+        );
+      animation: hero-spotlight-pulse 6s ease-in-out infinite;
+    }
+
+    .hero-bg-orb--a {
+      width: 72vw;
+      height: 52vw;
+      top: 8%;
+      right: -28%;
+      background: oklch(0.58 0.15 190 / 0.34);
+      animation: hero-orb-drift 9s ease-in-out infinite alternate;
+    }
+
+    .hero-bg-orb--b {
+      width: 48vw;
+      height: 36vw;
+      bottom: 18%;
+      left: -22%;
+      background: oklch(0.48 0.12 280 / 0.22);
+      animation: hero-orb-drift 11s ease-in-out infinite alternate-reverse;
+    }
+
+    .hero-bg-grid {
+      opacity: 0.45;
+      mask-image: radial-gradient(ellipse 95% 70% at 28% 22%, black 20%, transparent 78%);
+    }
+
+    .hero-kicker {
+      display: flex;
+      align-items: center;
+      gap: 0.625rem;
+    }
+
+    .hero-kicker::before {
+      content: "";
+      flex-shrink: 0;
+      width: 1.75rem;
+      height: 1px;
+      background: linear-gradient(
+        90deg,
+        var(--x-accent),
+        oklch(0.88 0.12 190 / 0.15)
+      );
+      animation: hero-kicker-draw 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
+    }
+
+    .hero-title-line--surname {
+      background: linear-gradient(
+        110deg,
+        var(--x-accent) 0%,
+        oklch(0.95 0.08 190) 42%,
+        var(--x-accent-dim) 78%,
+        var(--x-accent) 100%
+      );
+      background-size: 220% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: none;
+      filter: drop-shadow(0 0 24px oklch(0.72 0.12 190 / 0.35));
+      animation: hero-surname-shimmer 7s ease-in-out infinite;
+    }
+
+    .hero-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1.125rem;
+      padding: 0;
+      list-style: none;
+    }
+
+    .hero-pills li {
+      padding: 0.3125rem 0.625rem;
+      border: 1px solid oklch(0.97 0.004 260 / 0.12);
+      border-radius: 999px;
+      background: oklch(0.97 0.004 260 / 0.04);
+      font-family: var(--font-mono);
+      font-size: 0.5625rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: oklch(0.97 0.004 260 / 0.72);
+      backdrop-filter: blur(8px);
+    }
+
+    .hero-actions .btn--hero {
+      gap: 0.375rem;
+      border: 1px solid oklch(0.97 0.004 260 / 0.14);
+      box-shadow:
+        0 0 0 1px oklch(0.88 0.12 190 / 0.08),
+        0 12px 32px oklch(0 0 0 / 0.35),
+        0 0 40px oklch(0.72 0.12 190 / 0.16);
+    }
+
+    .hero-btn-arrow {
+      display: inline-block;
+      font-size: 0.9375rem;
+      line-height: 1;
+      transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .hero-actions .btn--hero:active .hero-btn-arrow {
+      transform: translateX(3px);
+    }
+  }
+
+  @keyframes hero-spotlight-pulse {
+    0%, 100% { opacity: 0.82; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.04); }
+  }
+
+  @keyframes hero-orb-drift {
+    from { transform: translate3d(0, 0, 0); }
+    to { transform: translate3d(4%, -3%, 0); }
+  }
+
+  @keyframes hero-kicker-draw {
+    from { width: 0; opacity: 0; }
+    to { width: 1.75rem; opacity: 1; }
+  }
+
+  @keyframes hero-surname-shimmer {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-bg-spotlight,
+    .hero-bg-orb--a,
+    .hero-bg-orb--b,
+    .hero-title-line--surname {
+      animation: none;
+    }
+
+    .hero-kicker::before {
+      animation: none;
+    }
   }
 
   .hero-title {
@@ -464,7 +627,7 @@
       justify-content: flex-start;
       padding-inline: max(1.25rem, env(safe-area-inset-left, 0px))
         max(1.25rem, env(safe-area-inset-right, 0px));
-      padding-block: calc(4rem + env(safe-area-inset-top, 0px)) 2.25rem;
+      padding-block: calc(4rem + env(safe-area-inset-top, 0px)) 2.75rem;
       overflow-x: clip;
       overflow-y: visible;
     }
