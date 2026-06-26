@@ -2133,6 +2133,15 @@
       outline: none;
     }
 
+    .mobile-dock-link.is-active {
+      color: var(--x-ink);
+      background: oklch(0.97 0.004 260 / 0.1);
+    }
+
+    .mobile-dock-link.is-active .mobile-dock-icon {
+      color: var(--x-accent);
+    }
+
     .mobile-dock-icon {
       width: 1.125rem;
       height: 1.125rem;
