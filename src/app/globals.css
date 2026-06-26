@@ -454,27 +454,28 @@
     .hero-bg-spotlight {
       display: block;
       position: absolute;
-      top: -12%;
+      top: -14%;
       left: -8%;
       width: 116%;
-      height: 46%;
+      height: 28%;
       background:
         radial-gradient(
-          ellipse 58% 85% at 68% 42%,
-          oklch(0.62 0.16 190 / 0.34) 0%,
-          oklch(0.45 0.12 200 / 0.1) 38%,
-          transparent 68%
+          ellipse 52% 90% at 72% 92%,
+          oklch(0.62 0.16 190 / 0.3) 0%,
+          oklch(0.45 0.12 200 / 0.08) 42%,
+          transparent 72%
         );
-      filter: blur(24px);
+      filter: blur(20px);
+      mask-image: linear-gradient(to bottom, black 35%, transparent 100%);
       animation: hero-spotlight-pulse 6s ease-in-out infinite;
     }
 
     .hero-bg-orb--a {
-      width: 68vw;
-      height: 44vw;
-      top: -6%;
-      right: -22%;
-      background: oklch(0.58 0.15 190 / 0.3);
+      width: 52vw;
+      height: 30vw;
+      top: -18%;
+      right: -34%;
+      background: oklch(0.58 0.15 190 / 0.22);
       animation: hero-orb-drift 9s ease-in-out infinite alternate;
     }
 
@@ -488,8 +489,8 @@
     }
 
     .hero-bg-grid {
-      opacity: 0.45;
-      mask-image: radial-gradient(ellipse 85% 60% at 62% 6%, black 18%, transparent 76%);
+      opacity: 0.35;
+      mask-image: linear-gradient(to bottom, black 0%, black 18%, transparent 34%);
     }
 
     .hero-kicker {
@@ -513,6 +514,8 @@
 
     .hero-title-line--surname {
       color: var(--x-accent);
+      text-shadow: none;
+      filter: none;
     }
 
     .hero-pills {
@@ -623,6 +626,9 @@
     }
 
     .hero-title {
+      position: relative;
+      z-index: 1;
+      isolation: isolate;
       margin-top: 0.875rem;
       max-width: 100%;
     }
