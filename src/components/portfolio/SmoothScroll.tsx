@@ -14,10 +14,13 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const coarsePointer = window.matchMedia('(pointer: coarse)').matches;
+    const narrowViewport = window.matchMedia('(max-width: 767px)').matches;
+    const useSmoothScroll = !reducedMotion && !coarsePointer && !narrowViewport;
 
     const instance = new Lenis({
-      lerp: reducedMotion ? 1 : 0.085,
-      smoothWheel: !reducedMotion,
+      lerp: useSmoothScroll ? 0.085 : 1,
+      smoothWheel: useSmoothScroll,
     });
 
     setLenis(instance);

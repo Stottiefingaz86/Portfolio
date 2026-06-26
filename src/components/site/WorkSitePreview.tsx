@@ -6,6 +6,22 @@ import { cn } from '@/lib/utils';
 
 const DESKTOP_WIDTH = 1440;
 
+function getInitialLayout() {
+  if (typeof window === 'undefined') {
+    return { scale: 0.35, frameHeight: 900, panX: 0, ready: false };
+  }
+
+  const width = Math.max(320, Math.min(window.innerWidth, 960));
+  const scale = width / DESKTOP_WIDTH;
+
+  return {
+    scale,
+    frameHeight: 640 / scale,
+    panX: 0,
+    ready: false,
+  };
+}
+
 export function WorkSitePreview({
   url,
   title,
@@ -16,7 +32,7 @@ export function WorkSitePreview({
   focus?: 'vip-hub';
 }) {
   const hostRef = useRef<HTMLDivElement>(null);
-  const [layout, setLayout] = useState({ scale: 1, frameHeight: 900, panX: 0 });
+  const [layout, setLayout] = useState(getInitialLayout);
 
   useLayoutEffect(() => {
     const host = hostRef.current;
@@ -45,7 +61,7 @@ export function WorkSitePreview({
           ? Math.max(0, (DESKTOP_WIDTH - visibleDesktopWidth) * 0.5)
           : 0;
 
-      setLayout({ scale, frameHeight: height / scale, panX });
+      setLayout({ scale, frameHeight: height / scale, panX, ready: true });
     };
 
     update();
@@ -82,7 +98,11 @@ export function WorkSitePreview({
   return (
     <div
       ref={hostRef}
-      className={cn('work-site-preview', focus === 'vip-hub' && 'work-site-preview--hub-focus')}
+      className={cn(
+        'work-site-preview',
+        !layout.ready && 'work-site-preview--pending',
+        focus === 'vip-hub' && 'work-site-preview--hub-focus',
+      )}
     >
       <div className="work-site-preview-scaler" style={scalerStyle}>
         <iframe

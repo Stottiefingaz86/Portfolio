@@ -22,7 +22,21 @@ function caseStudyImageClassName(study: CaseStudy) {
 
 function CaseStudyMedia({ study, priority }: { study: CaseStudy; priority?: boolean }) {
   if (study.previewUrl) {
-    return <WorkSitePreview url={study.previewUrl} title={study.title} />;
+    return (
+      <>
+        <div className="work-site-preview-desktop">
+          <WorkSitePreview url={study.previewUrl} title={study.title} />
+        </div>
+        <Image
+          src={study.image}
+          alt=""
+          fill
+          className={cn(caseStudyImageClassName(study), 'work-site-preview-fallback')}
+          sizes="100vw"
+          priority={priority}
+        />
+      </>
+    );
   }
 
   return (
