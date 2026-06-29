@@ -2449,4 +2449,121 @@
       padding-inline: 1.125rem;
     }
   }
+
+  .login-gate {
+    position: relative;
+    display: grid;
+    min-height: 100svh;
+    min-height: 100dvh;
+    place-items: center;
+    padding: 1.5rem;
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  .login-gate-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .login-gate-orb {
+    position: absolute;
+    top: -10%;
+    right: -12%;
+    width: min(70vw, 24rem);
+    height: min(70vw, 24rem);
+    border-radius: 999px;
+    background: oklch(0.58 0.15 190 / 0.24);
+    filter: blur(72px);
+  }
+
+  .login-gate-grid {
+    position: absolute;
+    inset: 0;
+    opacity: 0.35;
+    background-image:
+      linear-gradient(oklch(0.97 0.004 260 / 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, oklch(0.97 0.004 260 / 0.04) 1px, transparent 1px);
+    background-size: 64px 64px;
+    mask-image: radial-gradient(ellipse 80% 70% at 50% 20%, black, transparent);
+  }
+
+  .login-gate-card {
+    position: relative;
+    z-index: 1;
+    width: min(100%, 24rem);
+    padding: 1.75rem;
+    border: 1px solid var(--x-line);
+    border-radius: 1.25rem;
+    background: oklch(0.09 0.013 260 / 0.92);
+    box-shadow: 0 24px 64px oklch(0 0 0 / 0.35);
+    backdrop-filter: blur(12px);
+  }
+
+  .login-gate-kicker {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--x-muted);
+  }
+
+  .login-gate-title {
+    margin-top: 0.75rem;
+    font-family: var(--font-hero);
+    font-size: clamp(1.75rem, 8vw, 2.25rem);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    color: var(--x-ink);
+  }
+
+  .login-gate-copy {
+    margin-top: 0.625rem;
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    color: var(--x-muted);
+  }
+
+  .login-gate-form {
+    display: grid;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+  }
+
+  .login-gate-label {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--x-muted);
+  }
+
+  .login-gate-input {
+    width: 100%;
+    min-height: 2.75rem;
+    padding-inline: 0.875rem;
+    border: 1px solid var(--x-line-strong);
+    border-radius: 0.75rem;
+    background: oklch(0.97 0.004 260 / 0.04);
+    color: var(--x-ink);
+    font-size: 0.9375rem;
+    outline: none;
+    transition: border-color 180ms ease, box-shadow 180ms ease;
+  }
+
+  .login-gate-input:focus {
+    border-color: oklch(0.88 0.12 190 / 0.45);
+    box-shadow: 0 0 0 3px oklch(0.72 0.12 190 / 0.12);
+  }
+
+  .login-gate-error {
+    font-size: 0.8125rem;
+    color: oklch(0.72 0.16 25);
+  }
+
+  .login-gate-submit {
+    width: 100%;
+    margin-top: 0.25rem;
+  }
 }
