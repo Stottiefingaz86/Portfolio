@@ -2,7 +2,7 @@
 
 import { useCallback } from 'react';
 
-export function useWorkHoverLight() {
+export function useHudHoverLight() {
   const onPointerMove = useCallback((event: React.PointerEvent<HTMLElement>) => {
     const surface = event.currentTarget;
     const rect = surface.getBoundingClientRect();
@@ -20,3 +20,6 @@ export function useWorkHoverLight() {
 
   return { onPointerMove, onPointerLeave };
 }
+
+/** @deprecated Use useHudHoverLight */
+export const useWorkHoverLight = useHudHoverLight;

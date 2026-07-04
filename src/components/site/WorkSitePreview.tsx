@@ -1,12 +1,14 @@
 'use client';
 
 import Image from 'next/image';
-import { useLayoutEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 
 import { cn } from '@/lib/utils';
 
 const DESKTOP_WIDTH = 1440;
 const MOBILE_WIDTH = 390;
+const SCROLL_IDLE_MS = 450;
+const IN_VIEW_THRESHOLD = 0.12;
 
 type PreviewViewport = 'desktop' | 'mobile';
 
@@ -31,6 +33,56 @@ export function WorkSitePreview({
   const hostRef = useRef<HTMLDivElement>(null);
   const scalerRef = useRef<HTMLDivElement>(null);
   const [ready, setReady] = useState(false);
+  const [canLoadIframe, setCanLoadIframe] = useState(false);
+
+  useEffect(() => {
+    const host = hostRef.current;
+    if (!host) return;
+
+    let scrollTimer: number | undefined;
+    let inView = false;
+    let loaded = false;
+
+    const markReadyToLoad = () => {
+      if (loaded || !inView) return;
+
+      scrollTimer = window.setTimeout(() => {
+        if (inView) {
+          loaded = true;
+          setCanLoadIframe(true);
+        }
+      }, SCROLL_IDLE_MS);
+    };
+
+    const onScroll = () => {
+      if (loaded) return;
+      window.clearTimeout(scrollTimer);
+      markReadyToLoad();
+    };
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        inView = entry.isIntersecting;
+
+        if (!inView) {
+          window.clearTimeout(scrollTimer);
+          return;
+        }
+
+        markReadyToLoad();
+      },
+      { threshold: IN_VIEW_THRESHOLD },
+    );
+
+    observer.observe(host);
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    return () => {
+      observer.disconnect();
+      window.clearTimeout(scrollTimer);
+      window.removeEventListener('scroll', onScroll);
+    };
+  }, []);
 
   useLayoutEffect(() => {
     const host = hostRef.current;
@@ -93,6 +145,7 @@ export function WorkSitePreview({
         'work-site-preview',
         viewport === 'mobile' && 'work-site-preview--mobile',
         !ready && 'work-site-preview--pending',
+        canLoadIframe && 'work-site-preview--live',
         focus === 'vip-hub' && 'work-site-preview--hub-focus',
       )}
     >
@@ -108,12 +161,13 @@ export function WorkSitePreview({
       ) : null}
 
       <div ref={scalerRef} className="work-site-preview-scaler">
-        {ready ? (
+        {ready && canLoadIframe ? (
           <iframe
             src={url}
             title={title}
             className="work-site-preview-frame"
             loading="lazy"
+            tabIndex={-1}
           />
         ) : null}
       </div>

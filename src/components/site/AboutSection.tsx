@@ -1,19 +1,22 @@
-import Image from 'next/image';
-
+import { GlitchText } from '@/components/site/hud/GlitchText';
+import { HudSectionShell } from '@/components/site/hud/HudSection';
 import { Reveal } from '@/components/site/Reveal';
 import { ABOUT, SITE } from '@/lib/portfolio-data';
 import { getAge } from '@/lib/utils';
+import Image from 'next/image';
 
 const LEAD_PARAGRAPHS = ABOUT.lead.split('\n\n');
 const PERSONAL_PARAGRAPHS = ABOUT.personal.split('\n\n');
 
 export function AboutSection() {
   return (
-    <section id="about" className="section about-section">
+    <HudSectionShell id="about" code="SEC_06 // ABOUT" className="about-section">
       <div className="shell about-shell">
         <Reveal className="about-intro">
           <p className="section-kicker">{ABOUT.personalTitle}</p>
-          <h2 className="about-headline">{ABOUT.title}</h2>
+          <h2 className="about-headline">
+            <GlitchText as="span">{ABOUT.title}</GlitchText>
+          </h2>
           <p className="about-meta">
             {SITE.role} · {ABOUT.persona.location} · {ABOUT.birthDateLabel} ·{' '}
             {getAge(ABOUT.birthDate)}
@@ -56,6 +59,6 @@ export function AboutSection() {
           </div>
         </div>
       </div>
-    </section>
+    </HudSectionShell>
   );
 }

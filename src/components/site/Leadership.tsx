@@ -10,6 +10,11 @@ import {
 } from 'framer-motion';
 import { useRef } from 'react';
 
+import { GlitchText } from '@/components/site/hud/GlitchText';
+import { HudRow } from '@/components/site/hud/HudRow';
+import { HudSectionShell } from '@/components/site/hud/HudSection';
+import { useHudHoverLight } from '@/components/site/useHudHoverLight';
+import { useSiteAmbienceOnActive } from '@/components/site/useSiteAmbienceOnActive';
 import { DESIGN_LEADERSHIP } from '@/lib/portfolio-data';
 import { cn } from '@/lib/utils';
 
@@ -111,28 +116,38 @@ function LeadershipTruth({
 }) {
   const ref = useRef<HTMLElement>(null);
   const inView = useInView(ref, { margin: '-42% 0px -42% 0px', amount: 0.35 });
+  const hoverLight = useHudHoverLight();
+  useSiteAmbienceOnActive(inView);
 
   return (
     <motion.article
       ref={ref}
-      initial={reduced ? false : { opacity: 0, y: 24 }}
+      initial={reduced ? false : { opacity: 0, y: 20 }}
       animate={{ opacity: inView ? 1 : reduced ? 0.75 : 0.32 }}
       transition={{ duration: 0.45, ease: EASE }}
-      className={cn(
-        'leadership-truth',
-        index % 2 === 1 && 'is-mirror',
-        inView && 'is-active',
-      )}
+      className={cn('leadership-truth', inView && 'is-active')}
     >
-      <span className="leadership-truth-keyword" aria-hidden>
-        {principle.keyword}
-      </span>
-
-      <div className="leadership-truth-copy">
-        <p className="leadership-truth-index">{String(index + 1).padStart(2, '0')}</p>
-        <h3>{principle.title}</h3>
-        <p>{principle.body}</p>
-      </div>
+      <HudRow
+        code={`[ ${principle.keyword.toUpperCase()} // PRINCIPLE ]`}
+        className="hud-row--principle"
+      >
+        <div
+          className="principle-panel hud-hover-surface"
+          onPointerMove={hoverLight.onPointerMove}
+          onPointerLeave={hoverLight.onPointerLeave}
+        >
+          <span className="hud-hover-light" aria-hidden />
+          <div className="principle-panel__head">
+            <p className="leadership-truth-index">{String(index + 1).padStart(2, '0')}</p>
+            <h3 className="leadership-truth-title">
+              <GlitchText as="span" intensity="elevated">
+                {principle.title}
+              </GlitchText>
+            </h3>
+          </div>
+          <p className="leadership-truth-body">{principle.body}</p>
+        </div>
+      </HudRow>
     </motion.article>
   );
 }
@@ -141,23 +156,25 @@ export function Leadership() {
   const reduced = useReducedMotion();
 
   return (
-    <section id="leadership" className="section leadership-section">
-      <div className="shell leadership-essay">
-        <p className="section-kicker">Leadership</p>
+    <HudSectionShell id="leadership" code="SEC_05 // LEADERSHIP" className="leadership-section">
+      <div className="shell leadership-layout">
+        <div className="leadership-essay">
+          <p className="section-kicker">Leadership</p>
 
-        <ScrollThesis reduced={reduced} />
-      </div>
+          <ScrollThesis reduced={reduced} />
+        </div>
 
-      <div className="leadership-truths" aria-label="Leadership principles">
-        {DESIGN_LEADERSHIP.principles.map((principle, index) => (
-          <LeadershipTruth
-            key={principle.title}
-            principle={principle}
-            index={index}
-            reduced={reduced}
-          />
-        ))}
+        <div className="leadership-truths" aria-label="Leadership principles">
+          {DESIGN_LEADERSHIP.principles.map((principle, index) => (
+            <LeadershipTruth
+              key={principle.title}
+              principle={principle}
+              index={index}
+              reduced={reduced}
+            />
+          ))}
+        </div>
       </div>
-    </section>
+    </HudSectionShell>
   );
 }

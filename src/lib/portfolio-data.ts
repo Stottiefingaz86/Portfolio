@@ -110,6 +110,10 @@ export const SITE = {
   credibilityLine:
     'VP of UI/UX · BetOnline · Founder of Jurnii AI · AI design-to-dev · Remote from Sotogrande, Spain',
   portfolioYear: '2K26',
+  siteLogo: '/logos/sitelogo.png?v=2',
+  siteLogoAlt: 'Christopher Hunt monogram',
+  heroImage: '/images/hero.png',
+  heroImageAlt: 'Cinematic horizon with cyan light pillar and HUD telemetry',
   subtitle:
     'I design, modernise and scale digital gambling experiences across casino, sportsbook, poker, payments, loyalty and player experience.',
   email: 'hello@christopherhunt.design',
@@ -325,8 +329,6 @@ export const FEATURED_CASE_STUDY_IDS = [
   'jurnii-ai',
   'lucky-lagoon',
 ] as const;
-
-export const WORK_SPOTLIGHT_CASE_STUDY_ID = 'betonline-transformation' as const;
 
 export const ABOUT = {
   title: 'Creative craft. Product depth. Commercial focus.',
@@ -873,12 +875,10 @@ export const FEATURED_CASE_STUDIES = FEATURED_CASE_STUDY_IDS.map((id) =>
   CASE_STUDIES.find((study) => study.id === id),
 ).filter((study): study is CaseStudy => study !== undefined);
 
-export const WORK_SPOTLIGHT_CASE_STUDIES = WORK_CASE_STUDIES.filter(
-  (study) => study.id === WORK_SPOTLIGHT_CASE_STUDY_ID,
-);
+export const WORK_FEATURED_CASE_STUDIES = FEATURED_CASE_STUDIES;
 
 export const WORK_TEXT_STACK_CASE_STUDIES = WORK_CASE_STUDIES.filter(
-  (study) => study.id !== WORK_SPOTLIGHT_CASE_STUDY_ID,
+  (study) => !FEATURED_CASE_STUDY_IDS.includes(study.id as (typeof FEATURED_CASE_STUDY_IDS)[number]),
 );
 
 export const FEATURED_TILES = [

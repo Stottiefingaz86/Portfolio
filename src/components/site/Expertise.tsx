@@ -3,6 +3,11 @@
 import { motion, useInView, useReducedMotion } from 'framer-motion';
 import { useRef } from 'react';
 
+import { GlitchText } from '@/components/site/hud/GlitchText';
+import { HudRow } from '@/components/site/hud/HudRow';
+import { HudSectionShell } from '@/components/site/hud/HudSection';
+import { useHudHoverLight } from '@/components/site/useHudHoverLight';
+import { useSiteAmbienceOnActive } from '@/components/site/useSiteAmbienceOnActive';
 import { WHAT_I_BRING } from '@/lib/portfolio-data';
 import { cn } from '@/lib/utils';
 
@@ -19,6 +24,8 @@ function ExpertiseRow({
   const ref = useRef<HTMLLIElement>(null);
   const reduced = useReducedMotion();
   const inView = useInView(ref, { margin: SCROLL_MARGIN, amount: 0.35 });
+  const hoverLight = useHudHoverLight();
+  useSiteAmbienceOnActive(inView);
 
   return (
     <motion.li
@@ -28,19 +35,30 @@ function ExpertiseRow({
       transition={{ duration: 0.45, ease: EASE }}
       className={cn('expertise-row', inView && 'expertise-row--active')}
     >
-      <span className="expertise-row-index" aria-hidden>
-        {String(index + 1).padStart(2, '0')}
-      </span>
+      <HudRow code={`[ CAP_${String(index + 1).padStart(2, '0')} ]`}>
+        <div
+          className="expertise-row-surface hud-hover-surface"
+          onPointerMove={hoverLight.onPointerMove}
+          onPointerLeave={hoverLight.onPointerLeave}
+        >
+          <span className="hud-hover-light" aria-hidden />
+          <span className="expertise-row-index" aria-hidden>
+            {String(index + 1).padStart(2, '0')}
+          </span>
 
-      <div className="expertise-row-main">
-        <h3 className="expertise-row-title">{item.title}</h3>
-        <p className="expertise-row-body">{item.body}</p>
-        <ul className="expertise-row-focus" aria-label={`${item.title} focus areas`}>
-          {item.focus.map((tag) => (
-            <li key={tag}>{tag}</li>
-          ))}
-        </ul>
-      </div>
+          <div className="expertise-row-main">
+            <h3 className="expertise-row-title">
+              <GlitchText as="span">{item.title}</GlitchText>
+            </h3>
+            <p className="expertise-row-body">{item.body}</p>
+            <ul className="expertise-row-focus" aria-label={`${item.title} focus areas`}>
+              {item.focus.map((tag) => (
+                <li key={tag}>{tag}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </HudRow>
     </motion.li>
   );
 }
@@ -49,7 +67,7 @@ export function Expertise() {
   const reduced = useReducedMotion();
 
   return (
-    <section id="expertise" className="section expertise-section">
+    <HudSectionShell id="expertise" code="SEC_03 // EXPERTISE" className="expertise-section">
       <div className="shell expertise-layout">
         <div className="expertise-intro">
           <motion.div
@@ -61,11 +79,12 @@ export function Expertise() {
           >
             <p className="section-kicker">Expertise</p>
             <h2 className="expertise-headline">
-              Design leadership for products that have to work at scale.
+              <GlitchText as="span" intensity="elevated">
+                Design leadership for products that have to work at scale.
+              </GlitchText>
             </h2>
             <p className="expertise-deck">
-              Teams, systems, research and the commercial judgment to connect craft to
-              outcomes inside complex gambling organisations.
+              Teams, systems, research and product judgment at scale.
             </p>
           </motion.div>
         </div>
@@ -76,6 +95,6 @@ export function Expertise() {
           ))}
         </ul>
       </div>
-    </section>
+    </HudSectionShell>
   );
 }

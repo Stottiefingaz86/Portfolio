@@ -1,9 +1,58 @@
 'use client';
 
+import Image from 'next/image';
 import { FormEvent, Suspense, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 
+import { GlitchText } from '@/components/site/hud/GlitchText';
+import { HeroLogoMark } from '@/components/site/hud/HeroLogoMark';
+import { HudFrame } from '@/components/site/hud/HudFrame';
 import { SITE } from '@/lib/portfolio-data';
+
+function LoginBackground() {
+  return (
+    <div className="login-gate-bg" aria-hidden>
+      <div className="login-gate-bg-image">
+        <Image
+          src={SITE.heroImage}
+          alt=""
+          fill
+          priority
+          className="login-gate-bg-photo"
+          sizes="100vw"
+        />
+        <div className="login-gate-bg-fx" aria-hidden>
+          <span className="hero-bg-fx__grain" />
+          <span className="hero-bg-fx__scanlines" />
+          <span className="hero-bg-fx__tv-pulse" />
+        </div>
+      </div>
+      <div className="login-gate-bg-scrim" />
+    </div>
+  );
+}
+
+function LoginPanel({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="login-gate-shell">
+      <HudFrame label={`[ AUTH // ${SITE.portfolioYear} ]`} className="login-gate-panel">
+        <div className="login-gate-logo-wrap">
+          <HeroLogoMark src={SITE.siteLogo} alt={SITE.siteLogoAlt} />
+        </div>
+
+        <p className="login-gate-kicker">[ PRIVATE PORTFOLIO ]</p>
+        <h1 className="login-gate-title">
+          <GlitchText as="span" playOnMount intensity="elevated">
+            {SITE.name}
+          </GlitchText>
+        </h1>
+        <p className="login-gate-copy">Enter password to access this site.</p>
+
+        {children}
+      </HudFrame>
+    </div>
+  );
+}
 
 function LoginForm() {
   const router = useRouter();
@@ -41,17 +90,10 @@ function LoginForm() {
   }
 
   return (
-    <div className="login-gate">
-      <div className="login-gate-bg" aria-hidden>
-        <div className="login-gate-orb" />
-        <div className="login-gate-grid" />
-      </div>
+    <div className="login-gate login-gate--hud">
+      <LoginBackground />
 
-      <div className="login-gate-card">
-        <p className="login-gate-kicker">Private portfolio</p>
-        <h1 className="login-gate-title">{SITE.name}</h1>
-        <p className="login-gate-copy">Enter the password to view this site.</p>
-
+      <LoginPanel>
         <form className="login-gate-form" onSubmit={onSubmit}>
           <label className="login-gate-label" htmlFor="site-password">
             Password
@@ -70,22 +112,28 @@ function LoginForm() {
 
           {error ? <p className="login-gate-error">{error}</p> : null}
 
-          <button className="btn btn--primary login-gate-submit" type="submit" disabled={loading}>
-            {loading ? 'Checking…' : 'Enter site'}
-          </button>
+          <div className="login-gate-actions">
+            <button
+              className="btn btn--primary login-gate-submit"
+              type="submit"
+              disabled={loading}
+            >
+              <GlitchText glitch={false}>{loading ? 'Checking…' : 'Enter site'}</GlitchText>
+            </button>
+          </div>
         </form>
-      </div>
+      </LoginPanel>
     </div>
   );
 }
 
 function LoginFallback() {
   return (
-    <div className="login-gate">
-      <div className="login-gate-card">
-        <p className="login-gate-kicker">Private portfolio</p>
-        <h1 className="login-gate-title">{SITE.name}</h1>
-      </div>
+    <div className="login-gate login-gate--hud">
+      <LoginBackground />
+      <LoginPanel>
+        <p className="login-gate-copy">Loading access panel…</p>
+      </LoginPanel>
     </div>
   );
 }

@@ -6,6 +6,7 @@ import { useEffect, useRef } from 'react';
 import { CaseStudyContent } from '@/components/case-study/CaseStudyContent';
 import { useLenis } from '@/components/portfolio/SmoothScroll';
 import type { CaseStudy } from '@/lib/portfolio-data';
+import { playSiteSound } from '@/lib/site-sounds';
 
 interface CaseStudyModalProps {
   study: CaseStudy | null;
@@ -28,6 +29,8 @@ export function CaseStudyModal({ study, index, onClose }: CaseStudyModalProps) {
 
   useEffect(() => {
     if (!study) return;
+
+    playSiteSound('popupOpen');
 
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') onClose();
@@ -61,24 +64,24 @@ export function CaseStudyModal({ study, index, onClose }: CaseStudyModalProps) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
-            className="fixed inset-0 z-[var(--z-modal)] bg-[var(--x-ink)]/18"
+            className="case-modal-backdrop fixed inset-0 z-[var(--z-modal)]"
             onClick={onClose}
           />
           <motion.div
             role="dialog"
             aria-modal="true"
             aria-labelledby={`case-title-${study.id}`}
-            initial={{ opacity: 0, y: 48, scale: 0.98 }}
+            initial={{ opacity: 0, y: 32, scale: 0.985 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 32, scale: 0.98 }}
+            exit={{ opacity: 0, y: 24, scale: 0.985 }}
             transition={{ duration: 0.42, ease: [0.16, 1, 0.3, 1] }}
-            className="case-modal fixed inset-x-3 top-3 bottom-3 z-[calc(var(--z-modal)+1)] flex flex-col overflow-hidden rounded-[1.5rem] bg-[var(--x-canvas)] shadow-[0_40px_120px_rgb(10_10_10_/_0.22)] md:inset-x-8 md:top-8 md:bottom-8 md:rounded-[2rem]"
+            className="case-modal fixed inset-x-3 top-3 bottom-3 z-[calc(var(--z-modal)+1)] flex flex-col overflow-hidden md:inset-x-8 md:top-8 md:bottom-8"
           >
             <button
               type="button"
               aria-label="Close case study"
               onClick={onClose}
-              className="absolute right-5 top-5 z-20 flex h-11 w-11 items-center justify-center rounded-full border border-[var(--x-line)] bg-[var(--x-canvas-elevated)] transition-transform hover:scale-[1.03] md:right-8 md:top-8"
+              className="case-modal-close"
             >
               <CloseIcon />
             </button>

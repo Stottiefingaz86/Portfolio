@@ -1,3 +1,4 @@
+@layer components {
   /* Lucky Lagoon interactive case study */
   .lucky-lagoon-mini {
     --ll-blue: #0066ff;
@@ -726,3 +727,4 @@
   .hero-blackjack-panel canvas {
     image-rendering: auto;
   }
+}

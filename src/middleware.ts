@@ -23,7 +23,7 @@ export function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  if (/\.(?:ico|png|jpg|jpeg|svg|webp|pdf|woff2?)$/i.test(pathname)) {
+  if (/\.(?:ico|png|jpg|jpeg|svg|webp|pdf|woff2?|mp3|wav)$/i.test(pathname)) {
     return NextResponse.next();
   }
 

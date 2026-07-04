@@ -1,15 +1,15 @@
+import { HudSectionShell } from '@/components/site/hud/HudSection';
 import { Reveal } from '@/components/site/Reveal';
 import { SectionHeader } from '@/components/site/SectionHeader';
 import { SITE } from '@/lib/portfolio-data';
 
 export function Contact() {
   return (
-    <section id="contact" className="section contact-section">
+    <HudSectionShell id="contact" code="SEC_07 // CONTACT" className="contact-section">
       <div className="shell">
         <SectionHeader
           kicker="Contact"
           title="Let's talk about what's next"
-          lead="VP of UI/UX, Design Director, Creative Director and senior product design leadership across online gambling, digital product, AI and design-to-dev workflows."
         />
 
         <Reveal className="contact-links">
@@ -28,6 +28,6 @@ export function Contact() {
           <p className="contact-note">{SITE.credibilityLine}</p>
         </Reveal>
       </div>
-    </section>
+    </HudSectionShell>
   );
 }

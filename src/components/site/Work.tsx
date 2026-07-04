@@ -1,13 +1,18 @@
 'use client';
 
+import { motion, useReducedMotion } from 'framer-motion';
 import { useCallback, useState } from 'react';
 
 import { CaseStudyModal } from '@/components/case-study/CaseStudyModal';
+import { GlitchText } from '@/components/site/hud/GlitchText';
+import { HudSectionShell } from '@/components/site/hud/HudSection';
 import { WorkCaseStudyGallery } from '@/components/site/WorkCaseStudyGallery';
-import { BlurFade } from '@/components/ui/blur-fade';
 import { WORK_CASE_STUDIES, type CaseStudy } from '@/lib/portfolio-data';
 
+const EASE = [0.16, 1, 0.3, 1] as const;
+
 export function Work() {
+  const reduced = useReducedMotion();
   const [modalStudy, setModalStudy] = useState<CaseStudy | null>(null);
 
   const modalIndex = modalStudy
@@ -20,25 +25,31 @@ export function Work() {
 
   return (
     <>
-      <section id="work" className="section work-section">
+      <HudSectionShell id="work" code="SEC_04 // WORK" className="work-section">
         <div className="shell work-shell">
-          <BlurFade inView delay={0.05} className="work-intro">
-            <p className="section-kicker">Selected work</p>
-            <h2 className="work-headline">
-              <span className="hero-copy-desktop">Case studies through product maturity.</span>
-              <span className="hero-copy-mobile">Case studies</span>
-            </h2>
-            <p className="work-deck hero-copy-desktop">
-              Constraints, decisions and outcomes across transformation, research, brand and AI,
-              told as stages, not screenshots.
-            </p>
-          </BlurFade>
-        </div>
+          <div className="work-intro">
+            <motion.div
+              className="work-intro-inner"
+              initial={reduced ? false : { opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-10%' }}
+              transition={{ duration: 0.65, ease: EASE }}
+            >
+              <p className="section-kicker">Selected work</p>
+              <h2 className="work-headline">
+                <GlitchText as="span" intensity="elevated">
+                  Case studies through product maturity
+                </GlitchText>
+              </h2>
+              <p className="work-deck">
+                Transformation, loyalty, AI and casino — governed product work at scale.
+              </p>
+            </motion.div>
+          </div>
 
-        <BlurFade inView delay={0.12} className="work-gallery">
           <WorkCaseStudyGallery onOpen={openStudy} />
-        </BlurFade>
-      </section>
+        </div>
+      </HudSectionShell>
 
       <CaseStudyModal
         study={modalStudy}
