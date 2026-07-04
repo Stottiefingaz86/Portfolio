@@ -201,11 +201,10 @@ export function triggerSiteAmbience() {
   startBackgroundMusic();
 }
 
-/** Hover or scroll highlight: replayable tick + ensure ambience started. */
+/** Scroll-spy / section focus: ensure ambience only (no highlight tick). */
 export function triggerHighlightFeedback() {
   if (!shouldPlaySound()) return;
 
-  playHighlightSound();
   triggerSiteAmbience();
 }
 

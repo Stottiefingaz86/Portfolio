@@ -1,5 +1,7 @@
 import { SITE } from '@/lib/portfolio-data';
 
+import { SectionLockupMark } from '@/components/site/hud/SectionLockupMark';
+
 export function Footer() {
   return (
     <footer className="site-footer site-footer--hud">
@@ -7,6 +9,9 @@ export function Footer() {
         <p className="section-hud-code site-footer-code" aria-hidden>
           [ SYS_END // FOOTER ]
         </p>
+        <div className="site-footer-lockup">
+          <SectionLockupMark src={SITE.lockupLogo} alt={SITE.lockupLogoAlt} />
+        </div>
         <p className="site-footer-name">
           {SITE.legalName}
         </p>

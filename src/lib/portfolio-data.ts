@@ -112,6 +112,8 @@ export const SITE = {
   portfolioYear: '2K26',
   siteLogo: '/logos/sitelogo.png?v=2',
   siteLogoAlt: 'Christopher Hunt monogram',
+  lockupLogo: '/logos/lockup-logo.png',
+  lockupLogoAlt: 'Christopher Hunt section lockup',
   heroImage: '/images/hero.png',
   heroImageAlt: 'Cinematic horizon with cyan light pillar and HUD telemetry',
   subtitle:

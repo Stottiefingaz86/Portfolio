@@ -1869,6 +1869,126 @@
   color: var(--x-hud-cyan-dim);
 }
 
+.section-lockup-mark {
+  position: relative;
+  width: clamp(1.125rem, 2.75vw, 1.5rem);
+  aspect-ratio: 1;
+  flex-shrink: 0;
+}
+
+.section-lockup-logo {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  opacity: 0.9;
+  animation:
+    hero-logo-fade 8s ease-in-out infinite,
+    hero-logo-jitter 7s steps(1, end) infinite;
+}
+
+.section-lockup-grain,
+.section-lockup-scan,
+.section-lockup-flicker {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  -webkit-mask-image: var(--section-lockup-url);
+  mask-image: var(--section-lockup-url);
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-mode: alpha;
+  mask-mode: alpha;
+}
+
+.section-lockup-grain {
+  z-index: 3;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.15' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+  background-size: 64px 64px;
+  animation:
+    hero-grain-drift 3.5s steps(10, end) infinite,
+    hero-logo-grain-flicker 1.9s steps(1, end) infinite;
+}
+
+.section-lockup-grain--coarse {
+  z-index: 4;
+  mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+  background-size: 96px 96px;
+  animation:
+    hero-grain-drift 5s steps(8, end) infinite reverse,
+    hero-logo-grain-flicker 2.4s steps(1, end) infinite;
+  animation-delay: 0.15s, 0.35s;
+}
+
+.section-lockup-scan {
+  z-index: 5;
+  mix-blend-mode: multiply;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0,
+    transparent 1px,
+    oklch(0 0 0 / 0.3) 1px,
+    oklch(0 0 0 / 0.3) 2px
+  );
+  animation:
+    hero-logo-scan-roll 2.8s linear infinite,
+    hero-scanline-flicker 1.6s steps(1, end) infinite;
+}
+
+.section-lockup-flicker {
+  z-index: 6;
+  mix-blend-mode: overlay;
+  background:
+    radial-gradient(circle at 50% 42%, oklch(0.98 0.02 250 / 0.14), transparent 68%),
+    oklch(0.04 0.01 250 / 0.08);
+  animation: hero-logo-phosphor-flicker 2.1s steps(1, end) infinite;
+}
+
+.section-lockup-ghost {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: var(--section-lockup-url) center / contain no-repeat;
+  opacity: 0;
+}
+
+.section-lockup-ghost--a {
+  mix-blend-mode: screen;
+  filter: saturate(1.45) brightness(1.18);
+  animation: hero-logo-glitch-a 6.5s steps(1, end) infinite;
+}
+
+.section-lockup-ghost--b {
+  mix-blend-mode: color-dodge;
+  filter: hue-rotate(145deg) saturate(1.25);
+  animation: hero-logo-glitch-b 5.8s steps(1, end) infinite;
+  animation-delay: 0.35s;
+}
+
+.section-lockup-mark--static .section-lockup-logo {
+  opacity: 0.9;
+  animation: none;
+}
+
+.section-lockup-mark--static .section-lockup-grain {
+  opacity: 0.38;
+  animation: none;
+}
+
+.section-lockup-mark--static .section-lockup-scan,
+.section-lockup-mark--static .section-lockup-flicker {
+  animation: none;
+}
+
 .section-hud-code::before {
   content: "";
   width: 2rem;
@@ -3325,6 +3445,16 @@
   margin-bottom: 1rem;
 }
 
+.site-footer-lockup {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto 0.875rem;
+}
+
+.site-footer-lockup .section-lockup-mark {
+  width: clamp(1.125rem, 2.75vw, 1.5rem);
+}
+
 .about-portrait {
   border: 1px solid oklch(0.82 0.14 195 / 0.18);
 }
@@ -3717,5 +3847,17 @@
 
   .hero-hud-logo-mark--static .hero-hud-logo-grain {
     opacity: 0.42;
+  }
+
+  .section-lockup-logo,
+  .section-lockup-grain,
+  .section-lockup-scan,
+  .section-lockup-flicker,
+  .section-lockup-ghost {
+    animation: none;
+  }
+
+  .section-lockup-mark--static .section-lockup-grain {
+    opacity: 0.38;
   }
 }
