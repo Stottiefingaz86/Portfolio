@@ -114,7 +114,7 @@ export const SITE = {
   siteLogoAlt: 'Christopher Hunt monogram',
   lockupLogo: '/logos/lockup-logo.png',
   lockupLogoAlt: 'Christopher Hunt section lockup',
-  heroImage: '/images/hero.jpg?v=6',
+  heroImage: '/images/hero.jpg?v=7',
   heroImageAlt: 'Cinematic casino horizon with holographic HUD roulette wheel and cyan light pillar',
   subtitle:
     'An iGaming product UI/UX expert with 16 years designing and scaling digital gambling experiences across casino, sportsbook, loyalty, rewards retention and player experience.',
