@@ -101,23 +101,23 @@ export const SITE = {
   roleLines: ['VP of UI/UX.', 'Creative Director.'],
   tagline: 'VP of UI/UX & Creative Director',
   heroLead:
-    'I design, modernise and scale digital gambling experiences across casino, sportsbook, poker, payments, loyalty and player experience.',
+    'An iGaming product UI/UX expert with 16 years in the industry — designing, modernising and scaling casino, sportsbook, poker, loyalty, rewards retention, payments and player experience.',
   heroLeadMobile:
-    'VP of UI/UX for casino, sportsbook and player experience.',
+    '16 years in iGaming. Product UI/UX expert across casino, sportsbook, loyalty, rewards retention and player experience.',
   heroBody:
-    'From hands-on game design and UI through design systems, product strategy, customer research and team leadership, then founding Jurnii AI and building AI-assisted design-to-dev workflows at BetOnline.',
+    '16 years from hands-on game design and UI through product leadership, directing UI/UX teams and design systems — then founding Jurnii.io and building AI-assisted design-to-dev workflows at BetOnline.',
   heroKickerMobile: 'VP of UI/UX · Creative Director',
   credibilityLine:
-    'VP of UI/UX · BetOnline · Founder of Jurnii AI · AI design-to-dev · Remote from Sotogrande, Spain',
+    '16 years in iGaming · VP of UI/UX · BetOnline · Founder of Jurnii.io · Remote from Sotogrande, Spain',
   portfolioYear: '2K26',
   siteLogo: '/logos/sitelogo.png?v=2',
   siteLogoAlt: 'Christopher Hunt monogram',
   lockupLogo: '/logos/lockup-logo.png',
   lockupLogoAlt: 'Christopher Hunt section lockup',
-  heroImage: '/images/hero.png',
-  heroImageAlt: 'Cinematic horizon with cyan light pillar and HUD telemetry',
+  heroImage: '/images/hero.jpg?v=6',
+  heroImageAlt: 'Cinematic casino horizon with holographic HUD roulette wheel and cyan light pillar',
   subtitle:
-    'I design, modernise and scale digital gambling experiences across casino, sportsbook, poker, payments, loyalty and player experience.',
+    'An iGaming product UI/UX expert with 16 years designing and scaling digital gambling experiences across casino, sportsbook, loyalty, rewards retention and player experience.',
   email: 'hello@christopherhunt.design',
   linkedin: 'https://linkedin.com/in/christopherhunt',
   cv: '/Christopher-Hunt-CV.pdf',
@@ -130,7 +130,7 @@ export const SITE = {
 export const SEO = {
   title: 'Christopher Hunt · VP of UI/UX & Creative Director',
   description:
-    'Portfolio of Christopher Hunt, VP of UI/UX and Creative Director-level design leader across online gambling, casino, sportsbook, poker, design systems and AI-powered customer experience.',
+    'Portfolio of Christopher Hunt — iGaming product UI/UX expert with 16 years across online gambling, casino, sportsbook, poker, design systems and AI-powered customer experience.',
   keywords: [
     'Christopher Hunt',
     'VP of UI UX',
@@ -138,7 +138,9 @@ export const SEO = {
     'Creative Director',
     'Design Director',
     'Product Design Leader',
-    'Gambling UX',
+    'iGaming UX',
+    'Product UI UX',
+    '16 years iGaming',
     'Casino UX',
     'Sportsbook UX',
     'Poker UX',
@@ -182,10 +184,18 @@ export interface CareerPhaseTool {
   logo: string;
 }
 
+export interface CareerPhaseCompany {
+  name: string;
+  year?: string;
+  location?: string;
+  detail?: string;
+}
+
 export interface CareerPhase {
   id: string;
   title: string;
   body: string;
+  companies: CareerPhaseCompany[];
   tools: CareerPhaseTool[];
 }
 
@@ -194,6 +204,10 @@ export const CAREER_PHASES: CareerPhase[] = [
     id: 'maker',
     title: 'Maker',
     body: 'I started in interactive entertainment, designing iPTV games, Flash banners, slots, casino games, lottery products, animation, UI and sound design.',
+    companies: [
+      { name: 'Digiquest', year: '2007', location: 'Covent Garden, London' },
+      { name: 'Spacebar Media', year: '2008', location: 'Kentish Town, London' },
+    ],
     tools: [
       { id: 'flash', name: 'Flash', logo: '/logos/flash.svg' },
       { id: 'photoshop', name: 'Photoshop', logo: '/logos/photoshop.svg' },
@@ -203,15 +217,26 @@ export const CAREER_PHASES: CareerPhase[] = [
     id: 'product-leader',
     title: 'Product Design Leader',
     body: 'I moved into leading design across casino, sportsbook, poker, cashier, authentication, loyalty, back office, My Account, multi-brand journeys and design systems.',
+    companies: [
+      { name: 'St Minver', year: '2009', location: 'Euro Towers, Gibraltar' },
+      { name: 'Nektan', year: '2011–2015', location: 'Waterport, Gibraltar' },
+      { name: 'Playtech', year: '2015', detail: 'Consultant' },
+      { name: 'Gala Coral', year: '2015', location: 'Regal House, Gibraltar' },
+    ],
     tools: [
       { id: 'sketch', name: 'Sketch', logo: '/logos/sketch.svg' },
       { id: 'invision', name: 'InVision', logo: '/logos/invision.svg' },
     ],
   },
   {
-    id: 'systems-governance',
-    title: 'Design Systems, Governance & Research',
-    body: 'I helped create the standards, systems, sign-off process and design governance needed to support multiple gambling brands at scale, alongside research tools that kept player insight in the loop.',
+    id: 'director',
+    title: 'Director',
+    body: 'I directed UI/UX teams across multi-brand gambling products — setting standards, design systems, sign-off process and governance at scale, with research keeping player insight in the loop.',
+    companies: [
+      { name: 'Carousel Group', year: '2016', location: 'Madrid, Spain' },
+      { name: 'Bright Sparks Group', year: '2017–2024', location: 'Sotogrande, Spain' },
+      { name: 'Fosh Tech', year: '2025–now', location: 'Remote' },
+    ],
     tools: [
       { id: 'figma', name: 'Figma', logo: '/logos/figma.svg' },
       { id: 'storybook', name: 'Storybook', logo: '/logos/storybook.svg' },
@@ -223,6 +248,7 @@ export const CAREER_PHASES: CareerPhase[] = [
     id: 'ai-founder',
     title: 'AI Founder',
     body: 'I founded Jurnii AI, an AI-powered customer experience and competitor benchmarking platform for Tier 1 gambling, retail and media brands.',
+    companies: [{ name: 'Jurnii Ltd', year: '2023–2025', detail: 'Exited' }],
     tools: [
       { id: 'figma', name: 'Figma', logo: '/logos/figma.svg' },
       { id: 'cursor', name: 'Cursor', logo: '/logos/cursor.svg' },
@@ -233,13 +259,13 @@ export const CAREER_PHASES: CareerPhase[] = [
 
 export const CAREER_JOURNEY = {
   title: 'How the work evolved',
-  lead: `A career shaped by product maturity, from maker craft to design leadership, governance at scale and AI product building.`,
-  body: `Rather than a list of dates, this is the through-line: how the work matured from interactive entertainment into leading complex gambling products, then systems, governance and AI.`,
+  lead: `A career shaped by product maturity — from maker craft to leading teams, directing UI/UX at scale and founding an AI product.`,
+  body: `Rather than a list of dates, this is the through-line: how the work matured from interactive entertainment into leading complex gambling products, then directing teams and systems, and finally building AI.`,
   phases: [
     { id: 'maker', label: 'Maker', detail: 'Games, Flash, slots, lottery, animation and UI craft' },
     { id: 'product-leader', label: 'Product Design Leader', detail: 'Casino, sportsbook, poker, cashier, loyalty and multi-brand journeys' },
-    { id: 'systems-governance', label: 'Systems, Governance & Research', detail: 'Figma, Storybook, Hotjar, surveys and multi-brand design systems' },
-    { id: 'ai-founder', label: 'AI Founder', detail: 'Jurnii AI for CX intelligence and competitor benchmarking' },
+    { id: 'director', label: 'Director', detail: 'Directing UI/UX teams, design systems and governance at scale' },
+    { id: 'ai-founder', label: 'AI Founder', detail: 'Jurnii Ltd — CX intelligence and competitor benchmarking' },
   ],
 } as const;
 

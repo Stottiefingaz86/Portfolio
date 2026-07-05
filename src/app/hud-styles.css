@@ -970,17 +970,19 @@
 .hero--hud .hero-hud-atmosphere__scrim {
   background:
     radial-gradient(
-      ellipse 72% 78% at 50% 44%,
-      oklch(0.04 0.016 250 / 0.78) 0%,
-      oklch(0.04 0.016 250 / 0.42) 48%,
-      transparent 74%
+      ellipse 76% 72% at 50% 36%,
+      oklch(0.04 0.016 250 / 0.72) 0%,
+      oklch(0.04 0.016 250 / 0.34) 46%,
+      transparent 72%
     ),
     linear-gradient(
       180deg,
-      oklch(0.04 0.016 250 / 0.38) 0%,
-      transparent 22%,
-      transparent 70%,
-      oklch(0.04 0.016 250 / 0.5) 100%
+      oklch(0.04 0.016 250 / 0.34) 0%,
+      transparent 20%,
+      transparent 60%,
+      oklch(0.04 0.016 250 / 0.4) 80%,
+      oklch(0.04 0.016 250 / 0.82) 93%,
+      var(--x-canvas) 100%
     );
 }
 
@@ -1062,9 +1064,25 @@
   overflow: hidden;
 }
 
+.hero-bg-image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    transparent 58%,
+    oklch(0.04 0.016 250 / 0.22) 72%,
+    oklch(0.04 0.016 250 / 0.56) 88%,
+    var(--x-canvas) 100%
+  );
+}
+
 .hero-bg-photo {
   object-fit: cover;
-  object-position: center 58%;
+  object-position: center 52%;
 }
 
 .hero-bg-fx {
@@ -1653,7 +1671,7 @@
       transparent 0%,
       oklch(0.015 0.012 250 / 0.78) 76%
     ),
-    url('/images/hero2.png');
+    url('/images/hero2.png?v=2');
   background-size: cover;
   background-position: center 22%;
   background-repeat: no-repeat;
@@ -2688,11 +2706,135 @@
   padding-left: 2.75rem;
   max-width: 46ch;
   font-family: var(--font-hud);
-  font-size: 0.625rem;
-  line-height: 1.75;
+  font-size: 0.5rem;
+  line-height: 1.65;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: oklch(0.97 0.004 260 / 0.4);
+}
+
+.site-main--hud .phases-stack .phase-companies {
+  margin: 1rem 0 0 2.75rem;
+  max-width: 52ch;
+  font-family: var(--font-hud);
+  font-size: 0.5625rem;
+  line-height: 1.65;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: oklch(0.97 0.004 260 / 0.38);
+}
+
+.site-main--hud .phases-stack .phase-company-sep {
+  color: oklch(0.82 0.14 195 / 0.42);
+}
+
+.site-main--hud .phases-stack .phase-company-name {
+  color: inherit;
+}
+
+.site-main--hud .phases-stack .phase-timeline {
+  display: flex;
+  gap: clamp(0.75rem, 2vw, 1.5rem);
+  margin: 1.25rem 0 0 2.75rem;
+  padding: 0 0 0.25rem;
+  list-style: none;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.site-main--hud .phases-stack .phase-timeline::-webkit-scrollbar {
+  display: none;
+}
+
+.site-main--hud .phases-stack .phase-timeline-item {
+  display: grid;
+  grid-template-rows: auto auto auto auto;
+  gap: 0.4rem;
+  min-width: clamp(7rem, 14vw, 10.5rem);
+  flex: 1 1 0;
+}
+
+.site-main--hud .phases-stack .phase-timeline-year {
+  min-height: 0.75rem;
+  font-family: var(--font-hud);
+  font-size: 0.5rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--x-hud-cyan-dim);
+}
+
+.site-main--hud .phases-stack .phase-timeline-year--spacer {
+  visibility: hidden;
+}
+
+.site-main--hud .phases-stack .phase-timeline-marker {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 0.5rem;
+}
+
+.site-main--hud .phases-stack .phase-timeline-dot {
+  flex-shrink: 0;
+  width: 0.375rem;
+  height: 0.375rem;
+  border-radius: 999px;
+  background: oklch(0.72 0.12 195 / 0.55);
+  box-shadow: 0 0 10px oklch(0.72 0.12 195 / 0.35);
+}
+
+.site-main--hud .phases-stack .phase-timeline-line {
+  flex: 1;
+  height: 1px;
+  margin-inline: 0.35rem 0;
+  background: linear-gradient(
+    90deg,
+    oklch(0.82 0.14 195 / 0.42),
+    oklch(0.82 0.14 195 / 0.1)
+  );
+}
+
+.site-main--hud .phases-stack .phase-timeline-line--trail {
+  min-width: clamp(5rem, 24vw, 14rem);
+  background: linear-gradient(
+    90deg,
+    oklch(0.82 0.14 195 / 0.42),
+    oklch(0.82 0.14 195 / 0.12) 45%,
+    transparent 100%
+  );
+}
+
+.site-main--hud .phases-stack .phase-timeline-item:only-child {
+  flex: 0 0 auto;
+  min-width: clamp(7rem, 14vw, 10.5rem);
+}
+
+.site-main--hud .phases-stack .phase-timeline-item:only-child .phase-timeline-line--trail {
+  min-width: clamp(8rem, 42vw, 22rem);
+}
+
+.site-main--hud .phases-stack .phase-timeline-name {
+  font-family: var(--font-hud);
+  font-size: 0.5625rem;
+  line-height: 1.45;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: oklch(0.97 0.004 260 / 0.42);
+}
+
+.site-main--hud .phases-stack .phase-timeline-location {
+  min-height: 0.875rem;
+  font-family: var(--font-hud);
+  font-size: 0.5rem;
+  line-height: 1.45;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: oklch(0.97 0.004 260 / 0.46);
+  color: oklch(0.97 0.004 260 / 0.3);
+}
+
+.site-main--hud .phases-stack .phase-timeline-location--spacer {
+  visibility: hidden;
 }
 
 .site-main--hud .phases-stack .phase-tools {
@@ -2736,7 +2878,32 @@
 }
 
 .phase-block.is-active .phase-body {
-  color: oklch(0.97 0.004 260 / 0.58);
+  color: oklch(0.97 0.004 260 / 0.52);
+}
+
+.phase-block.is-active .phase-companies {
+  color: oklch(0.97 0.004 260 / 0.68);
+}
+
+.phase-block.is-active .phase-company-sep {
+  color: var(--x-hud-cyan-dim);
+}
+
+.phase-block.is-active .phase-timeline-year {
+  color: var(--x-hud-cyan);
+}
+
+.phase-block.is-active .phase-timeline-dot {
+  background: var(--x-hud-cyan);
+  box-shadow: 0 0 12px oklch(0.72 0.12 195 / 0.5);
+}
+
+.phase-block.is-active .phase-timeline-name {
+  color: oklch(0.97 0.004 260 / 0.72);
+}
+
+.phase-block.is-active .phase-timeline-location {
+  color: oklch(0.97 0.004 260 / 0.48);
 }
 
 .phase-block.is-active .phase-tool {
@@ -3495,17 +3662,19 @@
   .hero--hud .hero-hud-atmosphere__scrim {
     background:
       radial-gradient(
-        ellipse 92% 82% at 50% 46%,
-        oklch(0.04 0.016 250 / 0.88) 0%,
-        oklch(0.04 0.016 250 / 0.58) 52%,
-        transparent 78%
+        ellipse 92% 78% at 50% 38%,
+        oklch(0.04 0.016 250 / 0.82) 0%,
+        oklch(0.04 0.016 250 / 0.48) 50%,
+        transparent 76%
       ),
       linear-gradient(
         180deg,
-        oklch(0.04 0.016 250 / 0.5) 0%,
-        transparent 28%,
-        transparent 68%,
-        oklch(0.04 0.016 250 / 0.65) 100%
+        oklch(0.04 0.016 250 / 0.46) 0%,
+        transparent 26%,
+        transparent 58%,
+        oklch(0.04 0.016 250 / 0.44) 82%,
+        oklch(0.04 0.016 250 / 0.84) 93%,
+        var(--x-canvas) 100%
       );
   }
 
@@ -3591,7 +3760,7 @@
 
 .login-gate--hud .login-gate-bg-photo {
   object-fit: cover;
-  object-position: center 58%;
+  object-position: center 52%;
 }
 
 .login-gate--hud .login-gate-bg-fx {

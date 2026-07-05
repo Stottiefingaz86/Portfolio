@@ -7,9 +7,9 @@ import { GlitchText } from '@/components/site/hud/GlitchText';
 import { HudRow } from '@/components/site/hud/HudRow';
 import { HudSectionShell } from '@/components/site/hud/HudSection';
 import { SectionHeader } from '@/components/site/SectionHeader';
+import { PhaseCompanies } from '@/components/site/PhaseCompanies';
 import { useHudHoverLight } from '@/components/site/useHudHoverLight';
 import { useSiteAmbienceOnActive } from '@/components/site/useSiteAmbienceOnActive';
-import { ToolLogo } from '@/components/site/ToolLogo';
 import { CAREER_JOURNEY, CAREER_PHASES } from '@/lib/portfolio-data';
 import { cn } from '@/lib/utils';
 
@@ -58,14 +58,7 @@ function PhaseBlock({
             </h3>
           </div>
           <p className="phase-body">{detail}</p>
-          <ul className="phase-tools" aria-label={`${phase.title} tools`}>
-            {phase.tools.map((tool) => (
-              <li key={`${phase.id}-${tool.id}`} className="phase-tool">
-                <ToolLogo id={tool.id} wide={tool.id === 'figma'} />
-                <span className="phase-tool-name">{tool.name}</span>
-              </li>
-            ))}
-          </ul>
+          <PhaseCompanies phase={phase} />
         </div>
       </HudRow>
     </motion.article>
