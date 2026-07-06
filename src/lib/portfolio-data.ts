@@ -23,6 +23,19 @@ export interface CaseStudyStage {
   items: string[];
 }
 
+export interface CaseStudyImage {
+  src: string;
+  alt?: string;
+  caption?: string;
+  span?: 'standard' | 'wide';
+}
+
+export interface CaseStudyLink {
+  label: string;
+  href: string;
+  external?: boolean;
+}
+
 export interface CaseStudy {
   id: string;
   title: string;
@@ -34,6 +47,9 @@ export interface CaseStudy {
   tags: string[];
   category: string;
   image: string;
+  bannerImage?: string;
+  gallery?: CaseStudyImage[];
+  links?: CaseStudyLink[];
   previewUrl?: string;
   previewLabel?: string;
   previewFocus?: 'vip-hub';
@@ -92,6 +108,11 @@ export interface WhatIBringCard {
   title: string;
   body: string;
   focus: string[];
+  stickyIntro: {
+    headline: string;
+    deck: string;
+    callout: string;
+  };
 }
 
 export const SITE = {
@@ -191,6 +212,8 @@ export interface CareerPhaseCompany {
   year?: string;
   location?: string;
   detail?: string;
+  role?: string;
+  summary?: string;
 }
 
 export interface CareerPhase {
@@ -207,8 +230,22 @@ export const CAREER_PHASES: CareerPhase[] = [
     title: 'Maker',
     body: 'I started in interactive entertainment, designing iPTV games, Flash banners, slots, casino games, lottery products, animation, UI and sound design.',
     companies: [
-      { name: 'Digiquest', year: '2007', location: 'Covent Garden, London' },
-      { name: 'Spacebar Media', year: '2008', location: 'Kentish Town, London' },
+      {
+        name: 'Digiquest',
+        year: '2007',
+        location: 'Covent Garden, London',
+        role: 'iPTV Games Designer',
+        summary:
+          'First design role — games and interfaces for TV boxes and iPTV platforms. Early interactive entertainment, remote-control navigation and designing for non-traditional screens.',
+      },
+      {
+        name: 'Spacebar Media',
+        year: '2008',
+        location: 'Kentish Town, London',
+        role: 'Digital Designer · Flash Designer',
+        summary:
+          'Flash banners and digital campaign assets for brands including Foxy Bingo across multiple regions. Early gambling exposure, motion design and performance-led creative.',
+      },
     ],
     tools: [
       { id: 'flash', name: 'Flash', logo: '/logos/flash.svg' },
@@ -220,10 +257,38 @@ export const CAREER_PHASES: CareerPhase[] = [
     title: 'Product Design Leader',
     body: 'I moved into leading design across casino, sportsbook, poker, cashier, authentication, loyalty, back office, My Account, multi-brand journeys and design systems.',
     companies: [
-      { name: 'St Minver', year: '2009', location: 'Euro Towers, Gibraltar' },
-      { name: 'Nektan', year: '2011–2015', location: 'Waterport, Gibraltar' },
-      { name: 'Playtech', year: '2015', detail: 'Consultant' },
-      { name: 'Gala Coral', year: '2015', location: 'Regal House, Gibraltar' },
+      {
+        name: 'St Minver',
+        year: '2009',
+        location: 'Euro Towers, Gibraltar',
+        role: 'Game Designer · UI Designer · Animator',
+        summary:
+          'Flash slot games plus animation, UI and sound design. Lottery website experiences for Oregon and California — regulated gaming products at platform scale.',
+      },
+      {
+        name: 'Nektan',
+        year: '2011–2015',
+        location: 'Waterport, Gibraltar',
+        role: 'UI/UX Designer · Game Designer',
+        summary:
+          'HTML5 slots, white-label casino platforms and turnkey gaming. Casino UX for Chomp Casino and a team building exclusive Flash slots for William Hill.',
+      },
+      {
+        name: 'Playtech',
+        year: '2015',
+        detail: 'Consultant',
+        role: 'UI/UX Design Consultant',
+        summary:
+          'Consulting on Sun Bingo and platform work for Playtech — regulated gambling product design before joining BetOnline full time.',
+      },
+      {
+        name: 'Gala Coral',
+        year: '2015',
+        location: 'Regal House, Gibraltar',
+        role: 'UI/UX Design Consultant',
+        summary:
+          'Brand and platform design for Coral — keeping product work close to multi-brand gambling experience and regulated market constraints.',
+      },
     ],
     tools: [
       { id: 'sketch', name: 'Sketch', logo: '/logos/sketch.svg' },
@@ -235,9 +300,30 @@ export const CAREER_PHASES: CareerPhase[] = [
     title: 'Director',
     body: 'I directed UI/UX teams across multi-brand gambling products — setting standards, design systems, sign-off process and governance at scale, with research keeping player insight in the loop.',
     companies: [
-      { name: 'Carousel Group', year: '2016', location: 'Madrid, Spain' },
-      { name: 'Bright Sparks Group', year: '2017–2024', location: 'Sotogrande, Spain' },
-      { name: 'Fosh Tech', year: '2025–now', location: 'Remote' },
+      {
+        name: 'Carousel Group',
+        year: '2016',
+        location: 'Madrid, Spain',
+        role: 'Director of UI/UX',
+        summary:
+          'Directed UI/UX across multi-brand gambling products — team standards, design direction and product experience at group level in Madrid.',
+      },
+      {
+        name: 'Bright Sparks Group',
+        year: '2017–2024',
+        location: 'Sotogrande, Spain',
+        role: 'VP of UI/UX',
+        summary:
+          'Built and led the design function for BetOnline and offshore brands — casino, sportsbook, poker, cashier, loyalty, research, VoC and a seven-brand design system.',
+      },
+      {
+        name: 'Fosh Tech',
+        year: '2025–now',
+        location: 'Remote',
+        role: 'Design Leadership',
+        summary:
+          'Continuing product and design leadership across gambling and platform work — systems, governance and AI-assisted design-to-dev workflows.',
+      },
     ],
     tools: [
       { id: 'figma', name: 'Figma', logo: '/logos/figma.svg' },
@@ -250,7 +336,16 @@ export const CAREER_PHASES: CareerPhase[] = [
     id: 'ai-founder',
     title: 'AI Founder',
     body: 'I founded Jurnii AI, an AI-powered customer experience and competitor benchmarking platform for Tier 1 gambling, retail and media brands.',
-    companies: [{ name: 'Jurnii Ltd', year: '2023–2025', detail: 'Exited' }],
+    companies: [
+      {
+        name: 'Jurnii Ltd',
+        year: '2023–2025',
+        detail: 'Exited',
+        role: 'Founder',
+        summary:
+          'Founded Jurnii AI — competitor and CX benchmarking for Tier 1 gambling, retail and media brands. Built a repeatable intelligence platform through to exit.',
+      },
+    ],
     tools: [
       { id: 'figma', name: 'Figma', logo: '/logos/figma.svg' },
       { id: 'cursor', name: 'Cursor', logo: '/logos/cursor.svg' },
@@ -642,36 +737,66 @@ export const WHAT_I_BRING: WhatIBringCard[] = [
     title: 'Design leadership',
     body: 'I build and lead design teams, set direction, create standards and raise execution quality across complex gambling organisations.',
     focus: ['Teams', 'Standards', 'Design authority'],
+    stickyIntro: {
+      headline: 'Design leadership at scale.',
+      deck: 'Teams, systems and product judgment.',
+      callout: 'Teams · Standards · Design authority',
+    },
   },
   {
     id: 'gambling',
     title: 'Gambling product depth',
-    body: 'Deep experience across BetOnline, Nektan, Playtech, William Hill, Foxy Bingo and more: casino, sportsbook, poker, payments, loyalty and multi-brand player experience.',
-    focus: ['Casino', 'Sportsbook', 'Multi-brand'],
+    body: 'Deep understanding of offshore, US and compliance markets — and how casino and loyalty drive revenue across the product estate.',
+    focus: ['Offshore & US', 'Compliance', 'Casino & loyalty'],
+    stickyIntro: {
+      headline: '16 years in gambling product.',
+      deck: 'Offshore, US and compliance — casino and loyalty drive revenue.',
+      callout: 'Offshore · US · Casino & loyalty',
+    },
   },
   {
     id: 'systems',
     title: 'Design systems & governance',
     body: 'I create scalable systems and governance models that improve consistency, speed and collaboration between design and engineering.',
     focus: ['Design systems', 'Sign-off', 'Handover'],
+    stickyIntro: {
+      headline: 'Systems that scale with the business.',
+      deck: 'Governance, sign-off and design-to-dev handover.',
+      callout: 'Design systems · Sign-off · Handover',
+    },
   },
   {
     id: 'research',
     title: 'UX research & customer voice',
     body: 'I introduce VoC, CSAT, interviews and feedback loops so teams design from real player insight, not internal assumption.',
     focus: ['VoC', 'CSAT', 'Player insight'],
+    stickyIntro: {
+      headline: 'Player insight in the loop.',
+      deck: 'VoC and research before assumptions win.',
+      callout: 'VoC · CSAT · Player insight',
+    },
   },
   {
     id: 'strategy',
     title: 'Product strategy',
     body: 'I work with CEOs, CPOs and heads of product to shape direction, solve problems and connect design decisions to business outcomes.',
     focus: ['C-level', 'Product direction', 'Outcomes'],
+    stickyIntro: {
+      headline: 'Product strategy with commercial teeth.',
+      deck: 'Direction with C-level and product leadership.',
+      callout: 'C-level · Product direction · Outcomes',
+    },
   },
   {
     id: 'ai',
     title: 'AI & design-to-dev',
     body: 'I founded Jurnii AI for CX intelligence, and I\'m building AI-assisted workflows with Figma MCP, shadcn and Cursor to align design and dev from Figma through to Storybook.',
     focus: ['Jurnii AI', 'Figma MCP', 'Storybook'],
+    stickyIntro: {
+      headline: 'AI from design to shipped UI.',
+      deck: 'Jurnii, Figma MCP and shadcn in one workflow.',
+      callout: 'Jurnii AI · Figma MCP · Storybook',
+    },
   },
 ];
 
@@ -771,7 +896,7 @@ export const CASE_STUDIES: CaseStudy[] = [
       'As the product matured, the business shifted towards loyalty, rewards and retention. I led design across campaigns, promotion surfaces and the VIP hub, helping players see value more clearly and giving the business stronger tools to keep them coming back.',
     tags: ['Loyalty', 'VIP', 'Retention'],
     category: 'Loyalty',
-    image: '/case-studies/loyalty-rewards.png',
+    image: '/case-studies/vip-hub-drawer.png',
     previewUrl: 'https://bol-seven.vercel.app/casino?vip=true&section=Overview&hubFocus=true',
     previewLabel: 'VIP Hub',
     previewFocus: 'vip-hub',
@@ -801,7 +926,7 @@ export const CASE_STUDIES: CaseStudy[] = [
       'How I helped shape casino and jackpot experiences with more immersion, motion and interaction, giving players reasons to return rather than treating games as static tiles on a page.',
     tags: ['Casino', 'Jackpots', 'Engagement'],
     category: 'Casino',
-    image: '/case-studies/betonline-home.png',
+    image: '/case-studies/casino-jackpots.png',
     context:
       'Casino had moved beyond legacy lobby patterns. The opportunity was to make jackpot and game discovery feel more alive, more memorable and more worth coming back to.',
     problem:
@@ -933,9 +1058,14 @@ export const CASE_STUDIES: CaseStudy[] = [
       'How I turned a £20k competitor analysis problem into an AI-powered customer experience and benchmarking platform used by Tier 1 clients.',
     tags: ['AI', 'CX Benchmarking', 'Founder'],
     category: 'AI',
-    image: '/case-studies/jurniiAI.png',
-    imageFit: 'contain',
-    imagePosition: 'top',
+    image: '/case-studies/jurnii_cover.png?v=3',
+    bannerImage: '/case-studies/jurnii_banner.png?v=1',
+    gallery: [
+      { src: '/case-studies/jurnii_1.png', alt: 'Jurnii AI platform overview' },
+      { src: '/case-studies/jurnii%202.png', alt: 'Jurnii competitor benchmarking' },
+      { src: '/case-studies/jurnii3.png', alt: 'Jurnii CX intelligence dashboard' },
+    ],
+    links: [{ label: 'Jurnii.io', href: 'https://jurnii.io', external: true }],
     context:
       'I had experienced first-hand how slow, expensive and limited traditional competitor analysis and CX benchmarking could be.',
     problem:
@@ -974,6 +1104,40 @@ export const WORK_FEATURED_CASE_STUDIES = FEATURED_CASE_STUDIES;
 export const WORK_TEXT_STACK_CASE_STUDIES = WORK_CASE_STUDIES.filter(
   (study) => !FEATURED_CASE_STUDY_IDS.includes(study.id as (typeof FEATURED_CASE_STUDY_IDS)[number]),
 );
+
+export function getCaseStudyGallery(study: CaseStudy): CaseStudyImage[] {
+  return study.gallery ?? [];
+}
+
+export function getCaseStudyLinks(study: CaseStudy): CaseStudyLink[] {
+  const links: CaseStudyLink[] = [...(study.links ?? [])];
+
+  if (study.previewUrl) {
+    const previewLink: CaseStudyLink = {
+      label: study.previewLabel ?? 'View project',
+      href: study.previewUrl,
+      external: true,
+    };
+
+    if (!links.some((link) => link.href === previewLink.href)) {
+      links.unshift(previewLink);
+    }
+  }
+
+  if (study.document) {
+    const documentLink: CaseStudyLink = {
+      label: study.documentLabel ?? 'Download PDF',
+      href: study.document,
+      external: false,
+    };
+
+    if (!links.some((link) => link.href === documentLink.href)) {
+      links.push(documentLink);
+    }
+  }
+
+  return links;
+}
 
 export const FEATURED_TILES = [
   { label: 'BetOnline transformation', href: '#work' },

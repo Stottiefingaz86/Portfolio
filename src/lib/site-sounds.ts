@@ -236,6 +236,7 @@ export const INTERACTIVE_SOUND_SELECTOR = [
   '.principle-panel',
   '.phase-block',
   '.phase-panel',
+  '.phase-company-trigger',
   '.hero-scroll--hud',
   '.contact-link',
   '[data-scroll-intent="true"]',

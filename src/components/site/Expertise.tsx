@@ -1,31 +1,90 @@
 'use client';
 
 import { motion, useInView, useReducedMotion } from 'framer-motion';
-import { useRef } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { GlitchText } from '@/components/site/hud/GlitchText';
+import { GlitchTextSwap } from '@/components/site/hud/GlitchTextSwap';
 import { HudRow } from '@/components/site/hud/HudRow';
 import { HudSectionShell } from '@/components/site/hud/HudSection';
 import { useHudHoverLight } from '@/components/site/useHudHoverLight';
 import { useSiteAmbienceOnActive } from '@/components/site/useSiteAmbienceOnActive';
-import { WHAT_I_BRING } from '@/lib/portfolio-data';
+import { WHAT_I_BRING, type WhatIBringCard } from '@/lib/portfolio-data';
 import { cn } from '@/lib/utils';
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 const SCROLL_MARGIN = '-42% 0px -42% 0px';
+const ACTIVE_INDEX_SETTLE_MS = 420;
+
+function ExpertiseStickyIntro({
+  item,
+  index,
+  reduced,
+}: {
+  item: WhatIBringCard;
+  index: number;
+  reduced: boolean | null;
+}) {
+  const code = `[ CAP_${String(index + 1).padStart(2, '0')} ]`;
+
+  return (
+    <div className="expertise-intro-stage">
+      <p className="expertise-intro-code">
+        <GlitchTextSwap as="span" text={code} reduced={reduced} delay={80} steps={14} stepMs={34} />
+      </p>
+      <h2 className="expertise-headline">
+        <GlitchTextSwap
+          as="span"
+          text={item.stickyIntro.headline}
+          reduced={reduced}
+          playOnMount
+          delay={140}
+          steps={22}
+          stepMs={38}
+        />
+      </h2>
+      <p className="expertise-deck">
+        <GlitchTextSwap
+          as="span"
+          text={item.stickyIntro.deck}
+          reduced={reduced}
+          delay={220}
+          steps={18}
+          stepMs={34}
+        />
+      </p>
+      <p className="expertise-intro-callout">
+        <GlitchTextSwap
+          as="span"
+          text={item.stickyIntro.callout}
+          reduced={reduced}
+          delay={300}
+          steps={16}
+          stepMs={32}
+        />
+      </p>
+    </div>
+  );
+}
 
 function ExpertiseRow({
   item,
   index,
+  setActiveIndex,
 }: {
-  item: (typeof WHAT_I_BRING)[number];
+  item: WhatIBringCard;
   index: number;
+  setActiveIndex: (index: number) => void;
 }) {
   const ref = useRef<HTMLLIElement>(null);
   const reduced = useReducedMotion();
   const inView = useInView(ref, { margin: SCROLL_MARGIN, amount: 0.35 });
   const hoverLight = useHudHoverLight();
   useSiteAmbienceOnActive(inView);
+
+  useEffect(() => {
+    if (inView) setActiveIndex(index);
+  }, [inView, index, setActiveIndex]);
 
   return (
     <motion.li
@@ -65,6 +124,30 @@ function ExpertiseRow({
 
 export function Expertise() {
   const reduced = useReducedMotion();
+  const [activeIndex, setActiveIndex] = useState(0);
+  const activeIndexRef = useRef(0);
+  const settleTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const activeItem = WHAT_I_BRING[activeIndex] ?? WHAT_I_BRING[0];
+
+  const onActiveIndex = useCallback((index: number) => {
+    if (index === activeIndexRef.current) return;
+
+    if (settleTimerRef.current) {
+      clearTimeout(settleTimerRef.current);
+    }
+
+    settleTimerRef.current = setTimeout(() => {
+      activeIndexRef.current = index;
+      setActiveIndex(index);
+      settleTimerRef.current = null;
+    }, ACTIVE_INDEX_SETTLE_MS);
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      if (settleTimerRef.current) clearTimeout(settleTimerRef.current);
+    };
+  }, []);
 
   return (
     <HudSectionShell id="expertise" code="SEC_03 // EXPERTISE" className="expertise-section">
@@ -78,20 +161,15 @@ export function Expertise() {
             transition={{ duration: 0.65, ease: EASE }}
           >
             <p className="section-kicker">Expertise</p>
-            <h2 className="expertise-headline">
-              <GlitchText as="span" intensity="elevated">
-                Design leadership for products that have to work at scale.
-              </GlitchText>
-            </h2>
-            <p className="expertise-deck">
-              Teams, systems, research and product judgment at scale.
-            </p>
+            <div className="expertise-intro-panel" aria-live="polite">
+              <ExpertiseStickyIntro item={activeItem} index={activeIndex} reduced={reduced} />
+            </div>
           </motion.div>
         </div>
 
         <ul className="expertise-list" aria-label="Core capabilities">
           {WHAT_I_BRING.map((item, index) => (
-            <ExpertiseRow key={item.id} item={item} index={index} />
+            <ExpertiseRow key={item.id} item={item} index={index} setActiveIndex={onActiveIndex} />
           ))}
         </ul>
       </div>

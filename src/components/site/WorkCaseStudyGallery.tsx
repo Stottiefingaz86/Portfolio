@@ -1,6 +1,7 @@
 'use client';
 
 import { ArrowUpRightIcon } from 'lucide-react';
+import Image from 'next/image';
 import { useCallback } from 'react';
 
 import {
@@ -39,64 +40,76 @@ function FeaturedTile({
 
   return (
     <article className="work-featured-tile min-w-0">
-      <Card
-        size="sm"
-        className={cn(
-          'work-featured-card group/work-card work-hover-surface relative gap-0 overflow-hidden py-0',
-          'rounded-xl ring-foreground/10 transition-[box-shadow,ring-color,transform] duration-300',
-          'hover:-translate-y-0.5 hover:ring-accent/35 hover:shadow-[0_18px_48px_oklch(0_0_0/0.28)]',
-        )}
+      <button
+        type="button"
+        className="work-featured-card-trigger work-hover-surface group/work-card w-full text-left"
+        onClick={() => onOpen(study)}
         onPointerEnter={onHoverEnter}
         onPointerMove={hoverLight.onPointerMove}
         onPointerLeave={hoverLight.onPointerLeave}
+        aria-label={`Open case study: ${study.title}`}
       >
         <span className="work-hover-light rounded-xl" aria-hidden />
-        <BorderBeam
-          size={72}
-          duration={10}
-          delay={index * 0.8}
-          borderWidth={1}
-          colorFrom="oklch(0.82 0.14 195)"
-          colorTo="oklch(0.72 0.12 195 / 0.15)"
-          className="opacity-0 transition-opacity duration-300 group-hover/work-card:opacity-100"
-        />
+        <Card
+          size="sm"
+          className={cn(
+            'work-featured-card relative gap-0 overflow-hidden rounded-xl py-0',
+            'ring-foreground/10 transition-[box-shadow,ring-color,transform] duration-300',
+            'group-hover/work-card:-translate-y-0.5 group-hover/work-card:ring-accent/35 group-hover/work-card:shadow-[0_18px_48px_oklch(0_0_0/0.28)]',
+          )}
+        >
+          <BorderBeam
+            size={72}
+            duration={10}
+            delay={index * 0.8}
+            borderWidth={1}
+            colorFrom="oklch(0.82 0.14 195)"
+            colorTo="oklch(0.72 0.12 195 / 0.15)"
+            className="opacity-0 transition-opacity duration-300 group-hover/work-card:opacity-100"
+          />
 
-        <div className="work-featured-card-media border-b border-border/60">
-          <CaseStudyImagePlaceholder variant="tile" />
-        </div>
+          <div className="work-featured-card-media border-b border-border/60">
+            {study.id === 'jurnii-ai' ? (
+              <div className="work-featured-card-media__frame">
+                <Image
+                  src={study.image}
+                  alt=""
+                  fill
+                  className="object-cover object-center"
+                  sizes="(max-width: 900px) 50vw, 25vw"
+                  priority={index < 2}
+                />
+              </div>
+            ) : (
+              <CaseStudyImagePlaceholder variant="tile" />
+            )}
+          </div>
 
-        <CardHeader className="gap-1.5 px-3 pt-3 pb-2">
-          <Badge
-            variant="outline"
-            className="w-fit max-w-full border-foreground/12 bg-background/72 text-[0.5625rem] tracking-[0.12em] uppercase"
-          >
-            {study.scope}
-          </Badge>
-          <CardDescription className="line-clamp-1 text-[0.5625rem] tracking-[0.1em] uppercase">
-            {study.client}
-          </CardDescription>
-          <CardTitle className="line-clamp-2 text-[0.8125rem] leading-snug font-medium tracking-[-0.015em] text-balance">
-            {study.title}
-          </CardTitle>
-        </CardHeader>
+          <div className="work-featured-card-body">
+            <CardHeader className="gap-1.5 px-3 pt-3 pb-2">
+              <Badge
+                variant="outline"
+                className="w-fit max-w-full border-foreground/12 bg-background/72 text-[0.5625rem] tracking-[0.12em] uppercase"
+              >
+                {study.scope}
+              </Badge>
+              <CardDescription className="line-clamp-1 text-[0.5625rem] tracking-[0.1em] uppercase">
+                {study.client}
+              </CardDescription>
+              <CardTitle className="line-clamp-2 text-[0.8125rem] leading-snug font-medium tracking-[-0.015em] text-balance">
+                {study.title}
+              </CardTitle>
+            </CardHeader>
 
-        <CardFooter className="justify-between border-t border-border/60 bg-muted/25 px-3 py-2">
-          <button
-            type="button"
-            className="inline-flex w-full items-center justify-between gap-2 text-left"
-            onClick={() => onOpen(study)}
-            aria-label={`Open case study: ${study.title}`}
-          >
-            <span className="text-[0.5625rem] tracking-[0.12em] uppercase text-muted-foreground transition-colors duration-300 group-hover/work-card:text-accent">
-              View case study
-            </span>
-            <ArrowUpRightIcon
-              className="text-muted-foreground transition-colors duration-300 group-hover/work-card:text-accent"
-              data-icon="inline-end"
-            />
-          </button>
-        </CardFooter>
-      </Card>
+            <CardFooter className="justify-between gap-2 border-t border-border/60 px-3 py-2">
+              <span className="text-[0.5625rem] tracking-[0.12em] uppercase text-muted-foreground transition-colors duration-300 group-hover/work-card:text-accent">
+                View case study
+              </span>
+              <ArrowUpRightIcon className="work-featured-card__arrow" aria-hidden />
+            </CardFooter>
+          </div>
+        </Card>
+      </button>
     </article>
   );
 }

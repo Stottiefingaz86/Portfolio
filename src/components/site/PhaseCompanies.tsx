@@ -1,3 +1,4 @@
+import { PhaseCompanyTrigger } from '@/components/site/PhaseCompanyName';
 import type { CareerPhase, CareerPhaseCompany } from '@/lib/portfolio-data';
 
 function companyMeta(company: CareerPhaseCompany) {
@@ -19,7 +20,7 @@ function PhaseCompanyList({ phase }: { phase: CareerPhase }) {
               /{' '}
             </span>
           ) : null}
-          <span className="phase-company-name">{company.name}</span>
+          <PhaseCompanyTrigger company={company} className="phase-company-name" />
         </span>
       ))}
     </p>
@@ -49,12 +50,11 @@ function PhaseCompanyTimeline({ phase }: { phase: CareerPhase }) {
                 }
               />
             </span>
-            <span className="phase-timeline-name">{company.name}</span>
-            {meta ? (
-              <span className="phase-timeline-location">{meta}</span>
-            ) : (
-              <span className="phase-timeline-location phase-timeline-location--spacer" aria-hidden />
-            )}
+            <PhaseCompanyTrigger
+              company={company}
+              className="phase-timeline-trigger"
+              location={meta}
+            />
           </li>
         );
       })}

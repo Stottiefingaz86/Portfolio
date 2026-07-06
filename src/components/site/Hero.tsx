@@ -103,8 +103,15 @@ export function Hero() {
               data-scroll-intent="true"
               onClick={() => scrollToSection('work')}
             >
-                <GlitchText glitch={false}>View work</GlitchText>
+              <GlitchText glitch={false}>View work</GlitchText>
             </button>
+            <a
+              href={SITE.cv}
+              download={SITE.cvDownloadName}
+              className="btn btn--ghost btn--hero"
+            >
+              <GlitchText glitch={false}>Download CV</GlitchText>
+            </a>
           </motion.div>
         </div>
       </div>
