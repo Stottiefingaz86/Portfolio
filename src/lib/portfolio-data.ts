@@ -229,35 +229,65 @@ export interface CareerPhase {
 
 export const CAREER_PHASES: CareerPhase[] = [
   {
-    id: 'maker',
-    title: 'Maker',
-    body: 'I started in interactive entertainment, designing iPTV games, Flash banners, slots, casino games, lottery products, animation, UI and sound design.',
+    id: 'ai-founder',
+    title: 'AI Founder',
+    body: 'I founded Jurnii AI, an AI-powered customer experience and competitor benchmarking platform for Tier 1 gambling, retail and media brands.',
     companies: [
       {
-        name: 'Digiquest',
-        year: '2007',
-        location: 'Covent Garden, London',
-        role: 'iPTV Games Designer',
+        name: 'Jurnii Ltd',
+        year: '2023–2025',
+        detail: 'Exited',
+        role: 'Founder',
         summary:
-          'First design role — games and interfaces for TV boxes and iPTV platforms. Early interactive entertainment, remote-control navigation and designing for non-traditional screens.',
-      },
-      {
-        name: 'Spacebar Media',
-        year: '2008',
-        location: 'Kentish Town, London',
-        role: 'Digital Designer · Flash Designer',
-        summary:
-          'Flash banners and digital campaign assets for brands including Foxy Bingo across multiple regions. Early gambling exposure, motion design and performance-led creative.',
+          'Founded Jurnii AI — competitor and CX benchmarking for Tier 1 gambling, retail and media brands. Built a repeatable intelligence platform through to exit.',
       },
     ],
     tools: [
-      { id: 'flash', name: 'Flash', logo: '/logos/flash.svg' },
-      { id: 'photoshop', name: 'Photoshop', logo: '/logos/photoshop.svg' },
+      { id: 'figma', name: 'Figma', logo: '/logos/figma.svg' },
+      { id: 'cursor', name: 'Cursor', logo: '/logos/cursor.svg' },
+      { id: 'mixpanel', name: 'Mixpanel', logo: '/logos/mixpanel.svg' },
     ],
   },
   {
-    id: 'product-leader',
-    title: 'Product Design Leader',
+    id: 'director',
+    title: 'Director',
+    body: 'I directed UI/UX teams across multi-brand gambling products — setting standards, design systems, sign-off process and governance at scale, with research keeping player insight in the loop.',
+    companies: [
+      {
+        name: 'Carousel Group',
+        year: '2016',
+        location: 'Madrid, Spain',
+        role: 'Director of UI/UX',
+        summary:
+          'Directed UI/UX across multi-brand gambling products — team standards, design direction and product experience at group level in Madrid.',
+      },
+      {
+        name: 'Bright Sparks Group',
+        year: '2017–2024',
+        location: 'Sotogrande, Spain',
+        role: 'VP of UI/UX',
+        summary:
+          'Built and led the design function for offshore brands — casino, sportsbook, poker, cashier, loyalty, research, VoC and a seven-brand design system.',
+      },
+      {
+        name: 'Fosh Tech',
+        year: '2025–now',
+        location: 'Remote',
+        role: 'Design Leadership',
+        summary:
+          'Continuing product and design leadership across gambling and platform work — systems, governance and AI-assisted design-to-dev workflows.',
+      },
+    ],
+    tools: [
+      { id: 'figma', name: 'Figma', logo: '/logos/figma.svg' },
+      { id: 'storybook', name: 'Storybook', logo: '/logos/storybook.svg' },
+      { id: 'hotjar', name: 'Hotjar', logo: '/logos/hotjar.svg' },
+      { id: 'surveys', name: 'Surveys', logo: '/logos/surveys.svg' },
+    ],
+  },
+  {
+    id: 'leader',
+    title: 'Leader',
     body: 'I moved into leading design across casino, sportsbook, poker, cashier, authentication, loyalty, back office, My Account, multi-brand journeys and design systems.',
     companies: [
       {
@@ -299,73 +329,43 @@ export const CAREER_PHASES: CareerPhase[] = [
     ],
   },
   {
-    id: 'director',
-    title: 'Director',
-    body: 'I directed UI/UX teams across multi-brand gambling products — setting standards, design systems, sign-off process and governance at scale, with research keeping player insight in the loop.',
+    id: 'creator',
+    title: 'Creator',
+    body: 'I started in interactive entertainment, designing iPTV games, Flash banners, slots, casino games, lottery products, animation, UI and sound design.',
     companies: [
       {
-        name: 'Carousel Group',
-        year: '2016',
-        location: 'Madrid, Spain',
-        role: 'Director of UI/UX',
+        name: 'Digiquest',
+        year: '2007',
+        location: 'Covent Garden, London',
+        role: 'iPTV Games Designer',
         summary:
-          'Directed UI/UX across multi-brand gambling products — team standards, design direction and product experience at group level in Madrid.',
+          'First design role — games and interfaces for TV boxes and iPTV platforms. Early interactive entertainment, remote-control navigation and designing for non-traditional screens.',
       },
       {
-        name: 'Bright Sparks Group',
-        year: '2017–2024',
-        location: 'Sotogrande, Spain',
-        role: 'VP of UI/UX',
+        name: 'Spacebar Media',
+        year: '2008',
+        location: 'Kentish Town, London',
+        role: 'Digital Designer · Flash Designer',
         summary:
-          'Built and led the design function for offshore brands — casino, sportsbook, poker, cashier, loyalty, research, VoC and a seven-brand design system.',
-      },
-      {
-        name: 'Fosh Tech',
-        year: '2025–now',
-        location: 'Remote',
-        role: 'Design Leadership',
-        summary:
-          'Continuing product and design leadership across gambling and platform work — systems, governance and AI-assisted design-to-dev workflows.',
+          'Flash banners and digital campaign assets for brands including Foxy Bingo across multiple regions. Early gambling exposure, motion design and performance-led creative.',
       },
     ],
     tools: [
-      { id: 'figma', name: 'Figma', logo: '/logos/figma.svg' },
-      { id: 'storybook', name: 'Storybook', logo: '/logos/storybook.svg' },
-      { id: 'hotjar', name: 'Hotjar', logo: '/logos/hotjar.svg' },
-      { id: 'surveys', name: 'Surveys', logo: '/logos/surveys.svg' },
-    ],
-  },
-  {
-    id: 'ai-founder',
-    title: 'AI Founder',
-    body: 'I founded Jurnii AI, an AI-powered customer experience and competitor benchmarking platform for Tier 1 gambling, retail and media brands.',
-    companies: [
-      {
-        name: 'Jurnii Ltd',
-        year: '2023–2025',
-        detail: 'Exited',
-        role: 'Founder',
-        summary:
-          'Founded Jurnii AI — competitor and CX benchmarking for Tier 1 gambling, retail and media brands. Built a repeatable intelligence platform through to exit.',
-      },
-    ],
-    tools: [
-      { id: 'figma', name: 'Figma', logo: '/logos/figma.svg' },
-      { id: 'cursor', name: 'Cursor', logo: '/logos/cursor.svg' },
-      { id: 'mixpanel', name: 'Mixpanel', logo: '/logos/mixpanel.svg' },
+      { id: 'flash', name: 'Flash', logo: '/logos/flash.svg' },
+      { id: 'photoshop', name: 'Photoshop', logo: '/logos/photoshop.svg' },
     ],
   },
 ];
 
 export const CAREER_JOURNEY = {
   title: 'How the work evolved',
-  lead: `A career shaped by product maturity — from maker craft to leading teams, directing UI/UX at scale and founding an AI product.`,
-  body: `Rather than a list of dates, this is the through-line: how the work matured from interactive entertainment into leading complex gambling products, then directing teams and systems, and finally building AI.`,
+  lead: `A career shaped by product maturity — from creator craft to leading teams, directing UI/UX at scale and founding an AI product.`,
+  body: `Read it from where the work is now — AI, direction and platform leadership — back to the early craft years. This is the through-line: how interactive entertainment matured into complex gambling products, team leadership, systems and finally building AI.`,
   phases: [
-    { id: 'maker', label: 'Maker', detail: 'Games, Flash, slots, lottery, animation and UI craft' },
-    { id: 'product-leader', label: 'Product Design Leader', detail: 'Casino, sportsbook, poker, cashier, loyalty and multi-brand journeys' },
-    { id: 'director', label: 'Director', detail: 'Directing UI/UX teams, design systems and governance at scale' },
     { id: 'ai-founder', label: 'AI Founder', detail: 'Jurnii Ltd — CX intelligence and competitor benchmarking' },
+    { id: 'director', label: 'Director', detail: 'Directing UI/UX teams, design systems and governance at scale' },
+    { id: 'leader', label: 'Leader', detail: 'Casino, sportsbook, poker, cashier, loyalty and multi-brand journeys' },
+    { id: 'creator', label: 'Creator', detail: 'Games, Flash, slots, lottery, animation and UI craft' },
   ],
 } as const;
 
@@ -517,7 +517,7 @@ I work closely with tools like Figma, Cursor and Mixpanel, combining design syst
       'Ship governed multi-brand systems without losing speed',
     ],
     traits: [
-      'Maker background',
+      'Creator background',
       'Multi-brand systems',
       'VoC & research',
       'AI design-to-dev',
@@ -625,7 +625,7 @@ export const TIMELINE: TimelineEntry[] = [
   },
   {
     id: 'st-minver',
-    phase: 'Maker',
+    phase: 'Creator',
     role: 'Game Designer · UI Designer · Animator',
     company: 'St Minver / GTECH G2',
     location: 'UK',
