@@ -75,7 +75,7 @@ export function CaseStudyModal({ study, index, onClose }: CaseStudyModalProps) {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 24, scale: 0.985 }}
             transition={{ duration: 0.42, ease: [0.16, 1, 0.3, 1] }}
-            className="case-modal fixed inset-x-3 top-3 bottom-3 z-[calc(var(--z-modal)+1)] flex flex-col overflow-hidden md:inset-x-8 md:top-8 md:bottom-8"
+            className="case-modal fixed inset-x-2 top-2 bottom-2 z-[calc(var(--z-modal)+1)] flex flex-col overflow-hidden md:inset-x-4 md:top-4 md:bottom-4 lg:inset-x-5 lg:top-5 lg:bottom-5"
           >
             <button
               type="button"

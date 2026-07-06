@@ -24,7 +24,8 @@ const THESIS_LINES = [
   ['a', 'business'],
   ['becomes'],
   ['clearer,', 'faster'],
-  ['and', 'easier', 'to', 'trust.'],
+  ['and', 'easier'],
+  ['to', 'trust.'],
 ] as const;
 
 const THESIS_WORDS = THESIS_LINES.flat();

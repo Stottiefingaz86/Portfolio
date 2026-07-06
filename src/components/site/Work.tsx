@@ -38,7 +38,7 @@ export function Work() {
               <p className="section-kicker">Selected work</p>
               <h2 className="work-headline">
                 <GlitchText as="span" intensity="elevated">
-                  Case studies through product maturity
+                  Case studies / Portfolio
                 </GlitchText>
               </h2>
               <p className="work-deck">

@@ -78,7 +78,7 @@ export function GalleryScroll() {
           <div>
             <h2 className="type-huge">Gallery</h2>
             <p className="type-body mt-4 max-w-lg">
-              Selected product surfaces from BetOnline and RingsAway: betslip, VIP hub, casino and
+              Selected product surfaces from Offshore and RingsAway: betslip, VIP hub, casino and
               a live AI receptionist you can try.
             </p>
           </div>

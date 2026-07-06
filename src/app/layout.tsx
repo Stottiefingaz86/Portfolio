@@ -5,6 +5,7 @@ import '@fontsource-variable/jetbrains-mono';
 import '@fontsource-variable/bricolage-grotesque';
 
 import { SmoothScroll } from '@/components/portfolio/SmoothScroll';
+import { ChrisAgentWidget } from '@/components/site/ChrisAgentWidget';
 import { ScrollGuard } from '@/components/site/ScrollGuard';
 import { SiteCursor } from '@/components/site/SiteCursor';
 import { SiteSounds } from '@/components/site/SiteSounds';
@@ -37,6 +38,7 @@ export default function RootLayout({
           <ScrollGuard />
           <SiteCursor />
           <SiteSounds />
+          <ChrisAgentWidget />
           <SmoothScroll>{children}</SmoothScroll>
         </TooltipProvider>
       </body>

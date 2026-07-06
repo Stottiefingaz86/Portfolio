@@ -129,10 +129,10 @@ export const SITE = {
   heroLeadMobile:
     '16 years in iGaming. Product UI/UX expert across casino, sportsbook, loyalty, rewards retention and player experience.',
   heroBody:
-    '16 years from hands-on game design and UI through product leadership, directing UI/UX teams and design systems — then founding Jurnii.io and building AI-assisted design-to-dev workflows at BetOnline.',
+    '16 years from hands-on game design and UI through product leadership, directing UI/UX teams and design systems — then founding Jurnii.io and building AI-assisted design-to-dev workflows at Offshore.',
   heroKickerMobile: 'Head of UI/UX / Creative Director / iGaming Expert',
   credibilityLine:
-    '16 years in iGaming · VP of UI/UX · BetOnline · Founder of Jurnii.io · Remote from Sotogrande, Spain',
+    '16 years in iGaming · VP of UI/UX · Offshore · Founder of Jurnii.io · Remote from Sotogrande, Spain',
   portfolioYear: '2K26',
   siteLogo: '/logos/sitelogo.png?v=2',
   siteLogoAlt: 'Christopher Hunt monogram',
@@ -282,7 +282,7 @@ export const CAREER_PHASES: CareerPhase[] = [
         detail: 'Consultant',
         role: 'UI/UX Design Consultant',
         summary:
-          'Consulting on Sun Bingo and platform work for Playtech — regulated gambling product design before joining BetOnline full time.',
+          'Consulting on Sun Bingo and platform work for Playtech — regulated gambling product design before joining Offshore full time.',
       },
       {
         name: 'Gala Coral',
@@ -317,7 +317,7 @@ export const CAREER_PHASES: CareerPhase[] = [
         location: 'Sotogrande, Spain',
         role: 'VP of UI/UX',
         summary:
-          'Built and led the design function for BetOnline and offshore brands — casino, sportsbook, poker, cashier, loyalty, research, VoC and a seven-brand design system.',
+          'Built and led the design function for offshore brands — casino, sportsbook, poker, cashier, loyalty, research, VoC and a seven-brand design system.',
       },
       {
         name: 'Fosh Tech',
@@ -490,7 +490,7 @@ export const FEATURED_CASE_STUDY_IDS = [
   'betonline-transformation',
   'loyalty-rewards',
   'jurnii-ai',
-  'lucky-lagoon',
+  'casino-jackpots',
 ] as const;
 
 export const ABOUT = {
@@ -510,7 +510,7 @@ I work closely with tools like Figma, Cursor and Mixpanel, combining design syst
   birthDateLabel: '13/07/1986',
   persona: {
     location: 'Remote · Spain',
-    focus: 'BetOnline · VP of UI/UX',
+    focus: 'Offshore · VP of UI/UX',
     goals: [
       'Build design maturity inside complex gambling organisations',
       'Connect craft, product judgment and commercial outcomes',
@@ -568,10 +568,10 @@ export const TIMELINE: TimelineEntry[] = [
     id: 'betonline',
     phase: 'Product maturity',
     role: 'VP of UI/UX',
-    company: 'BetOnline / Offshore Brand Group',
+    company: 'Offshore Brand Group',
     location: 'Remote · Sotogrande, Spain',
     summary:
-      'When I joined BetOnline, design was not yet operating as a mature function. There was no dedicated UI/UX team, no central design system and limited governance across the product estate. Early on, I modernised the casino experience. As the product matured, I expanded across sportsbook, casino, poker, cashier, authentication, loyalty, my account, back office and multi-brand journeys. Over time, I built and led a specialist internal design team, introduced UX research and Voice of Customer practices, worked closely with C-level stakeholders and product heads, and led the creation of an agnostic design system supporting seven brands.',
+      'When I joined Offshore, design was not yet operating as a mature function. There was no dedicated UI/UX team, no central design system and limited governance across the product estate. Early on, I modernised the casino experience. As the product matured, I expanded across sportsbook, casino, poker, cashier, authentication, loyalty, my account, back office and multi-brand journeys. Over time, I built and led a specialist internal design team, introduced UX research and Voice of Customer practices, worked closely with C-level stakeholders and product heads, and led the creation of an agnostic design system supporting seven brands.',
     highlights: [
       'Built design function from scratch',
       '7-brand design system',
@@ -597,7 +597,7 @@ export const TIMELINE: TimelineEntry[] = [
     company: 'Playtech · Coral',
     location: 'Europe',
     summary:
-      'After Busslr, I consulted as a designer for Playtech on Sun Bingo and for Coral, doing platform and brand work that kept me close to regulated gambling product design before I joined BetOnline.',
+      'After Busslr, I consulted as a designer for Playtech on Sun Bingo and for Coral, doing platform and brand work that kept me close to regulated gambling product design before I joined Offshore.',
     highlights: ['Playtech', 'Sun Bingo', 'Coral'],
     image: '/gallery/bol-casino.png',
   },
@@ -662,7 +662,7 @@ export const GALLERY: GalleryItem[] = [
   {
     id: 'bol-betslip',
     title: 'Betslip',
-    project: 'BetOnline',
+    project: 'Offshore',
     category: 'Sportsbook',
     image: '/gallery/bol-sportsbook.png',
     aspect: 'portrait',
@@ -670,7 +670,7 @@ export const GALLERY: GalleryItem[] = [
   {
     id: 'bol-vip',
     title: 'VIP Hub',
-    project: 'BetOnline',
+    project: 'Offshore',
     category: 'Loyalty',
     image: '/gallery/bol-vip-hub.png',
     aspect: 'portrait',
@@ -678,7 +678,7 @@ export const GALLERY: GalleryItem[] = [
   {
     id: 'bol-casino',
     title: 'Casino',
-    project: 'BetOnline',
+    project: 'Offshore',
     category: 'Casino',
     image: '/gallery/bol-casino.png',
     aspect: 'portrait',
@@ -806,13 +806,13 @@ export const WHAT_I_BRING: WhatIBringCard[] = [
 export const CASE_STUDIES: CaseStudy[] = [
   {
     id: 'betonline-transformation',
-    title: 'BetOnline Product Transformation',
+    title: 'Offshore Product Transformation',
     subtitle: 'From a brand cheatsheet and fragmented verticals to a governed shadcn design system.',
-    client: 'BetOnline / Offshore Brand Group',
+    client: 'Offshore Brand Group',
     scope: 'Multi-vertical · Multi-brand · Design leadership',
     outcome: 'A governed product ecosystem with design as a central function',
     summary:
-      'When I joined BetOnline, the product I inherited had no design system, no UI/UX team and no real governance — just a brand cheatsheet while casino, sportsbook, poker and other verticals shipped whatever they wanted. I built the design and UI/UX function, brought the verticals together under one standard, and drove the product toward where it is now: shadcn-based systems, meticulous animation and transition craft, and a stronger focus on performance — with me setting vision and goals alongside tech.',
+      'When I joined Offshore, the product I inherited had no design system, no UI/UX team and no real governance — just a brand cheatsheet while casino, sportsbook, poker and other verticals shipped whatever they wanted. I built the design and UI/UX function, brought the verticals together under one standard, and drove the product toward where it is now: shadcn-based systems, meticulous animation and transition craft, and a stronger focus on performance — with me setting vision and goals alongside tech.',
     tags: ['Transformation', 'Governance', 'Multi-brand'],
     category: 'Leadership',
     image: '/case-studies/betonline-home.png',
@@ -822,35 +822,35 @@ export const CASE_STUDIES: CaseStudy[] = [
       {
         group: 'Before',
         src: '/case-studies/betonline%29old%201.png',
-        alt: 'BetOnline before — inherited sportsbook experience',
+        alt: 'Offshore before — inherited sportsbook experience',
         caption: 'Inherited site — sportsbook and product surfaces as I joined',
       },
       {
         group: 'Before',
         src: '/case-studies/betonline%29old%202.png',
-        alt: 'BetOnline before — inherited casino experience',
+        alt: 'Offshore before — inherited casino experience',
         caption: 'Inherited site — casino and lobby without shared system or governance',
       },
       {
         group: 'After',
         src: '/case-studies/betonline%20new1.png',
-        alt: 'BetOnline now — modern homepage direction',
+        alt: 'Offshore now — modern homepage direction',
         caption: 'Current direction — unified product vision with design-led execution',
       },
       {
         group: 'After',
         src: '/case-studies/betonline%20new2.png',
-        alt: 'BetOnline now — casino and player experience',
+        alt: 'Offshore now — casino and player experience',
         caption: 'Current direction — shadcn system thinking, motion, transition and performance',
       },
     ],
     previewUrl: 'https://bol-seven.vercel.app/',
-    previewLabel: 'BetOnline prototype',
+    previewLabel: 'Offshore prototype',
     bannerImageFit: 'cover',
     imageFit: 'contain',
     imagePosition: 'top',
     context:
-      'When I joined, BetOnline had grown without a mature design function. There was no design system — only a cheatsheet of the brand — and verticals could release whatever they wanted without passing through a central UI/UX function.',
+      'When I joined, Offshore had grown without a mature design function. There was no design system — only a cheatsheet of the brand — and verticals could release whatever they wanted without passing through a central UI/UX function.',
     problem:
       'Players moved through inconsistent journeys. Teams rebuilt patterns in isolation. There was no governance, no shared component language and no design authority connecting casino, sportsbook, poker, cashier, loyalty and account experiences.',
     myRole:
@@ -910,7 +910,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     id: 'loyalty-rewards',
     title: 'Loyalty and Rewards',
     subtitle: 'Gaming has become loyalty and rewards focused for retention.',
-    client: 'BetOnline / Offshore Brand Group',
+    client: 'Offshore Brand Group',
     scope: 'Campaigns · VIP hub · Retention',
     outcome: 'Retention-led journeys with clearer player value',
     summary:
@@ -918,11 +918,12 @@ export const CASE_STUDIES: CaseStudy[] = [
     tags: ['Loyalty', 'VIP', 'Retention'],
     category: 'Loyalty',
     image: '/case-studies/vip-hub-drawer.png',
+    tileImage: '/case-studies/loyalty_cover.png?v=2',
     previewUrl: 'https://bol-seven.vercel.app/casino?vip=true&section=Overview&hubFocus=true',
     previewLabel: 'VIP Hub',
     previewFocus: 'vip-hub',
     context:
-      'Gaming has become loyalty and rewards focused for retention. BetOnline needed player-facing surfaces that made rewards feel tangible, not buried in the product.',
+      'Gaming has become loyalty and rewards focused for retention. The offshore group needed player-facing surfaces that made rewards feel tangible, not buried in the product.',
     problem:
       'Promotion and loyalty experiences were inconsistent. High-value players did not always get a clear VIP journey, and campaign surfaces did not always connect back to the wider product.',
     myRole:
@@ -938,35 +939,83 @@ export const CASE_STUDIES: CaseStudy[] = [
   },
   {
     id: 'casino-jackpots',
-    title: 'Casino and Jackpots',
-    subtitle: 'Immersive interaction for players who want to come back.',
-    client: 'BetOnline / Offshore Brand Group',
-    scope: 'Casino · Jackpots · Player engagement',
-    outcome: 'More immersive casino moments built for repeat play',
+    title: 'Increase Casino Revenue Through Design',
+    subtitle: 'A modular casino canvas — back-office controlled, behaviour-led and built for performance.',
+    client: 'Offshore Brand Group',
+    scope: 'Casino · Canvas · Personalisation · Revenue',
+    outcome: 'A smarter lobby that surfaced the right games, lifted engagement and protected performance',
     summary:
-      'How I helped shape casino and jackpot experiences with more immersion, motion and interaction, giving players reasons to return rather than treating games as static tiles on a page.',
-    tags: ['Casino', 'Jackpots', 'Engagement'],
+      'Working with the Head of Casino, design and engineering, I helped shape a modular casino experience we called Canvas — a front end fully controlled from the casino back office. Tiles could take different shapes, carousels could be built dynamically from player behaviour, and metadata on the front end made content clearer for users and sharper for the business. The result was a lobby that felt more personal, more commercial and faster where it mattered.',
+    tags: ['Casino', 'Personalisation', 'Revenue'],
     category: 'Casino',
-    image: '/case-studies/casino-jackpots.png',
+    image: '/case-studies/casino_case_study_cover.png',
+    tileImage: '/case-studies/casino_case_study_cover.png',
     context:
-      'Casino had moved beyond legacy lobby patterns. The opportunity was to make jackpot and game discovery feel more alive, more memorable and more worth coming back to.',
+      'Casino needed to move beyond static lobbies. The business wanted more control over what appeared, when and why — without engineering rebuilding the front end every time. Design had to lead with a modular model that product, casino and tech could all operate.',
     problem:
-      'Casino surfaces could feel flat. Jackpot moments and game discovery did not always create enough tension, delight or reason for players to return.',
+      'The legacy lobby treated games as flat content blocks. There was no flexible way to promote high-value titles, respond to player behaviour or surface loyalty progress in the journey. Personalisation was limited, commercial priorities were hard to express in the UI, and heavy motion risked hurting performance on the devices players actually used.',
     myRole:
-      'As Head of UI/UX, I led casino experience direction with a focus on immersion, interaction and repeat engagement around jackpots and game discovery.',
+      'As Head of UI/UX, I led the casino experience direction alongside the Head of Casino, design and engineering — defining the Canvas model, tile system, navigation structure and performance standards before we scaled personalisation and retention features across the lobby.',
     whatChanged:
-      'I pushed for richer casino interaction, stronger jackpot presentation and lobby patterns that felt more like an experience players wanted to re-enter.',
+      'We built Canvas: a modular casino front end controlled entirely from the back office. Operators could compose varied tile shapes, spin up behaviour-led carousels and show games players were likely to enjoy based on gameplay history. We added metadata to tiles so players got clearer information on the surface, and the business could serve the right content at the right moment. Commercial hierarchy came through in the layout — originals and stronger rev-share titles earned more prominent DVD-style tiles up front, while lower rev-share games still had a path to discovery without dominating the estate. Navigation was reorganised around a For You tab with personalised content, quick access to favourites and search, plus a Play Random action that removed choice for players who just wanted the product to decide — the Netflix late-night scroll, but for casino. VIP and loyalty progress moved into the banner carousel so players could see status in flow, improving retention and time on page.',
     decisions:
-      'I treated jackpots and featured games as product moments, not just content blocks. Motion, hierarchy and interaction needed to build anticipation and make return visits feel natural.',
+      'Design had to be modular first. Canvas was the foundation — not decoration on top of a rigid lobby. Tile shape, order and carousel logic were product decisions with revenue attached, so we treated them that way. Metadata was not an afterthought: it helped users understand what they were clicking and helped us target content more intelligently. Personalisation lived in For You, favourites and Play Random, but always with a performance guardrail — animation and motion were only worth shipping if they did not slow the experience down. In iGaming, a beautiful lobby that stutters is a losing lobby.',
     impact:
-      'Helped modernise how casino and jackpot experiences felt in the product, with a clearer focus on engagement and repeat play.',
+      'Casino became easier to operate and easier to personalise. The business could push commercial priorities — including originals and rev-share deals — without sacrificing clarity for the player. Behaviour-led carousels and metadata made discovery feel more relevant, while loyalty and VIP visibility in the banner layer supported retention. Performance stayed a first-class requirement throughout, not a late optimisation pass.',
     leadership:
-      'Shows how my game-design background still shapes product work: I care about the feeling of play, not just the layout around it.',
+      'This case study shows how I work at the intersection of design, casino product and engineering: setting the experience model, making commercial logic visible in the UI, and refusing to trade performance for polish. Revenue, retention and player clarity can move together when the system is designed properly from the start.',
+    stages: [
+      {
+        title: 'Canvas — modular by design',
+        items: [
+          'Front end fully controlled from the casino back office',
+          'Tiles in varied shapes, composed without engineering rebuilds',
+          'Design, casino and tech aligned on one flexible system',
+          'Modular first — we called it Canvas, not a skin on the old lobby',
+        ],
+      },
+      {
+        title: 'Smarter discovery',
+        items: [
+          'Dynamic carousels built from player behaviour',
+          'Games surfaced based on gameplay history and likely interest',
+          'Metadata on tiles — clearer for users, sharper for targeting',
+          'Right content at the right time, not just more content',
+        ],
+      },
+      {
+        title: 'Commercial hierarchy',
+        items: [
+          'Originals and stronger rev-share titles promoted up front',
+          'DVD-style tiles for high-value games that needed to stand out',
+          'Lower rev-share titles still discoverable without dominating the lobby',
+          'Layout as a revenue lever, not only a visual one',
+        ],
+      },
+      {
+        title: 'Navigation & retention',
+        items: [
+          'For You tab with personalised content',
+          'Quick access to favourites, search and Play Random',
+          'Play Random for choice-fatigued players — tell me what to play',
+          'VIP and loyalty progress integrated into the banner carousel',
+        ],
+      },
+      {
+        title: 'Performance as standard',
+        items: [
+          'Animation and motion reviewed against device performance',
+          'Heavy movement rejected when it hurt load or interaction',
+          'Design quality measured by feel and speed together',
+          'Performance treated as a product requirement from day one',
+        ],
+      },
+    ],
   },
   {
     id: 'design-governance',
     title: 'Building Design Governance Across Multiple Brands',
-    client: 'BetOnline / Offshore Brand Group',
+    client: 'Offshore Brand Group',
     scope: 'Multi-brand · Governance',
     outcome: 'Stronger standards across seven brands',
     summary:
@@ -992,7 +1041,7 @@ export const CASE_STUDIES: CaseStudy[] = [
   {
     id: 'design-system',
     title: 'Creating a Scalable Gambling Design System',
-    client: 'BetOnline / Offshore Brand Group',
+    client: 'Offshore Brand Group',
     scope: '7 brands · Design system',
     outcome: 'A shared system for multi-brand delivery',
     summary:
@@ -1018,7 +1067,7 @@ export const CASE_STUDIES: CaseStudy[] = [
   {
     id: 'customer-voice',
     title: 'Embedding Customer Voice into Product Design',
-    client: 'BetOnline / Offshore Brand Group',
+    client: 'Offshore Brand Group',
     scope: 'UX research · VoC',
     outcome: 'Design grounded in player insight',
     summary:
@@ -1109,7 +1158,7 @@ export const WORK_CASE_STUDY_ORDER = [
   ...FEATURED_CASE_STUDY_IDS,
   'design-system',
   'customer-voice',
-  'casino-jackpots',
+  'lucky-lagoon',
   'design-governance',
 ] as const;
 
@@ -1162,7 +1211,7 @@ export function getCaseStudyLinks(study: CaseStudy): CaseStudyLink[] {
 }
 
 export const FEATURED_TILES = [
-  { label: 'BetOnline transformation', href: '#work' },
+  { label: 'Offshore transformation', href: '#work' },
   { label: 'Design systems', href: '#work' },
   { label: 'Jurnii AI', href: '#work' },
   { label: 'Loyalty and rewards', href: '#work' },
