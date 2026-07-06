@@ -3490,6 +3490,7 @@ body.site-cursor-active [contenteditable="true"] {
 @media (max-width: 1023px) {
   .site-main--hud .expertise-section {
     --expertise-sticky-h: clamp(14.25rem, 46vw, 16.5rem);
+    --expertise-sticky-offset: env(safe-area-inset-top, 0px);
   }
 
   .site-main--hud .expertise-layout {
@@ -3506,11 +3507,12 @@ body.site-cursor-active [contenteditable="true"] {
     top: 0;
     z-index: 50;
     margin-inline: calc(-1 * var(--content-gutter));
+    margin-top: 0;
     margin-bottom: 0;
-    height: var(--expertise-sticky-h);
-    min-height: var(--expertise-sticky-h);
-    max-height: var(--expertise-sticky-h);
-    padding-top: max(0.5rem, env(safe-area-inset-top, 0px));
+    height: calc(var(--expertise-sticky-h) + var(--expertise-sticky-offset));
+    min-height: calc(var(--expertise-sticky-h) + var(--expertise-sticky-offset));
+    max-height: calc(var(--expertise-sticky-h) + var(--expertise-sticky-offset));
+    padding-top: 0;
     padding-right: calc(var(--content-gutter) + 6.5rem);
     padding-bottom: 0.75rem;
     padding-left: var(--content-gutter);
@@ -3526,10 +3528,6 @@ body.site-cursor-active [contenteditable="true"] {
     z-index: 0;
     pointer-events: none;
     background: transparent;
-    border-bottom: 1px solid oklch(0.97 0.004 260 / 0.14);
-    box-shadow:
-      0 12px 36px oklch(0.02 0.014 250 / 0.22),
-      inset 0 1px 0 oklch(0.97 0.004 260 / 0.18);
   }
 
   @supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
@@ -3545,13 +3543,14 @@ body.site-cursor-active [contenteditable="true"] {
     flex-direction: column;
     height: 100%;
     min-height: 0;
+    padding-top: var(--expertise-sticky-offset);
   }
 
   .site-main--hud .expertise-list {
     grid-area: 1 / 1;
     position: relative;
     z-index: 0;
-    padding-top: var(--expertise-sticky-h);
+    padding-top: calc(var(--expertise-sticky-h) + var(--expertise-sticky-offset));
     margin: 0;
     overflow-anchor: none;
   }
@@ -3603,6 +3602,7 @@ body.site-cursor-active [contenteditable="true"] {
     margin-top: 0.15rem;
     padding-top: 0.45rem;
     max-width: none;
+    border-top: none;
   }
 }
 
