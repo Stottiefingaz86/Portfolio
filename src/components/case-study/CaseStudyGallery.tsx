@@ -5,6 +5,7 @@ import { Fragment } from 'react';
 
 import { getCaseStudyGallery, type CaseStudy, type CaseStudyImage } from '@/lib/portfolio-data';
 import { cn } from '@/lib/utils';
+import { RetroMediaFx } from '@/components/case-study/RetroMediaFx';
 
 const IMAGE_PATTERN = /\.(jpe?g|png|webp|gif|avif)$/i;
 
@@ -47,6 +48,7 @@ function CompareFigure({
           className="case-figure__image case-figure__image--cover"
           sizes="(max-width: 640px) 42vw, 22rem"
         />
+        <RetroMediaFx />
       </div>
       {image.caption || image.alt ? (
         <figcaption className="case-figure__caption case-figure__caption--compare">
@@ -118,22 +120,28 @@ export function CaseStudyGallery({ study }: { study: CaseStudy }) {
               <figure className={cn('case-figure', useQuadGrid && 'case-figure--quad')}>
                 <div className="case-figure__media">
                   {useQuadGrid ? (
-                    <Image
-                      src={image.src}
-                      alt={image.alt ?? `${study.title} visual ${index + 1}`}
-                      fill
-                      className="case-figure__image case-figure__image--cover"
-                      sizes="(max-width: 640px) 50vw, (max-width: 900px) 50vw, 25vw"
-                    />
+                    <>
+                      <Image
+                        src={image.src}
+                        alt={image.alt ?? `${study.title} visual ${index + 1}`}
+                        fill
+                        className="case-figure__image case-figure__image--cover"
+                        sizes="(max-width: 640px) 50vw, (max-width: 900px) 50vw, 25vw"
+                      />
+                      <RetroMediaFx />
+                    </>
                   ) : (
-                    <Image
-                      src={image.src}
-                      alt={image.alt ?? `${study.title} visual ${index + 1}`}
-                      width={1600}
-                      height={1000}
-                      className="case-figure__image"
-                      sizes="(max-width: 900px) 100vw, 56rem"
-                    />
+                    <>
+                      <Image
+                        src={image.src}
+                        alt={image.alt ?? `${study.title} visual ${index + 1}`}
+                        width={1600}
+                        height={1000}
+                        className="case-figure__image"
+                        sizes="(max-width: 900px) 100vw, 56rem"
+                      />
+                      <RetroMediaFx />
+                    </>
                   )}
                 </div>
                 {image.caption || image.alt ? (

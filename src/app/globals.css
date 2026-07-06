@@ -2391,6 +2391,7 @@
     overflow: hidden;
     border-bottom: 1px solid oklch(0.97 0.004 260 / 0.1);
     background: oklch(0.08 0.012 260 / 0.92);
+    isolation: isolate;
   }
 
   .case-modal-hero__image {
@@ -2398,11 +2399,13 @@
     inset: 0;
     width: 100%;
     height: 100%;
+    z-index: 0;
   }
 
   .case-modal-hero__shade {
     position: absolute;
     inset: 0;
+    z-index: 2;
     background:
       linear-gradient(
         180deg,
@@ -2678,10 +2681,319 @@
   }
 
   .case-figure__media {
+    position: relative;
     overflow: hidden;
     border: 1px solid oklch(0.97 0.004 260 / 0.12);
     border-radius: 0.5rem;
     background: oklch(0.07 0.012 260 / 0.88);
+    isolation: isolate;
+  }
+
+  .case-figure__media .case-figure__image--cover {
+    z-index: 0;
+  }
+
+  .case-modal-hero .case-media-fx__grain,
+  .case-modal-hero .case-media-fx__scanlines,
+  .case-modal-hero .case-media-fx__roll-band,
+  .case-modal-hero .case-media-fx__tear,
+  .case-figure__media .case-media-fx__grain,
+  .case-figure__media .case-media-fx__scanlines,
+  .case-figure__media .case-media-fx__roll-band,
+  .case-figure__media .case-media-fx__tear {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .case-media-fx__grain {
+    inset: -18%;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+    background-size: 120px 120px;
+    mix-blend-mode: overlay;
+    animation: case-media-grain-drift 4.5s steps(8, end) infinite;
+  }
+
+  .case-modal-hero .case-media-fx__grain {
+    opacity: 0.11;
+  }
+
+  .case-figure__media .case-media-fx__grain {
+    opacity: 0.095;
+  }
+
+  .case-media-fx__scanlines {
+    background: repeating-linear-gradient(
+      0deg,
+      transparent 0,
+      transparent 1px,
+      oklch(0 0 0 / 0.42) 1px,
+      oklch(0 0 0 / 0.42) 2px
+    );
+    mix-blend-mode: multiply;
+    animation:
+      case-media-scanline-roll 2.6s linear infinite,
+      case-media-flicker 0.95s steps(1, end) infinite;
+  }
+
+  .case-modal-hero .case-media-fx__scanlines {
+    opacity: 0.62;
+  }
+
+  .case-figure__media .case-media-fx__scanlines {
+    opacity: 0.56;
+  }
+
+  .case-media-fx__roll-band {
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      oklch(1 0 0 / 0.02) 44%,
+      oklch(1 0 0 / 0.14) 49%,
+      oklch(0 0 0 / 0.45) 50%,
+      oklch(1 0 0 / 0.1) 51%,
+      oklch(1 0 0 / 0.03) 56%,
+      transparent 100%
+    );
+    background-size: 100% 42%;
+    background-repeat: no-repeat;
+    mix-blend-mode: soft-light;
+    opacity: 0.75;
+    animation: case-media-vhs-roll 3.2s linear infinite;
+  }
+
+  .case-media-fx__tear {
+    background: repeating-linear-gradient(
+      0deg,
+      transparent 0,
+      transparent 3px,
+      oklch(0 0 0 / 0.22) 3px,
+      oklch(0 0 0 / 0.22) 4px
+    );
+    mix-blend-mode: multiply;
+    opacity: 0.34;
+    animation:
+      case-media-line-tear 5.5s steps(1, end) infinite,
+      case-media-scanline-roll 1.8s linear infinite reverse,
+      case-media-flicker 1.4s steps(1, end) infinite;
+  }
+
+  @keyframes case-media-grain-drift {
+    0% {
+      transform: translate3d(0, 0, 0);
+    }
+
+    100% {
+      transform: translate3d(-4%, 3%, 0);
+    }
+  }
+
+  @keyframes case-media-scanline-roll {
+    0% {
+      transform: translate3d(0, 0, 0);
+    }
+
+    100% {
+      transform: translate3d(0, 4px, 0);
+    }
+  }
+
+  @keyframes case-media-vhs-roll {
+    0% {
+      background-position: 0 -120%;
+    }
+
+    100% {
+      background-position: 0 220%;
+    }
+  }
+
+  @keyframes case-media-flicker {
+    0%,
+    100% {
+      opacity: 0.58;
+    }
+
+    2% {
+      opacity: 0.14;
+    }
+
+    3% {
+      opacity: 0.72;
+    }
+
+    4% {
+      opacity: 0.2;
+    }
+
+    5% {
+      opacity: 0.66;
+    }
+
+    6% {
+      opacity: 0.28;
+    }
+
+    7% {
+      opacity: 0.58;
+    }
+
+    18% {
+      opacity: 0.58;
+    }
+
+    19% {
+      opacity: 0.1;
+    }
+
+    20% {
+      opacity: 0.74;
+    }
+
+    21% {
+      opacity: 0.22;
+    }
+
+    22% {
+      opacity: 0.58;
+    }
+
+    41% {
+      opacity: 0.58;
+    }
+
+    42% {
+      opacity: 0.16;
+    }
+
+    43% {
+      opacity: 0.7;
+    }
+
+    44% {
+      opacity: 0.24;
+    }
+
+    45% {
+      opacity: 0.62;
+    }
+
+    46% {
+      opacity: 0.58;
+    }
+
+    63% {
+      opacity: 0.58;
+    }
+
+    64% {
+      opacity: 0.08;
+    }
+
+    65% {
+      opacity: 0.76;
+    }
+
+    66% {
+      opacity: 0.18;
+    }
+
+    67% {
+      opacity: 0.58;
+    }
+
+    84% {
+      opacity: 0.58;
+    }
+
+    85% {
+      opacity: 0.12;
+    }
+
+    86% {
+      opacity: 0.68;
+    }
+
+    87% {
+      opacity: 0.3;
+    }
+
+    88% {
+      opacity: 0.58;
+    }
+  }
+
+  @keyframes case-media-line-tear {
+    0%,
+    72%,
+    100% {
+      opacity: 0.28;
+      transform: translate3d(0, 0, 0);
+      clip-path: inset(0 0 0 0);
+    }
+
+    73% {
+      opacity: 0.62;
+      transform: translate3d(-4px, 0, 0);
+      clip-path: inset(8% 0 78% 0);
+    }
+
+    74% {
+      opacity: 0.54;
+      transform: translate3d(3px, 0, 0);
+      clip-path: inset(38% 0 48% 0);
+    }
+
+    75% {
+      opacity: 0.48;
+      transform: translate3d(-2px, 0, 0);
+      clip-path: inset(68% 0 18% 0);
+    }
+
+    76% {
+      opacity: 0.28;
+      transform: translate3d(0, 0, 0);
+      clip-path: inset(0 0 0 0);
+    }
+
+    88% {
+      opacity: 0.28;
+    }
+
+    89% {
+      opacity: 0.58;
+      transform: translate3d(2px, 0, 0);
+      clip-path: inset(22% 0 58% 0);
+    }
+
+    90% {
+      opacity: 0.28;
+      transform: translate3d(0, 0, 0);
+      clip-path: inset(0 0 0 0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .case-media-fx__grain,
+    .case-media-fx__scanlines,
+    .case-media-fx__roll-band,
+    .case-media-fx__tear {
+      animation: none;
+    }
+
+    .case-media-fx__grain {
+      opacity: 0.06;
+    }
+
+    .case-media-fx__scanlines {
+      opacity: 0.32;
+    }
+
+    .case-media-fx__roll-band,
+    .case-media-fx__tear {
+      opacity: 0;
+    }
   }
 
   .case-figure__image {

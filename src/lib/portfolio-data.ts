@@ -129,10 +129,10 @@ export const SITE = {
   heroLeadMobile:
     '16 years in iGaming. Product UI/UX expert across casino, sportsbook, loyalty, rewards retention and player experience.',
   heroBody:
-    '16 years from hands-on game design and UI through product leadership, directing UI/UX teams and design systems — then founding Jurnii.io and building AI-assisted design-to-dev workflows at Offshore.',
+    '16 years from hands-on game design and UI through product leadership, directing UI/UX teams and design systems — then founding Jurnii.io and building AI-assisted design-to-dev workflows while consulting for BetOnline.',
   heroKickerMobile: 'Head of UI/UX / Creative Director / iGaming Expert',
   credibilityLine:
-    '16 years in iGaming · VP of UI/UX · Offshore · Founder of Jurnii.io · Remote from Sotogrande, Spain',
+    '16 years in iGaming · VP of UI/UX · BetOnline · Founder of Jurnii.io · Remote from Sotogrande, Spain',
   portfolioYear: '2K26',
   siteLogo: '/logos/sitelogo.png?v=2',
   siteLogoAlt: 'Christopher Hunt monogram',
@@ -311,7 +311,7 @@ export const CAREER_PHASES: CareerPhase[] = [
         detail: 'Consultant',
         role: 'UI/UX Design Consultant',
         summary:
-          'Consulting on Sun Bingo and platform work for Playtech — regulated gambling product design before joining Offshore full time.',
+          'Consulting on Sun Bingo and platform work for Playtech — regulated gambling product design before my long-term BetOnline consulting engagement.',
       },
       {
         name: 'Gala Coral',
@@ -509,7 +509,7 @@ I work closely with tools like Figma, Cursor and Mixpanel, combining design syst
   birthDateLabel: '13/07/1986',
   persona: {
     location: 'Remote · Spain',
-    focus: 'Offshore · VP of UI/UX',
+    focus: 'BetOnline · VP of UI/UX',
     goals: [
       'Build design maturity inside complex gambling organisations',
       'Connect craft, product judgment and commercial outcomes',
@@ -566,11 +566,11 @@ export const TIMELINE: TimelineEntry[] = [
   {
     id: 'betonline',
     phase: 'Product maturity',
-    role: 'VP of UI/UX',
-    company: 'Offshore Brand Group',
+    role: 'VP of UI/UX · Consultant',
+    company: 'BetOnline',
     location: 'Remote · Sotogrande, Spain',
     summary:
-      'When I joined Offshore, design was not yet operating as a mature function. There was no dedicated UI/UX team, no central design system and limited governance across the product estate. Early on, I modernised the casino experience. As the product matured, I expanded across sportsbook, casino, poker, cashier, authentication, loyalty, my account, back office and multi-brand journeys. Over time, I built and led a specialist internal design team, introduced UX research and Voice of Customer practices, worked closely with C-level stakeholders and product heads, and led the creation of an agnostic design system supporting seven brands.',
+      'For nine years I have consulted for BetOnline — not as an in-house hire, but as the design partner building their UI/UX capability. When I started, design was not yet operating as a mature function. There was no dedicated UI/UX team, no central design system and limited governance across the product estate. Early on, I modernised the casino experience. As the product matured, I expanded across sportsbook, casino, poker, cashier, authentication, loyalty, my account, back office and multi-brand journeys. Over time, I built and led a specialist design team on the client side, introduced UX research and Voice of Customer practices, worked closely with C-level stakeholders and product heads, and led the creation of an agnostic design system supporting seven brands.',
     highlights: [
       'Built design function from scratch',
       '7-brand design system',
@@ -596,7 +596,7 @@ export const TIMELINE: TimelineEntry[] = [
     company: 'Playtech · Coral',
     location: 'Europe',
     summary:
-      'After Busslr, I consulted as a designer for Playtech on Sun Bingo and for Coral, doing platform and brand work that kept me close to regulated gambling product design before I joined Offshore.',
+      'After Busslr, I consulted as a designer for Playtech on Sun Bingo and for Coral, doing platform and brand work that kept me close to regulated gambling product design before my BetOnline consulting work.',
     highlights: ['Playtech', 'Sun Bingo', 'Coral'],
     image: '/gallery/bol-casino.png',
   },
@@ -661,7 +661,7 @@ export const GALLERY: GalleryItem[] = [
   {
     id: 'bol-betslip',
     title: 'Betslip',
-    project: 'Offshore',
+    project: 'BetOnline',
     category: 'Sportsbook',
     image: '/gallery/bol-sportsbook.png',
     aspect: 'portrait',
@@ -669,7 +669,7 @@ export const GALLERY: GalleryItem[] = [
   {
     id: 'bol-vip',
     title: 'VIP Hub',
-    project: 'Offshore',
+    project: 'BetOnline',
     category: 'Loyalty',
     image: '/gallery/bol-vip-hub.png',
     aspect: 'portrait',
@@ -677,7 +677,7 @@ export const GALLERY: GalleryItem[] = [
   {
     id: 'bol-casino',
     title: 'Casino',
-    project: 'Offshore',
+    project: 'BetOnline',
     category: 'Casino',
     image: '/gallery/bol-casino.png',
     aspect: 'portrait',
@@ -805,13 +805,13 @@ export const WHAT_I_BRING: WhatIBringCard[] = [
 export const CASE_STUDIES: CaseStudy[] = [
   {
     id: 'betonline-transformation',
-    title: 'Offshore Product Transformation',
+    title: 'BetOnline Product Transformation',
     subtitle: 'From a brand cheatsheet and fragmented verticals to a governed shadcn design system.',
-    client: 'Offshore Brand Group',
-    scope: 'Multi-vertical · Multi-brand · Design leadership',
+    client: 'BetOnline',
+    scope: 'Multi-vertical · Multi-brand · Design consulting',
     outcome: 'A governed product ecosystem with design as a central function',
     summary:
-      'When I joined Offshore, the product I inherited had no design system, no UI/UX team and no real governance — just a brand cheatsheet while casino, sportsbook, poker and other verticals shipped whatever they wanted. I built the design and UI/UX function, brought the verticals together under one standard, and drove the product toward where it is now: shadcn-based systems, meticulous animation and transition craft, and a stronger focus on performance — with me setting vision and goals alongside tech.',
+      'I have been consulting for BetOnline for nine years. When I started, the product had no design system, no UI/UX team and no real governance — just a brand cheatsheet while casino, sportsbook, poker and other verticals shipped whatever they wanted. I built the design and UI/UX function, brought the verticals together under one standard, and drove the product toward where it is now: shadcn-based systems, meticulous animation and transition craft, and a stronger focus on performance — with me setting vision and goals alongside tech.',
     tags: ['Transformation', 'Governance', 'Multi-brand'],
     category: 'Leadership',
     image: '/case-studies/betonline-home.png',
@@ -821,39 +821,39 @@ export const CASE_STUDIES: CaseStudy[] = [
       {
         group: 'Before',
         src: '/case-studies/betonline%29old%201.png',
-        alt: 'Offshore before — inherited sportsbook experience',
-        caption: 'Inherited site — sportsbook and product surfaces as I joined',
+        alt: 'BetOnline before — inherited sportsbook experience',
+        caption: 'Inherited site — sportsbook and product surfaces when consulting began',
       },
       {
         group: 'Before',
         src: '/case-studies/betonline%29old%202.png',
-        alt: 'Offshore before — inherited casino experience',
+        alt: 'BetOnline before — inherited casino experience',
         caption: 'Inherited site — casino and lobby without shared system or governance',
       },
       {
         group: 'After',
         src: '/case-studies/betonline%20new1.png',
-        alt: 'Offshore now — modern homepage direction',
+        alt: 'BetOnline now — modern homepage direction',
         caption: 'Current direction — unified product vision with design-led execution',
       },
       {
         group: 'After',
         src: '/case-studies/betonline%20new2.png',
-        alt: 'Offshore now — casino and player experience',
+        alt: 'BetOnline now — casino and player experience',
         caption: 'Current direction — shadcn system thinking, motion, transition and performance',
       },
     ],
     previewUrl: 'https://bol-seven.vercel.app/',
-    previewLabel: 'Offshore prototype',
+    previewLabel: 'BetOnline prototype',
     bannerImageFit: 'cover',
     imageFit: 'contain',
     imagePosition: 'top',
     context:
-      'When I joined, Offshore had grown without a mature design function. There was no design system — only a cheatsheet of the brand — and verticals could release whatever they wanted without passing through a central UI/UX function.',
+      'Over nine years consulting for BetOnline, I inherited a product that had grown without a mature design function. There was no design system — only a cheatsheet of the brand — and verticals could release whatever they wanted without passing through a central UI/UX function.',
     problem:
       'Players moved through inconsistent journeys. Teams rebuilt patterns in isolation. There was no governance, no shared component language and no design authority connecting casino, sportsbook, poker, cashier, loyalty and account experiences.',
     myRole:
-      'As Head of UI/UX and Head of Design, I built the UI/UX team, made everything pass through design, joined the verticals together and set the product vision teams now work toward — alongside tech, with clear goals and standards.',
+      'Consulting as Head of UI/UX and Head of Design, I built the UI/UX team, made everything pass through design, joined the verticals together and set the product vision teams now work toward — alongside tech, with clear goals and standards.',
     whatChanged:
       'It took time, but design moved from reactive support into a central function. We modernised key journeys, introduced governance and sign-off, and are now building toward a shadcn-based design system with stronger animation, transition and performance standards across the estate.',
     decisions:
@@ -909,7 +909,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     id: 'loyalty-rewards',
     title: 'Loyalty and Rewards',
     subtitle: 'Gaming has become loyalty and rewards focused for retention.',
-    client: 'Offshore Brand Group',
+    client: 'BetOnline',
     scope: 'Campaigns · VIP hub · Retention',
     outcome: 'Retention-led journeys with clearer player value',
     summary:
@@ -918,6 +918,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     category: 'Loyalty',
     image: '/case-studies/vip-hub-drawer.png',
     tileImage: '/case-studies/loyalty_cover.png?v=2',
+    bannerImage: '/case-studies/loyalty%20case%20study%20banner.png?v=1',
     previewUrl: 'https://bol-seven.vercel.app/casino?vip=true&section=Overview&hubFocus=true',
     previewLabel: 'VIP Hub',
     previewFocus: 'vip-hub',
@@ -940,7 +941,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     id: 'casino-jackpots',
     title: 'Increase Casino Revenue Through Design',
     subtitle: 'A modular casino canvas — back-office controlled, behaviour-led and built for performance.',
-    client: 'Offshore Brand Group',
+    client: 'BetOnline',
     scope: 'Casino · Canvas · Personalisation · Revenue',
     outcome: 'A smarter lobby that surfaced the right games, lifted engagement and protected performance',
     summary:
@@ -1036,7 +1037,7 @@ export const CASE_STUDIES: CaseStudy[] = [
   {
     id: 'design-governance',
     title: 'Building Design Governance Across Multiple Brands',
-    client: 'Offshore Brand Group',
+    client: 'BetOnline',
     scope: 'Multi-brand · Governance',
     outcome: 'Stronger standards across seven brands',
     summary:
@@ -1062,7 +1063,7 @@ export const CASE_STUDIES: CaseStudy[] = [
   {
     id: 'design-system',
     title: 'Creating a Scalable Gambling Design System',
-    client: 'Offshore Brand Group',
+    client: 'BetOnline',
     scope: '7 brands · Design system',
     outcome: 'A shared system for multi-brand delivery',
     summary:
@@ -1088,7 +1089,7 @@ export const CASE_STUDIES: CaseStudy[] = [
   {
     id: 'customer-voice',
     title: 'Embedding Customer Voice into Product Design',
-    client: 'Offshore Brand Group',
+    client: 'BetOnline',
     scope: 'UX research · VoC',
     outcome: 'Design grounded in player insight',
     summary:
@@ -1228,7 +1229,7 @@ export function getCaseStudyLinks(study: CaseStudy): CaseStudyLink[] {
 }
 
 export const FEATURED_TILES = [
-  { label: 'Offshore transformation', href: '#work' },
+  { label: 'BetOnline transformation', href: '#work' },
   { label: 'Design systems', href: '#work' },
   { label: 'Jurnii AI', href: '#work' },
   { label: 'Loyalty and rewards', href: '#work' },
