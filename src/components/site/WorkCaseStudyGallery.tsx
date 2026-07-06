@@ -8,7 +8,6 @@ import { WORK_FEATURED_CASE_STUDIES, type CaseStudy } from '@/lib/portfolio-data
 import { cn } from '@/lib/utils';
 import { playCaseStudyHoverSound } from '@/lib/site-sounds';
 import { CaseStudyImagePlaceholder } from '@/components/case-study/CaseStudyImagePlaceholder';
-import { Badge } from '@/components/ui/badge';
 import { BorderBeam } from '@/components/ui/border-beam';
 import {
   Card,
@@ -67,12 +66,6 @@ function FeaturedTile({
 
           <div className="work-featured-card-body">
             <CardHeader className="gap-1.5 px-3 pt-3 pb-2">
-              <Badge
-                variant="outline"
-                className="work-featured-card__badge w-fit max-w-full"
-              >
-                {study.scope}
-              </Badge>
               <CardDescription className="line-clamp-1 text-[0.5625rem] tracking-[0.1em] uppercase">
                 {study.client}
               </CardDescription>
