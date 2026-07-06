@@ -3880,7 +3880,9 @@ body.site-cursor-active [contenteditable="true"] {
   gap: clamp(2.5rem, 6vw, 4.5rem);
 }
 
-.site-main--hud .about-copy p {
+.site-main--hud .about-copy p,
+.site-main--hud .about-layout__story p,
+.site-main--hud .about-layout__personal p {
   max-width: var(--prose-max);
 }
 
@@ -5192,6 +5194,8 @@ body.site-cursor-active [contenteditable="true"] {
 .expertise-deck,
 .work-deck,
 .about-copy p,
+.about-layout__story p,
+.about-layout__personal p,
 .about-meta,
 .about-personal-label,
 .contact-note {

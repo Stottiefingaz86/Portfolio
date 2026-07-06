@@ -497,6 +497,14 @@ export const FEATURED_CASE_STUDY_IDS = [
   'casino-jackpots',
 ] as const;
 
+export interface AboutJourneyFrame {
+  src: string;
+  alt: string;
+  label: string;
+  detail: string;
+  beat: string;
+}
+
 export const ABOUT = {
   title: 'Creative craft. Product depth. Commercial focus.',
   lead: `I'm English and based in Spain, where I've lived for the last 16 years with my family.
@@ -507,8 +515,38 @@ That background still shapes how I work today. I care about the craft, but I als
 
 I work closely with tools like Figma, Cursor and Mixpanel, combining design systems, product thinking, data insight and AI experimentation to improve how ideas move from concept to live product.`,
   personalTitle: 'About Me',
-  portrait: '/about/christopher-hunt.png',
+  portrait: '/about/me_newcastle1.png',
   portraitAlt: 'Christopher Hunt',
+  journeyFrames: [
+    {
+      src: '/about/me_newcastle1.png',
+      alt: 'Christopher Hunt with Newcastle in the background',
+      label: 'South Shields · Newcastle',
+      detail: 'College · Sunderland Uni',
+      beat: 'Brought up in South Shields — triple distinction in art and design at college, then Design & Multimedia at the University of Sunderland.',
+    },
+    {
+      src: '/about/me-london2.png',
+      alt: 'Christopher Hunt with London in the background',
+      label: 'London',
+      detail: 'Digiquest · Kentish Town',
+      beat: 'Digiquest and IPTV first, then Kentish Town — where gaming started and I began marketing UK gambling brands.',
+    },
+    {
+      src: '/about/me-gibraltar3.png',
+      alt: 'Christopher Hunt with Gibraltar in the background',
+      label: 'Gibraltar',
+      detail: 'Gambling hub',
+      beat: 'Off to the rock — the centre of the industry and where serious multi-brand gambling work really began.',
+    },
+    {
+      src: '/about/me-padel4.png',
+      alt: 'Christopher Hunt at padel courts',
+      label: 'Remote · Spain',
+      detail: 'Work from home · padel',
+      beat: 'Now — family life in Spain, remote leadership and padel whenever I can.',
+    },
+  ] satisfies AboutJourneyFrame[],
   personal: `Outside of work, I'm a family man, obsessed with padel, music creation and building small products through vibe coding. I like making things, testing ideas quickly and staying close to the tools that are changing how design and development work.`,
   birthDate: '1986-07-13',
   birthDateLabel: '13/07/1986',

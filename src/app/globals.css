@@ -2082,16 +2082,57 @@
     align-items: stretch;
   }
 
+  .about-layout__story,
+  .about-layout__personal {
+    display: grid;
+    gap: 1.125rem;
+    min-width: 0;
+  }
+
+  .about-layout__personal {
+    padding-top: clamp(2rem, 4vw, 2.75rem);
+    border-top: 1px solid var(--x-line);
+  }
+
+  .about-portrait-wrap {
+    position: sticky;
+    top: calc(4.75rem + env(safe-area-inset-top, 0px));
+    align-self: start;
+    z-index: 2;
+  }
+
   @media (min-width: 1024px) {
     .about-layout {
       grid-template-columns: minmax(0, 1fr) minmax(0, 0.88fr);
+      grid-template-rows: auto auto auto;
       gap: clamp(3rem, 6vw, 4.5rem);
     }
 
-    .about-portrait-wrap {
-      position: sticky;
+    .about-layout__story {
+      grid-column: 2;
+      grid-row: 1;
+    }
+
+    .about-layout__portrait {
+      grid-column: 1;
+      grid-row: 1 / span 3;
       top: 6rem;
-      align-self: start;
+    }
+
+    .about-layout__journey {
+      grid-column: 2;
+      grid-row: 2;
+    }
+
+    .about-layout__personal {
+      grid-column: 2;
+      grid-row: 3;
+    }
+  }
+
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .about-portrait-wrap {
+      top: 5.5rem;
     }
   }
 
@@ -2156,6 +2197,42 @@
     z-index: 1;
   }
 
+  .about-portrait-media--journey {
+    isolation: isolate;
+  }
+
+  .about-journey-layer {
+    position: absolute;
+    inset: 0;
+    will-change: opacity;
+  }
+
+  .about-journey-caption {
+    position: absolute;
+    left: clamp(0.875rem, 2vw, 1.25rem);
+    right: clamp(0.875rem, 2vw, 1.25rem);
+    bottom: clamp(0.875rem, 2vw, 1.25rem);
+    z-index: 3;
+    display: grid;
+    gap: 0.2rem;
+    pointer-events: none;
+  }
+
+  .about-journey-caption__index,
+  .about-journey-caption__title,
+  .about-journey-caption__detail {
+    display: block;
+    margin: 0;
+  }
+
+  .about-journey-caption__title {
+    margin-top: 0.15rem;
+  }
+
+  .about-journey-caption__detail {
+    margin-top: 0.35rem;
+  }
+
   .about-portrait-image {
     object-fit: cover;
     object-position: center center;
@@ -2186,25 +2263,13 @@
   }
 
   .about-copy {
-    display: flex;
-    flex-direction: column;
-    gap: clamp(2.5rem, 5vw, 3.5rem);
-    min-width: 0;
+    display: contents;
   }
 
   .about-story,
   .about-personal {
     display: grid;
     gap: 1.125rem;
-  }
-
-  .about-story p,
-  .about-personal p {
-    max-width: 52ch;
-    font-size: clamp(1rem, 1.5vw, 1.0625rem);
-    line-height: 1.75;
-    color: var(--x-muted);
-    text-wrap: pretty;
   }
 
   .about-personal {
@@ -2222,6 +2287,27 @@
 
   .about-personal-label + p {
     margin-top: -0.25rem;
+  }
+
+  .about-journey {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding-top: clamp(1.5rem, 3vw, 2rem);
+    border-top: 1px solid var(--x-line);
+  }
+
+  .about-journey > .about-personal-label {
+    margin-bottom: clamp(0.75rem, 2vw, 1.25rem);
+  }
+
+  .about-journey-beat {
+    min-height: clamp(9rem, 22vh, 13rem);
+    border-top: 1px solid oklch(0.97 0.004 260 / 0.06);
+  }
+
+  .about-journey-beat:first-of-type {
+    border-top: none;
   }
 
   /* —— Contact —— */
