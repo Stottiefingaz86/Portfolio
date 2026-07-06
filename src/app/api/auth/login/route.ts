@@ -1,24 +1,12 @@
-import { timingSafeEqual } from 'node:crypto';
-
 import { NextResponse } from 'next/server';
 
 import {
   AUTH_COOKIE_NAME,
-  getAuthSecret,
+  getAuthToken,
   getSitePassword,
   isAuthEnabled,
+  isValidSitePassword,
 } from '@/lib/site-auth';
-
-function safeEqual(a: string, b: string): boolean {
-  const left = Buffer.from(a);
-  const right = Buffer.from(b);
-
-  if (left.length !== right.length) {
-    return false;
-  }
-
-  return timingSafeEqual(left, right);
-}
 
 export async function POST(request: Request) {
   if (!isAuthEnabled()) {
@@ -35,14 +23,13 @@ export async function POST(request: Request) {
   }
 
   const expected = getSitePassword();
-  const secret = getAuthSecret();
 
-  if (!expected || !secret || !safeEqual(password, expected)) {
+  if (!expected || !isValidSitePassword(password)) {
     return NextResponse.json({ error: 'Incorrect password.' }, { status: 401 });
   }
 
   const response = NextResponse.json({ ok: true });
-  response.cookies.set(AUTH_COOKIE_NAME, secret, {
+  response.cookies.set(AUTH_COOKIE_NAME, getAuthToken(expected), {
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production',
     sameSite: 'lax',
