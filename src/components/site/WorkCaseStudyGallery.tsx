@@ -48,7 +48,21 @@ function FeaturedTile({
           )}
         >
           <div className="work-featured-card-media border-b border-border/60">
-            {study.tileImage ? (
+            {study.tileVideo ? (
+              <div className="work-featured-card-media__frame">
+                <video
+                  className="work-featured-card-media__video"
+                  src={study.tileVideo}
+                  poster={study.tileVideoPoster ?? study.tileImage}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  preload="metadata"
+                  aria-hidden
+                />
+              </div>
+            ) : study.tileImage ? (
               <div className="work-featured-card-media__frame">
                 <Image
                   src={study.tileImage}

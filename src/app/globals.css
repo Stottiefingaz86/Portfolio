@@ -3239,6 +3239,16 @@
     background: oklch(0.1 0.004 75 / 0.88);
   }
 
+  .work-featured-card-media__video {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
   .case-study-intro {
     min-width: 0;
     max-width: min(52rem, 100%);

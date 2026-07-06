@@ -49,6 +49,8 @@ export interface CaseStudy {
   category: string;
   image: string;
   tileImage?: string;
+  tileVideo?: string;
+  tileVideoPoster?: string;
   bannerImage?: string;
   gallery?: CaseStudyImage[];
   links?: CaseStudyLink[];
@@ -490,6 +492,7 @@ export const FEATURED_CASE_STUDY_IDS = [
   'betheat-web3',
   'loyalty-rewards',
   'jurnii-ai',
+  'maximbet-carousel',
   'casino-jackpots',
 ] as const;
 
@@ -1248,6 +1251,85 @@ export const CASE_STUDIES: CaseStudy[] = [
       'Created a repeatable process, supported Tier 1 clients including Evoke, Betsson, DAZN, LeoVegas and M&S, and more recently exited after building Jurnii into a scalable CX intelligence platform.',
     leadership:
       'Shows how I identify real business problems, turn internal pain points into products and operate at founder level.',
+  },
+  {
+    id: 'maximbet-carousel',
+    title: 'MaximBet — US Market Entry',
+    subtitle: 'Early UX direction for Carousel Group\'s regulated sportsbook launch in the United States.',
+    client: 'Carousel Group · MaximBet',
+    scope: 'US sportsbook · 0 → 1 · UX consulting',
+    outcome: 'A credible US player experience shaped before launch',
+    summary:
+      'In 2017 I consulted for Carousel Group as they prepared to enter the regulated US gambling market. Drawing on years already working in US-facing product, I worked closely with the CEO and product team in the early stages — helping set the user experience direction and contributing to the creation of MaximBet, Carousel’s sportsbook brand built for American players.',
+    tags: ['US market', 'Sportsbook', '0 → 1'],
+    category: 'Consulting',
+    image: '/case-studies/maxim_cover.jpg',
+    tileImage: '/case-studies/maxim_cover.jpg',
+    tileVideo: '/case-studies/carouselgroup.mp4',
+    tileVideoPoster: '/case-studies/maxim_cover.jpg',
+    bannerImage: '/case-studies/maximbet_case%20study.webp',
+    bannerImageFit: 'cover',
+    imagePosition: 'top',
+    gallery: [
+      {
+        src: '/case-studies/maximbet_case%20study.webp',
+        alt: 'MaximBet sportsbook experience — homepage and product direction',
+        caption: '01 · MaximBet — early sportsbook experience direction',
+      },
+      {
+        src: '/case-studies/maximbet_app.webp',
+        alt: 'MaximBet mobile app — registration and player onboarding',
+        caption: '02 · Mobile app — onboarding and account creation flows',
+      },
+      {
+        src: '/case-studies/maxim_cover.jpg',
+        alt: 'MaximBet brand and product cover',
+        caption: '03 · Brand and product identity for the US launch',
+      },
+    ],
+    context:
+      'Carousel Group was a gaming and hospitality operator making a serious push into the newly opening US sports betting market. MaximBet — built in partnership with the Maxim brand — was their vehicle to compete in regulated states with a product that could stand up to established US operators, not feel like a European sportsbook pasted onto American rails.',
+    problem:
+      'Entering the US meant more than licensing. Carousel needed a product story players would trust, journeys that matched how Americans discover, register, deposit and bet, and early UX decisions that would scale as more states came online — without rebuilding the experience every time regulation shifted.',
+    myRole:
+      'As a consultant in 2017, I worked directly with the CEO and product team in the formative phase of MaximBet — bringing US gambling market experience from prior work, helping define the player experience, and contributing to the early product and design direction as the brand took shape.',
+    whatChanged:
+      'I helped translate US market expectations into concrete experience decisions: how the sportsbook should feel on first visit, how registration and onboarding should reduce friction, how mobile needed to lead the proposition, and how MaximBet could differentiate while still feeling credible next to incumbents. The work sat upstream of launch — setting UX standards and product intent before the team scaled execution.',
+    decisions:
+      'US players expect clarity, speed and brand confidence from the first screen. I pushed for mobile-first thinking, simpler registration paths, and a sportsbook hierarchy that mirrored how US bettors browse — leagues, live action and promotions — rather than offshore patterns that do not travel. Working with leadership early meant design had a seat while the product was still being defined, not after engineering had already committed.',
+    impact:
+      'Gave Carousel a stronger UX foundation for MaximBet’s US entry — aligned leadership and product around a player experience shaped for regulated markets, with early flows and product direction the team could build from as the launch programme accelerated.',
+    leadership:
+      'Shows how I consult at founder and CEO level on 0 → 1 market entry — bringing category experience, shaping UX before teams scale, and helping new brands enter complex regulated markets with product clarity rather than guesswork.',
+    stages: [
+      {
+        title: 'Carousel Group & the US opportunity',
+        items: [
+          'Carousel entering regulated US sports betting',
+          'MaximBet as the sportsbook brand for American players',
+          'Partnership with Maxim — lifestyle and media reach',
+          'Need for US-native product, not offshore transplant',
+        ],
+      },
+      {
+        title: 'Early product & UX',
+        items: [
+          'Worked closely with CEO and product leadership',
+          'Defined first-visit and sportsbook hierarchy direction',
+          'Mobile app and onboarding experience foundations',
+          'US market patterns applied from prior gambling work',
+        ],
+      },
+      {
+        title: 'Setting direction before scale',
+        items: [
+          'UX standards established upstream of launch',
+          'Registration and player journey clarity',
+          'Experience shaped for regulated state rollout',
+          'Foundation for teams to execute against',
+        ],
+      },
+    ],
   },
 ];
 
