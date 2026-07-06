@@ -8,7 +8,6 @@ import { CaseStudyGallery } from '@/components/case-study/CaseStudyGallery';
 import { CaseStudyHeroImage } from '@/components/case-study/CaseStudyHeroImage';
 import { CaseStudyLinks } from '@/components/case-study/CaseStudyLinks';
 import { CaseStudyPdfViewer } from '@/components/case-study/CaseStudyPdfViewer';
-import { CaseStudySitePreview } from '@/components/case-study/CaseStudySitePreview';
 import { getCaseStudyGallery, getCaseStudyLinks, type CaseStudy } from '@/lib/portfolio-data';
 import { cn } from '@/lib/utils';
 
@@ -47,16 +46,6 @@ function CaseStudyArticle({ study }: { study: CaseStudy }) {
     <div className="case-article-grid">
       <h4 className="case-article-rail">Case study</h4>
       <div className="case-article-sections">
-        {study.previewUrl ? (
-          <section className="case-article-block">
-            <p className="case-article-label">{study.previewLabel ?? 'Live preview'}</p>
-            <CaseStudySitePreview
-              url={study.previewUrl}
-              title={study.title}
-              focus={study.previewFocus}
-            />
-          </section>
-        ) : null}
         <section className="case-article-block">
           <p className="case-article-label">My role</p>
           <p className="case-article-copy">{study.myRole}</p>
@@ -149,8 +138,8 @@ function CaseStudyModalLayout({
 }) {
   const hasLinks = getCaseStudyLinks(study).length > 0;
   const hasGallery = getCaseStudyGallery(study).length > 0;
-  const imageFit = study.imageFit ?? 'cover';
-  const imagePosition =
+  const bannerFit = study.bannerImageFit ?? 'cover';
+  const bannerPosition =
     study.imagePosition === 'top'
       ? 'object-top'
       : study.imagePosition === 'center'
@@ -174,8 +163,8 @@ function CaseStudyModalLayout({
           priority
           className={cn(
             'case-modal-hero__image',
-            imageFit === 'contain' ? 'object-contain' : 'object-cover',
-            imagePosition,
+            bannerFit === 'contain' ? 'object-contain' : 'object-cover',
+            bannerPosition,
           )}
           sizes="100vw"
         />

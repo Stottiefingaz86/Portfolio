@@ -27,6 +27,7 @@ export interface CaseStudyImage {
   src: string;
   alt?: string;
   caption?: string;
+  group?: string;
   span?: 'standard' | 'wide';
 }
 
@@ -47,6 +48,7 @@ export interface CaseStudy {
   tags: string[];
   category: string;
   image: string;
+  tileImage?: string;
   bannerImage?: string;
   gallery?: CaseStudyImage[];
   links?: CaseStudyLink[];
@@ -55,6 +57,7 @@ export interface CaseStudy {
   previewFocus?: 'vip-hub';
   imageFit?: 'cover' | 'contain';
   imagePosition?: 'top' | 'center';
+  bannerImageFit?: 'cover' | 'contain';
   document?: string;
   documentLabel?: string;
   context: string;
@@ -804,83 +807,101 @@ export const CASE_STUDIES: CaseStudy[] = [
   {
     id: 'betonline-transformation',
     title: 'BetOnline Product Transformation',
-    subtitle: 'From a fragmented gambling site to a modern, governed product ecosystem.',
+    subtitle: 'From a brand cheatsheet and fragmented verticals to a governed shadcn design system.',
     client: 'BetOnline / Offshore Brand Group',
     scope: 'Multi-vertical · Multi-brand · Design leadership',
     outcome: 'A governed product ecosystem with design as a central function',
     summary:
-      'When I joined BetOnline, the product had grown without a mature design function. The site was fragmented, the UI lacked consistency, and different verticals were solving similar problems in different ways. My role became about more than improving the look of the site. I helped establish design as a central product function, modernised key player journeys, introduced stronger governance and raised the quality bar across casino, sportsbook, poker, cashier, authentication, loyalty and account experiences. Over time, I became the design sign-off across the product estate, making sure work met the expected level of quality, consistency and product clarity before going live.',
+      'When I joined BetOnline, the product I inherited had no design system, no UI/UX team and no real governance — just a brand cheatsheet while casino, sportsbook, poker and other verticals shipped whatever they wanted. I built the design and UI/UX function, brought the verticals together under one standard, and drove the product toward where it is now: shadcn-based systems, meticulous animation and transition craft, and a stronger focus on performance — with me setting vision and goals alongside tech.',
     tags: ['Transformation', 'Governance', 'Multi-brand'],
     category: 'Leadership',
     image: '/case-studies/betonline-home.png',
+    tileImage: '/case-studies/betonline%20cover.png?v=1',
+    bannerImage: '/case-studies/betonline%20banner%20case.png?v=2',
+    gallery: [
+      {
+        group: 'Before',
+        src: '/case-studies/betonline%29old%201.png',
+        alt: 'BetOnline before — inherited sportsbook experience',
+        caption: 'Inherited site — sportsbook and product surfaces as I joined',
+      },
+      {
+        group: 'Before',
+        src: '/case-studies/betonline%29old%202.png',
+        alt: 'BetOnline before — inherited casino experience',
+        caption: 'Inherited site — casino and lobby without shared system or governance',
+      },
+      {
+        group: 'After',
+        src: '/case-studies/betonline%20new1.png',
+        alt: 'BetOnline now — modern homepage direction',
+        caption: 'Current direction — unified product vision with design-led execution',
+      },
+      {
+        group: 'After',
+        src: '/case-studies/betonline%20new2.png',
+        alt: 'BetOnline now — casino and player experience',
+        caption: 'Current direction — shadcn system thinking, motion, transition and performance',
+      },
+    ],
     previewUrl: 'https://bol-seven.vercel.app/',
+    previewLabel: 'BetOnline prototype',
+    bannerImageFit: 'cover',
     imageFit: 'contain',
     imagePosition: 'top',
     context:
-      'When I joined BetOnline, the product had grown without a mature design function. The site was fragmented, the UI lacked consistency, and different verticals were solving similar problems in different ways. At the time, there was limited governance and no mature shared system across the estate.',
+      'When I joined, BetOnline had grown without a mature design function. There was no design system — only a cheatsheet of the brand — and verticals could release whatever they wanted without passing through a central UI/UX function.',
     problem:
-      'Players faced inconsistent journeys. Teams lacked shared patterns. Design was not yet operating as a central product function across casino, sportsbook, poker, cashier, authentication, loyalty and account experiences.',
+      'Players moved through inconsistent journeys. Teams rebuilt patterns in isolation. There was no governance, no shared component language and no design authority connecting casino, sportsbook, poker, cashier, loyalty and account experiences.',
     myRole:
-      'As Head of UI/UX and Head of Design, my role became about more than improving the look of the site. I helped establish design as a central product function, modernised key player journeys, introduced stronger governance and raised the quality bar across the product estate.',
+      'As Head of UI/UX and Head of Design, I built the UI/UX team, made everything pass through design, joined the verticals together and set the product vision teams now work toward — alongside tech, with clear goals and standards.',
     whatChanged:
-      'Early on, I focused on casino modernisation and clearer lobby structure. As the product matured, the work expanded into loyalty, rewards and retention-led thinking. Over time, the design function matured from project delivery into standards, sign-off and a multi-brand design system. More recently, the direction includes shadcn transition, AI-ready workflow and stronger connection between design, code and AI-assisted delivery.',
+      'It took time, but design moved from reactive support into a central function. We modernised key journeys, introduced governance and sign-off, and are now building toward a shadcn-based design system with stronger animation, transition and performance standards across the estate.',
     decisions:
-      'I prioritised the highest-friction player journeys first, then expanded design influence vertically and across brands. The business moved towards shared components, clearer governance and design sign-off before work went live.',
+      'I prioritised bringing verticals under one design standard before scaling surface area. That meant shared components, central review, shadcn as the next system foundation, and being meticulous about motion, transition quality and performance — not just visual polish.',
     impact:
-      'Over time, I became the design sign-off across the product estate, making sure work met the expected level of quality, consistency and product clarity before going live.',
+      'Design now operates as a central function with sign-off across the estate. Verticals work to shared standards instead of shipping in isolation, and the product direction reflects a clearer vision — with shadcn systems, motion craft and performance as active goals.',
     leadership:
-      'This case study shows I can build design maturity in a complex business, modernise legacy gambling products, influence across multiple verticals, raise quality standards, operate as the design authority and move a business from fragmented design to a more governed product ecosystem.',
+      'This case study shows I can inherit a fragmented product, build a UI/UX team from scratch, establish governance where none existed, join verticals under one standard and drive long-term product vision alongside engineering — from brand cheatsheet to design-led execution.',
     stages: [
       {
-        title: 'Starting point',
+        title: 'What I inherited',
         items: [
-          'Legacy product experience',
-          'No mature design function',
-          'Inconsistent product journeys',
-          'Fragmented casino experience',
-          'Limited governance',
-          'Different verticals solving similar problems in different ways',
+          'No design system — only a brand cheatsheet',
+          'No UI/UX team or central sign-off',
+          'Verticals releasing independently',
+          'Inconsistent casino, sportsbook and account journeys',
+          'No shared component language',
         ],
       },
       {
-        title: 'Early focus',
+        title: 'Building the function',
         items: [
-          'Casino modernisation',
-          'Stronger lobby structure',
-          'Improved game discovery',
-          'More product-led design approach',
-          'Better visual hierarchy',
-          'Closer collaboration with casino leadership',
+          'Established UI/UX as a central product function',
+          'Everything passes through design before release',
+          'Joined verticals together under one standard',
+          'Built the team and raised the quality bar',
+          'Set vision and goals teams now work toward',
         ],
       },
       {
-        title: 'Loyalty and rewards',
+        title: 'Product modernisation',
         items: [
-          'Gaming has become loyalty and rewards focused for retention',
-          'Campaign and promotion surfaces',
+          'Casino and lobby modernisation',
+          'Stronger game discovery and hierarchy',
+          'Loyalty, rewards and retention-led surfaces',
           'VIP hub and player value journeys',
-          'Clearer reward visibility and motivation',
-          'Retention-led product thinking',
+          'Closer collaboration with product and engineering',
         ],
       },
       {
-        title: 'System maturity',
+        title: 'Where we are now',
         items: [
-          'Multi-brand design system',
-          'Shared components',
-          'Design governance',
-          'Brand flexibility with product consistency',
-          'Better design-to-development collaboration',
-        ],
-      },
-      {
-        title: 'Future direction',
-        items: [
-          'shadcn transition',
-          'AI-ready workflow',
-          'Cursor-supported component creation',
-          'Stronger product execution framework',
-          'Better connection between design, code and AI-assisted delivery',
+          'shadcn-based design system direction',
+          'Meticulous animation and transition craft',
+          'Performance as a first-class design concern',
+          'Multi-brand governance with shared components',
+          'Design and tech driving decisions together',
         ],
       },
     ],
@@ -1058,7 +1079,8 @@ export const CASE_STUDIES: CaseStudy[] = [
       'How I turned a £20k competitor analysis problem into an AI-powered customer experience and benchmarking platform used by Tier 1 clients.',
     tags: ['AI', 'CX Benchmarking', 'Founder'],
     category: 'AI',
-    image: '/case-studies/jurnii_cover.png?v=3',
+    image: '/case-studies/jurnii_cover.png?v=4',
+    tileImage: '/case-studies/jurnii_cover.png?v=4',
     bannerImage: '/case-studies/jurnii_banner.png?v=1',
     gallery: [
       { src: '/case-studies/jurnii_1.png', alt: 'Jurnii AI platform overview' },

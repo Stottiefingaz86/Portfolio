@@ -33,7 +33,6 @@ function FeaturedTile({
   index: number;
   onOpen: (study: CaseStudy) => void;
 }) {
-  const hoverLight = useHudHoverLight();
   const onHoverEnter = useCallback(() => {
     playCaseStudyHoverSound();
   }, []);
@@ -42,14 +41,11 @@ function FeaturedTile({
     <article className="work-featured-tile min-w-0">
       <button
         type="button"
-        className="work-featured-card-trigger work-hover-surface group/work-card w-full text-left"
+        className="work-featured-card-trigger group/work-card w-full text-left"
         onClick={() => onOpen(study)}
         onPointerEnter={onHoverEnter}
-        onPointerMove={hoverLight.onPointerMove}
-        onPointerLeave={hoverLight.onPointerLeave}
         aria-label={`Open case study: ${study.title}`}
       >
-        <span className="work-hover-light rounded-xl" aria-hidden />
         <Card
           size="sm"
           className={cn(
@@ -58,21 +54,11 @@ function FeaturedTile({
             'group-hover/work-card:-translate-y-0.5 group-hover/work-card:ring-accent/35 group-hover/work-card:shadow-[0_18px_48px_oklch(0_0_0/0.28)]',
           )}
         >
-          <BorderBeam
-            size={72}
-            duration={10}
-            delay={index * 0.8}
-            borderWidth={1}
-            colorFrom="oklch(0.82 0.14 195)"
-            colorTo="oklch(0.72 0.12 195 / 0.15)"
-            className="opacity-0 transition-opacity duration-300 group-hover/work-card:opacity-100"
-          />
-
           <div className="work-featured-card-media border-b border-border/60">
-            {study.id === 'jurnii-ai' ? (
+            {study.tileImage ? (
               <div className="work-featured-card-media__frame">
                 <Image
-                  src={study.image}
+                  src={study.tileImage}
                   alt=""
                   fill
                   className="object-cover object-center"
@@ -89,7 +75,7 @@ function FeaturedTile({
             <CardHeader className="gap-1.5 px-3 pt-3 pb-2">
               <Badge
                 variant="outline"
-                className="w-fit max-w-full border-foreground/12 bg-background/72 text-[0.5625rem] tracking-[0.12em] uppercase"
+                className="work-featured-card__badge w-fit max-w-full"
               >
                 {study.scope}
               </Badge>
@@ -101,12 +87,23 @@ function FeaturedTile({
               </CardTitle>
             </CardHeader>
 
-            <CardFooter className="justify-between gap-2 border-t border-border/60 px-3 py-2">
+            <CardFooter className="border-t-0 justify-between gap-2 px-3 py-2">
               <span className="text-[0.5625rem] tracking-[0.12em] uppercase text-muted-foreground transition-colors duration-300 group-hover/work-card:text-accent">
                 View case study
               </span>
               <ArrowUpRightIcon className="work-featured-card__arrow" aria-hidden />
             </CardFooter>
+          </div>
+
+          <div className="work-featured-card-beam pointer-events-none absolute inset-0 z-20 rounded-[inherit] opacity-0 transition-opacity duration-300 group-hover/work-card:opacity-100">
+            <BorderBeam
+              size={72}
+              duration={10}
+              delay={index * 0.8}
+              borderWidth={1}
+              colorFrom="oklch(0.82 0.14 195)"
+              colorTo="oklch(0.72 0.12 195 / 0.15)"
+            />
           </div>
         </Card>
       </button>
