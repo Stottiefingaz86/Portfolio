@@ -1,5 +1,6 @@
 'use client';
 
+import { usePathname } from 'next/navigation';
 import { motion, useReducedMotion } from 'framer-motion';
 import { Sparkles } from 'lucide-react';
 import Image from 'next/image';
@@ -8,7 +9,10 @@ import { ABOUT } from '@/lib/portfolio-data';
 import { scrollToSection } from '@/lib/scroll-to-section';
 
 export function ChrisAgentWidget() {
+  const pathname = usePathname();
   const reduced = useReducedMotion();
+
+  if (pathname === '/login') return null;
 
   return (
     <div className="chris-agent">

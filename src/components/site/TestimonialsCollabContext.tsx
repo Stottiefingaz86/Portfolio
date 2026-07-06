@@ -47,7 +47,7 @@ function getInitials(name: string) {
 export function TestimonialsCollabProvider({ children }: { children: ReactNode }) {
   const reduced = useReducedMotion();
   const containerRef = useRef<HTMLDivElement>(null);
-  const [enabled, setEnabled] = useState(false);
+  const enabled = true;
   const [inView, setInView] = useState(false);
 
   const cyrus = TESTIMONIALS.items.find((item) => item.id === 'cyrus-moreno');
@@ -58,12 +58,6 @@ export function TestimonialsCollabProvider({ children }: { children: ReactNode }
     inView: inView && enabled,
     reduced,
   });
-
-  useEffect(() => {
-    const coarsePointer = window.matchMedia('(pointer: coarse)').matches;
-    const noHover = window.matchMedia('(hover: none)').matches;
-    setEnabled(!(coarsePointer || noHover));
-  }, []);
 
   useEffect(() => {
     const section = document.getElementById('testimonials');
@@ -136,16 +130,20 @@ export function useTestimonialsViewerActive() {
   }, []);
 
   useEffect(() => {
-    const coarsePointer = window.matchMedia('(pointer: coarse)').matches;
-    const noHover = window.matchMedia('(hover: none)').matches;
-    if (coarsePointer || noHover) return;
-
     const onPointerMove = (event: PointerEvent) => {
       setActive(isInsideSection(event.clientX, event.clientY));
     };
 
+    const onPointerDown = (event: PointerEvent) => {
+      setActive(isInsideSection(event.clientX, event.clientY));
+    };
+
     document.addEventListener('pointermove', onPointerMove, { passive: true });
-    return () => document.removeEventListener('pointermove', onPointerMove);
+    document.addEventListener('pointerdown', onPointerDown, { passive: true });
+    return () => {
+      document.removeEventListener('pointermove', onPointerMove);
+      document.removeEventListener('pointerdown', onPointerDown);
+    };
   }, [isInsideSection]);
 
   return active;

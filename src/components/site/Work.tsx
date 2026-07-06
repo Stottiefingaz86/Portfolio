@@ -7,12 +7,14 @@ import { CaseStudyModal } from '@/components/case-study/CaseStudyModal';
 import { GlitchText } from '@/components/site/hud/GlitchText';
 import { HudSectionShell } from '@/components/site/hud/HudSection';
 import { WorkCaseStudyGallery } from '@/components/site/WorkCaseStudyGallery';
+import { useMobile } from '@/hooks/use-mobile';
 import { WORK_CASE_STUDIES, type CaseStudy } from '@/lib/portfolio-data';
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
 export function Work() {
   const reduced = useReducedMotion();
+  const isMobile = useMobile();
   const [modalStudy, setModalStudy] = useState<CaseStudy | null>(null);
 
   const modalIndex = modalStudy
@@ -30,7 +32,7 @@ export function Work() {
           <div className="work-intro">
             <motion.div
               className="work-intro-inner"
-              initial={reduced ? false : { opacity: 0, y: 24 }}
+              initial={reduced || isMobile ? false : { opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-10%' }}
               transition={{ duration: 0.65, ease: EASE }}

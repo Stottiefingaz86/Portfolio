@@ -337,16 +337,16 @@ export function TestimonialsCollaborationCursors() {
   useEffect(() => {
     if (!enabled) return;
 
-    const onPointerMove = (event: PointerEvent) => {
+    const updateViewer = (clientX: number, clientY: number) => {
       const section = document.getElementById('testimonials');
       if (!section) return;
 
       const bounds = section.getBoundingClientRect();
       const inside =
-        event.clientX >= bounds.left &&
-        event.clientX <= bounds.right &&
-        event.clientY >= bounds.top &&
-        event.clientY <= bounds.bottom;
+        clientX >= bounds.left &&
+        clientX <= bounds.right &&
+        clientY >= bounds.top &&
+        clientY <= bounds.bottom;
 
       if (!inside) {
         viewerX.set(-120);
@@ -354,12 +354,24 @@ export function TestimonialsCollaborationCursors() {
         return;
       }
 
-      viewerX.set(event.clientX);
-      viewerY.set(event.clientY);
+      viewerX.set(clientX);
+      viewerY.set(clientY);
+    };
+
+    const onPointerMove = (event: PointerEvent) => {
+      updateViewer(event.clientX, event.clientY);
+    };
+
+    const onPointerDown = (event: PointerEvent) => {
+      updateViewer(event.clientX, event.clientY);
     };
 
     document.addEventListener('pointermove', onPointerMove, { passive: true });
-    return () => document.removeEventListener('pointermove', onPointerMove);
+    document.addEventListener('pointerdown', onPointerDown, { passive: true });
+    return () => {
+      document.removeEventListener('pointermove', onPointerMove);
+      document.removeEventListener('pointerdown', onPointerDown);
+    };
   }, [enabled, viewerX, viewerY]);
 
   if (!enabled) return null;

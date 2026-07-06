@@ -9,6 +9,7 @@ import { HudRow } from '@/components/site/hud/HudRow';
 import { HudSectionShell } from '@/components/site/hud/HudSection';
 import { useHudHoverLight } from '@/components/site/useHudHoverLight';
 import { useSiteAmbienceOnActive } from '@/components/site/useSiteAmbienceOnActive';
+import { useMobile } from '@/hooks/use-mobile';
 import { WHAT_I_BRING, type WhatIBringCard } from '@/lib/portfolio-data';
 import { cn } from '@/lib/utils';
 
@@ -124,6 +125,7 @@ function ExpertiseRow({
 
 export function Expertise() {
   const reduced = useReducedMotion();
+  const isMobile = useMobile();
   const [activeIndex, setActiveIndex] = useState(0);
   const activeIndexRef = useRef(0);
   const settleTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -153,9 +155,10 @@ export function Expertise() {
     <HudSectionShell id="expertise" code="SEC_03 // EXPERTISE" className="expertise-section">
       <div className="shell expertise-layout">
         <div className="expertise-intro">
+          <div className="expertise-intro-backdrop" aria-hidden />
           <motion.div
             className="expertise-intro-inner"
-            initial={reduced ? false : { opacity: 0, y: 24 }}
+            initial={reduced || isMobile ? false : { opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-10%' }}
             transition={{ duration: 0.65, ease: EASE }}

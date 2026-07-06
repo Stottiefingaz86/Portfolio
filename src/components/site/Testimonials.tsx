@@ -12,6 +12,7 @@ import {
 } from '@/components/site/TestimonialsCollabContext';
 import { TestimonialsCollaborationCursors } from '@/components/site/TestimonialsCollaborationCursors';
 import { useHudHoverLight } from '@/components/site/useHudHoverLight';
+import { useMobile } from '@/hooks/use-mobile';
 import { TESTIMONIALS } from '@/lib/portfolio-data';
 import { cn } from '@/lib/utils';
 
@@ -93,6 +94,7 @@ function TestimonialCard({
 
 function TestimonialsContent() {
   const reduced = useReducedMotion();
+  const isMobile = useMobile();
   const items = TESTIMONIALS.items;
   const trackRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -182,7 +184,7 @@ function TestimonialsContent() {
       <div className="testimonials-header">
         <motion.div
           className="testimonials-intro"
-          initial={reduced ? false : { opacity: 0, y: 24 }}
+          initial={reduced || isMobile ? false : { opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-10%' }}
           transition={{ duration: 0.65, ease: EASE }}

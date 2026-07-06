@@ -1,18 +1,24 @@
+'use client';
+
+import Image from 'next/image';
+
 import { GlitchText } from '@/components/site/hud/GlitchText';
 import { HudSectionShell } from '@/components/site/hud/HudSection';
 import { Reveal } from '@/components/site/Reveal';
+import { useMobile } from '@/hooks/use-mobile';
 import { ABOUT, SITE } from '@/lib/portfolio-data';
 import { getAge } from '@/lib/utils';
-import Image from 'next/image';
 
 const LEAD_PARAGRAPHS = ABOUT.lead.split('\n\n');
 const PERSONAL_PARAGRAPHS = ABOUT.personal.split('\n\n');
 
 export function AboutSection() {
+  const isMobile = useMobile();
+
   return (
     <HudSectionShell id="about" code="SEC_07 // ABOUT" className="about-section">
       <div className="shell about-shell">
-        <Reveal className="about-intro">
+        <Reveal className="about-intro" y={isMobile ? 0 : 32}>
           <p className="section-kicker">{ABOUT.personalTitle}</p>
           <h2 className="about-headline">
             <GlitchText as="span">{ABOUT.title}</GlitchText>

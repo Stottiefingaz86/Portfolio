@@ -18,10 +18,11 @@ export function Reveal({
   y?: number;
 }) {
   const reduced = useReducedMotion();
+  const staticEntrance = reduced || y === 0;
 
   return (
     <motion.div
-      initial={reduced ? false : { opacity: 0, y }}
+      initial={staticEntrance ? false : { opacity: 0, y }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-12%' }}
       transition={{ duration: 0.7, delay, ease: EASE }}

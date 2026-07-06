@@ -13,6 +13,7 @@ import { useRef } from 'react';
 import { GlitchText } from '@/components/site/hud/GlitchText';
 import { HudRow } from '@/components/site/hud/HudRow';
 import { HudSectionShell } from '@/components/site/hud/HudSection';
+import { SectionHeader } from '@/components/site/SectionHeader';
 import { useHudHoverLight } from '@/components/site/useHudHoverLight';
 import { useSiteAmbienceOnActive } from '@/components/site/useSiteAmbienceOnActive';
 import { DESIGN_LEADERSHIP } from '@/lib/portfolio-data';
@@ -159,9 +160,9 @@ export function Leadership() {
   return (
     <HudSectionShell id="leadership" code="SEC_05 // LEADERSHIP" className="leadership-section">
       <div className="shell leadership-layout">
-        <div className="leadership-essay">
-          <p className="section-kicker">Leadership</p>
+        <SectionHeader kicker="Leadership" title={DESIGN_LEADERSHIP.title} />
 
+        <div className="leadership-essay">
           <ScrollThesis reduced={reduced} />
         </div>
 
