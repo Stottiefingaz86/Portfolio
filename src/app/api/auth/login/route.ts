@@ -29,7 +29,7 @@ export async function POST(request: Request) {
   }
 
   const response = NextResponse.json({ ok: true });
-  response.cookies.set(AUTH_COOKIE_NAME, getAuthToken(expected), {
+  response.cookies.set(AUTH_COOKIE_NAME, await getAuthToken(expected), {
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production',
     sameSite: 'lax',

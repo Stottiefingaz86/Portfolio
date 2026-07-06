@@ -8,7 +8,7 @@ import {
 
 const PUBLIC_PATHS = new Set(['/login', '/api/auth/login']);
 
-export function middleware(request: NextRequest) {
+export async function middleware(request: NextRequest) {
   if (!isAuthEnabled()) {
     return NextResponse.next();
   }
@@ -16,7 +16,7 @@ export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   if (PUBLIC_PATHS.has(pathname)) {
-    if (pathname === '/login' && isAuthenticatedCookie(request.cookies.get(AUTH_COOKIE_NAME)?.value)) {
+    if (pathname === '/login' && (await isAuthenticatedCookie(request.cookies.get(AUTH_COOKIE_NAME)?.value))) {
       return NextResponse.redirect(new URL('/', request.url));
     }
 
@@ -27,7 +27,7 @@ export function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  if (isAuthenticatedCookie(request.cookies.get(AUTH_COOKIE_NAME)?.value)) {
+  if (await isAuthenticatedCookie(request.cookies.get(AUTH_COOKIE_NAME)?.value)) {
     return NextResponse.next();
   }
 
