@@ -14,6 +14,7 @@ export type BlogBlock =
   | { type: 'heading'; level: 2 | 3; text: string }
   | { type: 'list'; items: string[] }
   | { type: 'image'; src: string; alt: string; caption?: string; layout?: 'wide' | 'portrait' | 'photo' }
+  | { type: 'video'; youtubeId: string; title?: string; caption?: string }
   | { type: 'callout'; text: string };
 
 export interface BlogPost extends BlogPostMeta {

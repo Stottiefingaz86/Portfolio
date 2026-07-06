@@ -42,9 +42,9 @@ function BlogRow({
               <Image
                 src={post.heroImage}
                 alt=""
-                width={92}
-                height={92}
+                fill
                 className="blog-row__thumb-image"
+                sizes="(min-width: 768px) 92px, 76px"
               />
             ) : (
               <span className="blog-row__thumb-fallback" aria-hidden />

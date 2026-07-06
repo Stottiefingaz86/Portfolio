@@ -26,6 +26,8 @@ function blocksToText(blocks: BlogBlock[]) {
           return block.items.map((item) => `- ${item}`).join('\n');
         case 'callout':
           return block.text;
+        case 'video':
+          return block.caption ?? block.title ?? `YouTube: ${block.youtubeId}`;
         default:
           return '';
       }

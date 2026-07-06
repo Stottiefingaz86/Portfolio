@@ -74,6 +74,24 @@ function BlogBlockView({ block }: { block: BlogBlock }) {
         </figure>
       );
 
+    case 'video':
+      return (
+        <figure className="blog-article__figure blog-article__figure--wide">
+          <div className="blog-article__video">
+            <iframe
+              src={`https://www.youtube-nocookie.com/embed/${block.youtubeId}`}
+              title={block.title ?? 'YouTube video'}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+            />
+          </div>
+          {block.caption ? (
+            <figcaption className="blog-article__caption">{block.caption}</figcaption>
+          ) : null}
+        </figure>
+      );
+
     default:
       return null;
   }
