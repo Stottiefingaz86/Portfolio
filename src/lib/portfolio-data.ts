@@ -950,6 +950,28 @@ export const CASE_STUDIES: CaseStudy[] = [
     category: 'Casino',
     image: '/case-studies/casino_case_study_cover.png',
     tileImage: '/case-studies/casino_case_study_cover.png',
+    gallery: [
+      {
+        src: '/case-studies/casino_image_1.png',
+        alt: 'Casino game surface with jackpot tiers and loyalty progress in the menu',
+        caption: '01 · Metadata, jackpots and loyalty in player flow',
+      },
+      {
+        src: '/case-studies/casino_image_2.png',
+        alt: 'Casino For You lobby with activity feed and popular games',
+        caption: '02 · For You tab, activity feed and discovery',
+      },
+      {
+        src: '/case-studies/casino_image_3.png',
+        alt: 'Cash tournaments carousel and instant wins row',
+        caption: '03 · Dynamic carousels and varied tile shapes',
+      },
+      {
+        src: '/case-studies/casino_image_4.png',
+        alt: 'Jackpot wheel with mini, minor, major and mega tiers',
+        caption: '04 · Jackpot hierarchy and commercial moments',
+      },
+    ],
     context:
       'Casino needed to move beyond static lobbies. The business wanted more control over what appeared, when and why — without engineering rebuilding the front end every time. Design had to lead with a modular model that product, casino and tech could all operate.',
     problem:

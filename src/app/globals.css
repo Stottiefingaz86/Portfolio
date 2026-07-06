@@ -2563,8 +2563,45 @@
     gap: clamp(1.25rem, 3vw, 1.75rem);
   }
 
+  .case-figures__stack--quad {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(0.75rem, 2vw, 1rem);
+  }
+
+  @media (min-width: 900px) {
+    .case-figures__stack--quad {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: clamp(0.875rem, 1.5vw, 1.125rem);
+    }
+  }
+
   .case-figure {
     margin: 0;
+  }
+
+  .case-figure--quad {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  .case-figure--quad .case-figure__media {
+    position: relative;
+    aspect-ratio: 4 / 3;
+  }
+
+  .case-figure__image--cover {
+    object-fit: cover;
+    object-position: top center;
+  }
+
+  .case-figure--quad .case-figure__caption {
+    margin-top: 0.45rem;
+    font-size: 0.5rem;
+    line-height: 1.45;
+    letter-spacing: 0.05em;
+    text-wrap: balance;
   }
 
   .case-figure__media {
