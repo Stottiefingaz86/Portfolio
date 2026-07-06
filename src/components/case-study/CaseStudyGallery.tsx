@@ -15,9 +15,14 @@ function isDisplayableImage(src: string) {
   return IMAGE_PATTERN.test(src);
 }
 
+function isVisionGroup(group?: string) {
+  const value = group?.toLowerCase();
+  return value === 'after' || value === 'design vision';
+}
+
 function partitionBeforeAfter(images: CaseStudyImage[]) {
   const before = images.filter((image) => image.group?.toLowerCase() === 'before');
-  const after = images.filter((image) => image.group?.toLowerCase() === 'after');
+  const after = images.filter((image) => isVisionGroup(image.group));
 
   if (
     before.length === 0 ||
@@ -29,6 +34,56 @@ function partitionBeforeAfter(images: CaseStudyImage[]) {
   }
 
   return { before, after };
+}
+
+function partitionNarrativeGallery(images: CaseStudyImage[]) {
+  const before = images.filter((image) => image.group?.toLowerCase() === 'before');
+  const vision = images.filter((image) => isVisionGroup(image.group));
+  const canCompare = before.length > 0 && before.length === vision.length;
+  const compareCount = canCompare ? before.length + vision.length : 0;
+  const tail = canCompare ? images.slice(compareCount) : images;
+
+  if (!canCompare && tail.length === images.length) {
+    return null;
+  }
+
+  const sections: Array<{
+    title: string;
+    lead?: string;
+    images: CaseStudyImage[];
+    layout: 'pair' | 'stack';
+  }> = [];
+
+  for (const image of tail) {
+    const group = image.group ?? 'Project visuals';
+    const last = sections[sections.length - 1];
+
+    if (last?.title === group) {
+      last.images.push(image);
+    } else {
+      sections.push({
+        title: group,
+        lead: image.groupLead,
+        images: [image],
+        layout: group.toLowerCase() === 'design system' ? 'pair' : 'stack',
+      });
+    }
+  }
+
+  return {
+    canCompare,
+    before,
+    vision,
+    compareCount,
+    sections,
+    indexForTail: (sectionIndex: number, imageIndex: number) => {
+      let offset = compareCount;
+      for (let i = 0; i < sectionIndex; i += 1) {
+        offset += sections[i]?.images.length ?? 0;
+      }
+      return offset + imageIndex;
+    },
+  };
 }
 
 function GalleryLightbox({
@@ -157,6 +212,7 @@ function GalleryFigure({
   study,
   index,
   cropped,
+  intrinsic,
   sizes,
   className,
   mediaClassName,
@@ -166,6 +222,7 @@ function GalleryFigure({
   study: CaseStudy;
   index: number;
   cropped?: boolean;
+  intrinsic?: boolean;
   sizes?: string;
   className?: string;
   mediaClassName?: string;
@@ -185,10 +242,20 @@ function GalleryFigure({
           className={cn(
             'case-figure__media',
             cropped && 'case-figure__media--cropped',
+            intrinsic && 'case-figure__media--intrinsic',
             mediaClassName,
           )}
         >
-          {cropped ? (
+          {intrinsic ? (
+            <Image
+              src={image.src}
+              alt=""
+              width={1600}
+              height={1067}
+              className="case-figure__image case-figure__image--intrinsic"
+              sizes={sizes ?? '(max-width: 768px) 100vw, 50vw'}
+            />
+          ) : cropped ? (
             <Image
               src={image.src}
               alt=""
@@ -245,6 +312,128 @@ function CompareFigure({
 
 function BeforeAfterGallery({
   study,
+  before,
+  after,
+  onOpen,
+  afterLabel = 'After',
+  lead,
+  className,
+}: {
+  study: CaseStudy;
+  before: CaseStudyImage[];
+  after: CaseStudyImage[];
+  onOpen: (index: number) => void;
+  afterLabel?: string;
+  lead?: string;
+  className?: string;
+}) {
+  return (
+    <section className={cn('case-figures__section', className)}>
+      <div className="case-figures__section-head">
+        <h3 className="case-figures__section-title">Before → {afterLabel.toLowerCase()}</h3>
+        {lead ? <p className="case-figures__section-lead">{lead}</p> : null}
+      </div>
+      <div className="case-figures__stack case-figures__stack--compare">
+        <div className="case-figures__compare-header" aria-hidden>
+          <span className="case-figures__compare-label case-figures__compare-label--before">
+            Before
+          </span>
+          <span className="case-figures__compare-divider" />
+          <span className="case-figures__compare-label case-figures__compare-label--after">
+            {afterLabel}
+          </span>
+        </div>
+
+        {before.map((beforeImage, rowIndex) => (
+          <div className="case-figures__compare-row" key={`${beforeImage.src}-${rowIndex}`}>
+            <CompareFigure
+              image={beforeImage}
+              study={study}
+              index={rowIndex}
+              onOpen={onOpen}
+            />
+            <CompareFigure
+              image={after[rowIndex]!}
+              study={study}
+              index={before.length + rowIndex}
+              onOpen={onOpen}
+            />
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function NarrativeCaseStudyGallery({
+  study,
+  images,
+  onOpen,
+}: {
+  study: CaseStudy;
+  images: CaseStudyImage[];
+  onOpen: (index: number) => void;
+}) {
+  const narrative = partitionNarrativeGallery(images);
+  if (!narrative) return null;
+
+  const { canCompare, before, vision, sections, indexForTail } = narrative;
+
+  return (
+    <div className="case-figures case-figures--narrative" aria-label={`${study.title} product evolution`}>
+      <p className="case-figures__label">Product evolution</p>
+
+      {canCompare ? (
+        <BeforeAfterGallery
+          study={study}
+          before={before}
+          after={vision}
+          onOpen={onOpen}
+          afterLabel="Design vision"
+          lead={before[0]?.groupLead}
+        />
+      ) : null}
+
+      {sections.map((section, sectionIndex) => (
+        <section className="case-figures__section" key={section.title}>
+          <div className="case-figures__section-head">
+            <h3 className="case-figures__section-title">{section.title}</h3>
+            {section.lead ? <p className="case-figures__section-lead">{section.lead}</p> : null}
+          </div>
+          <div
+            className={cn(
+              'case-figures__stack',
+              section.layout === 'pair' && 'case-figures__stack--pair',
+            )}
+          >
+            {section.images.map((image, imageIndex) => (
+              <GalleryFigure
+                key={`${image.src}-${imageIndex}`}
+                image={image}
+                study={study}
+                index={indexForTail(sectionIndex, imageIndex)}
+                intrinsic={section.layout === 'pair'}
+                sizes={
+                  section.layout === 'pair'
+                    ? '(max-width: 768px) 100vw, 50vw'
+                    : undefined
+                }
+                className={cn(
+                  'case-figure',
+                  section.layout === 'pair' && 'case-figure--pair',
+                )}
+                onOpen={onOpen}
+              />
+            ))}
+          </div>
+        </section>
+      ))}
+    </div>
+  );
+}
+
+function LegacyBeforeAfterGallery({
+  study,
   images,
   onOpen,
 }: {
@@ -255,44 +444,15 @@ function BeforeAfterGallery({
   const groups = partitionBeforeAfter(images);
   if (!groups) return null;
 
-  const { before, after } = groups;
-
   return (
     <div className="case-figures" aria-label={`${study.title} before and after`}>
       <p className="case-figures__label">Before &amp; after</p>
-      <div className="case-figures__stack case-figures__stack--compare">
-        <div className="case-figures__compare-header" aria-hidden>
-          <span className="case-figures__compare-label case-figures__compare-label--before">
-            Before
-          </span>
-          <span className="case-figures__compare-divider" />
-          <span className="case-figures__compare-label case-figures__compare-label--after">
-            After
-          </span>
-        </div>
-
-        {before.map((beforeImage, rowIndex) => {
-          const beforeGalleryIndex = rowIndex;
-          const afterGalleryIndex = before.length + rowIndex;
-
-          return (
-            <div className="case-figures__compare-row" key={`${beforeImage.src}-${rowIndex}`}>
-              <CompareFigure
-                image={beforeImage}
-                study={study}
-                index={beforeGalleryIndex}
-                onOpen={onOpen}
-              />
-              <CompareFigure
-                image={after[rowIndex]}
-                study={study}
-                index={afterGalleryIndex}
-                onOpen={onOpen}
-              />
-            </div>
-          );
-        })}
-      </div>
+      <BeforeAfterGallery
+        study={study}
+        before={groups.before}
+        after={groups.after}
+        onOpen={onOpen}
+      />
     </div>
   );
 }
@@ -300,12 +460,15 @@ function BeforeAfterGallery({
 export function CaseStudyGallery({ study }: { study: CaseStudy }) {
   const images = getCaseStudyGallery(study).filter((image) => isDisplayableImage(image.src));
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
-  const useCompare = partitionBeforeAfter(images) !== null;
+  const narrative = partitionNarrativeGallery(images);
+  const useCompare = !narrative && partitionBeforeAfter(images) !== null;
   const useTrioGrid =
+    !narrative &&
     !useCompare &&
     images.length === 3 &&
     images.every((image) => !image.group && image.span !== 'wide');
   const useQuadGrid =
+    !narrative &&
     !useCompare &&
     !useTrioGrid &&
     images.length === 4 &&
@@ -319,8 +482,10 @@ export function CaseStudyGallery({ study }: { study: CaseStudy }) {
 
   return (
     <>
-      {useCompare ? (
-        <BeforeAfterGallery study={study} images={images} onOpen={openLightbox} />
+      {narrative ? (
+        <NarrativeCaseStudyGallery study={study} images={images} onOpen={openLightbox} />
+      ) : useCompare ? (
+        <LegacyBeforeAfterGallery study={study} images={images} onOpen={openLightbox} />
       ) : (
         <div className="case-figures" aria-label={`${study.title} project images`}>
           <p className="case-figures__label">Project visuals</p>

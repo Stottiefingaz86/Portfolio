@@ -28,6 +28,7 @@ export interface CaseStudyImage {
   alt?: string;
   caption?: string;
   group?: string;
+  groupLead?: string;
   span?: 'standard' | 'wide';
 }
 
@@ -810,13 +811,13 @@ export const CASE_STUDIES: CaseStudy[] = [
   {
     id: 'betonline-transformation',
     title: 'BetOnline Product Transformation',
-    subtitle: 'From a brand cheatsheet and fragmented verticals to a governed shadcn design system.',
+    subtitle: 'From a brand cheatsheet and fragmented verticals to an agnostic design system powering seven brands.',
     client: 'BetOnline',
     scope: 'Multi-vertical · Multi-brand · Design consulting',
-    outcome: 'A governed product ecosystem with design as a central function',
+    outcome: 'Design once, ship across seven brands — one agnostic system, governed at scale',
     summary:
-      'I have been consulting for BetOnline for nine years. When I started, the product had no design system, no UI/UX team and no real governance — just a brand cheatsheet while casino, sportsbook, poker and other verticals shipped whatever they wanted. I built the design and UI/UX function, brought the verticals together under one standard, and drove the product toward where it is now: shadcn-based systems, meticulous animation and transition craft, and a stronger focus on performance — with me setting vision and goals alongside tech.',
-    tags: ['Transformation', 'Governance', 'Multi-brand'],
+      'I have been consulting for BetOnline for nine years. When I started, the product had no design system, no UI/UX team and no real governance — just a brand cheatsheet while casino, sportsbook, poker and other verticals shipped whatever they wanted. The biggest win came from investing in an agnostic design system: one component library and token layer that could flex across brands without rebuilding every surface from scratch. That let us manage more than seven brands simultaneously — design once, ship everywhere — while I built the UI/UX function, joined the verticals under one standard, and drove the estate toward shadcn-based systems, motion craft and performance.',
+    tags: ['Transformation', 'Design System', 'Multi-brand'],
     category: 'Leadership',
     image: '/case-studies/betonline-home.png',
     tileImage: '/case-studies/betonline%20cover.png?v=1',
@@ -824,27 +825,47 @@ export const CASE_STUDIES: CaseStudy[] = [
     gallery: [
       {
         group: 'Before',
+        groupLead:
+          'What I inherited — fragmented verticals, a brand cheatsheet instead of a system, and casino, sportsbook and account surfaces shipping independently.',
         src: '/case-studies/betonline%29old%201.png',
         alt: 'BetOnline before — inherited sportsbook experience',
-        caption: 'Inherited site — sportsbook and product surfaces when consulting began',
+        caption: 'Before · sportsbook and homepage without shared governance',
       },
       {
         group: 'Before',
         src: '/case-studies/betonline%29old%202.png',
         alt: 'BetOnline before — inherited casino experience',
-        caption: 'Inherited site — casino and lobby without shared system or governance',
+        caption: 'Before · casino lobby with no component language',
       },
       {
-        group: 'After',
+        group: 'Design vision',
+        groupLead:
+          'Where the product is heading — a unified dark-mode experience with clearer hierarchy, modern casino discovery, and sportsbook surfaces built to one standard.',
         src: '/case-studies/betonline%20new1.png',
-        alt: 'BetOnline now — modern homepage direction',
-        caption: 'Current direction — unified product vision with design-led execution',
+        alt: 'BetOnline design vision — modern homepage direction',
+        caption: 'Design vision · unified product direction and navigation',
       },
       {
-        group: 'After',
+        group: 'Design vision',
         src: '/case-studies/betonline%20new2.png',
-        alt: 'BetOnline now — casino and player experience',
-        caption: 'Current direction — shadcn system thinking, motion, transition and performance',
+        alt: 'BetOnline design vision — casino and player experience',
+        caption: 'Design vision · casino, originals and player journeys',
+      },
+      {
+        group: 'Design system',
+        groupLead:
+          'The biggest win — an agnostic design system underneath it all. One component library and token layer so we could design once and ship across more than seven brands simultaneously.',
+        src: '/case-studies/bol_agnostic%20system.png',
+        alt: 'Agnostic design system — shared components and tokens across the estate',
+        caption: 'Agnostic system · shared foundations and global icon library',
+        span: 'wide',
+      },
+      {
+        group: 'Design system',
+        src: '/case-studies/bol%20agnostic2.png',
+        alt: 'Multi-brand rollout from a single agnostic system',
+        caption: 'Design once, ship · seven brands from one system',
+        span: 'wide',
       },
     ],
     previewUrl: 'https://bol-seven.vercel.app/',
@@ -859,13 +880,13 @@ export const CASE_STUDIES: CaseStudy[] = [
     myRole:
       'Consulting as Head of UI/UX and Head of Design, I built the UI/UX team, made everything pass through design, joined the verticals together and set the product vision teams now work toward — alongside tech, with clear goals and standards.',
     whatChanged:
-      'It took time, but design moved from reactive support into a central function. We modernised key journeys, introduced governance and sign-off, and are now building toward a shadcn-based design system with stronger animation, transition and performance standards across the estate.',
+      'It took time, but design moved from reactive support into a central function. The turning point was the agnostic design system — shared components, tokens and patterns that were not locked to a single brand skin. We could design a journey once and deploy it across seven brands without rebuilding from scratch. On top of that foundation we modernised key verticals, introduced governance and sign-off, and pushed toward shadcn-based implementation with stronger animation, transition and performance standards.',
     decisions:
-      'I prioritised bringing verticals under one design standard before scaling surface area. That meant shared components, central review, shadcn as the next system foundation, and being meticulous about motion, transition quality and performance — not just visual polish.',
+      'I prioritised an agnostic system before scaling surface area. Brand expression had to sit on top of shared structure — not fork into seven separate codebases. That meant central review, reusable components, token-driven theming and shadcn as the implementation layer. The rule was simple: design once, ship across brands. Motion, transition quality and performance were non-negotiable — but only worth doing if the system could carry them everywhere.',
     impact:
-      'Design now operates as a central function with sign-off across the estate. Verticals work to shared standards instead of shipping in isolation, and the product direction reflects a clearer vision — with shadcn systems, motion craft and performance as active goals.',
+      'Design now operates as a central function with sign-off across the estate. The agnostic system let us manage more than seven brands simultaneously without seven parallel design efforts. Verticals work to shared standards, new surfaces ship faster, and the product direction reflects a clearer vision — with shadcn systems, motion craft and performance as active goals.',
     leadership:
-      'This case study shows I can inherit a fragmented product, build a UI/UX team from scratch, establish governance where none existed, join verticals under one standard and drive long-term product vision alongside engineering — from brand cheatsheet to design-led execution.',
+      'This case study shows I can inherit a fragmented product, build a UI/UX team from scratch, and make the highest-leverage bet — an agnostic design system that scales across brands. Design once, ship everywhere. That is how you govern seven brands without drowning in duplication.',
     stages: [
       {
         title: 'What I inherited',
@@ -895,6 +916,16 @@ export const CASE_STUDIES: CaseStudy[] = [
           'Loyalty, rewards and retention-led surfaces',
           'VIP hub and player value journeys',
           'Closer collaboration with product and engineering',
+        ],
+      },
+      {
+        title: 'Agnostic design system — the biggest win',
+        items: [
+          'One component library, brand-agnostic at the core',
+          'Token-driven theming — swap brand, keep structure',
+          'Seven brands managed simultaneously from one system',
+          'Design once, ship across the estate',
+          'Foundation for shadcn implementation and governance',
         ],
       },
       {
