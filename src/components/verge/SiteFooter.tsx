@@ -35,7 +35,7 @@ export function SiteFooter() {
             <p className="type-mono-label">Contact</p>
             <ul className="mt-4 space-y-2 type-body">
               <li>
-                <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
+                <a href="#contact">Contact form</a>
               </li>
               <li>
                 <a href={SITE.linkedin} target="_blank" rel="noopener noreferrer">

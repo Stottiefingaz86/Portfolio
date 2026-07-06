@@ -15,16 +15,13 @@ export function Contact() {
       <Reveal>
         <div className="contact-panel">
           <div className="contact-links-stack">
-            <a href={`mailto:${SITE.email}`} className="contact-link">
-              {SITE.email}
-            </a>
-            <a href={SITE.linkedin} className="contact-link" target="_blank" rel="noreferrer">
-              LinkedIn
-            </a>
-            <a href={SITE.cv} className="contact-link">
-              Download CV
-            </a>
-          </div>
+          <a href={SITE.linkedin} className="contact-link" target="_blank" rel="noreferrer">
+            LinkedIn
+          </a>
+          <a href={SITE.cv} className="contact-link">
+            Download CV
+          </a>
+        </div>
           <p className="contact-credibility">{SITE.credibilityLine}</p>
         </div>
       </Reveal>

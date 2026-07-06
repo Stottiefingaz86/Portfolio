@@ -142,7 +142,6 @@ export const SITE = {
   heroImageAlt: 'Cinematic casino horizon with holographic HUD roulette wheel and cyan light pillar',
   subtitle:
     'An iGaming product UI/UX expert with 16 years designing and scaling digital gambling experiences across casino, sportsbook, loyalty, rewards retention and player experience.',
-  email: 'hello@christopherhunt.design',
   linkedin: 'https://linkedin.com/in/christopherhunt',
   cv: '/Christopher-Hunt-CV.pdf',
   cvDownloadName: 'Christopher-Hunt-CV.pdf',

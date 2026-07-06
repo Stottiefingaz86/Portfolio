@@ -20,6 +20,7 @@ const INTERACTIVE_SELECTOR = [
   '.menu-trigger',
   '.menu-overlay-link',
   '.contact-link',
+  '.contact-form__submit',
   '.work-text-row-inner',
   '.work-featured-card-trigger',
   '.testimonials-controls__btn',

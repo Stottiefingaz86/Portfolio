@@ -1,6 +1,6 @@
 'use client';
 
-import { Link001, Link004 } from '@/components/ui/skiper-ui/skiper40';
+import { Link001 } from '@/components/ui/skiper-ui/skiper40';
 import { SITE } from '@/lib/portfolio-data';
 
 export function ContactSection() {
@@ -19,12 +19,12 @@ export function ContactSection() {
       </p>
 
       <div className="mt-14 flex flex-col gap-8 sm:flex-row sm:flex-wrap sm:items-center sm:gap-12">
-        <Link004
-          href={`mailto:${SITE.email}`}
+        <Link001
+          href="#contact"
           className="type-title text-[clamp(1.5rem,4vw,2.5rem)] text-white"
         >
-          {SITE.email}
-        </Link004>
+          Contact form
+        </Link001>
         <Link001
           href={SITE.linkedin}
           className="type-title text-[clamp(1.5rem,4vw,2.5rem)] text-white"
