@@ -4,14 +4,8 @@ import { ArrowUpRightIcon } from 'lucide-react';
 import Image from 'next/image';
 import { useCallback } from 'react';
 
-import {
-  WORK_FEATURED_CASE_STUDIES,
-  WORK_TEXT_STACK_CASE_STUDIES,
-  type CaseStudy,
-} from '@/lib/portfolio-data';
-import { useMobile } from '@/hooks/use-mobile';
+import { WORK_FEATURED_CASE_STUDIES, type CaseStudy } from '@/lib/portfolio-data';
 import { cn } from '@/lib/utils';
-import { useHudHoverLight } from '@/components/site/useHudHoverLight';
 import { playCaseStudyHoverSound } from '@/lib/site-sounds';
 import { CaseStudyImagePlaceholder } from '@/components/case-study/CaseStudyImagePlaceholder';
 import { Badge } from '@/components/ui/badge';
@@ -111,63 +105,11 @@ function FeaturedTile({
   );
 }
 
-function TextStackRow({
-  study,
-  index,
-  onOpen,
-}: {
-  study: CaseStudy;
-  index: number;
-  onOpen: (study: CaseStudy) => void;
-}) {
-  const hoverLight = useHudHoverLight();
-  const onHoverEnter = useCallback(() => {
-    playCaseStudyHoverSound();
-  }, []);
-
-  return (
-    <li className="work-text-row">
-      <button
-        type="button"
-        className="work-text-row-inner work-hover-surface"
-        onClick={() => onOpen(study)}
-        onPointerEnter={onHoverEnter}
-        onPointerMove={hoverLight.onPointerMove}
-        onPointerLeave={hoverLight.onPointerLeave}
-        aria-label={`Open case study: ${study.title}`}
-      >
-        <span className="work-hover-light" aria-hidden />
-        <span className="work-text-row-index">{String(index + 1).padStart(2, '0')}</span>
-        <span className="work-text-row-main">
-          <span className="work-text-row-title">{study.title}</span>
-          <span className="work-text-row-outcome">{study.outcome}</span>
-        </span>
-        <span className="work-text-row-scope">{study.scope}</span>
-        <ArrowUpRightIcon className="work-text-row-arrow" aria-hidden />
-      </button>
-    </li>
-  );
-}
-
-function DesktopOnly({ children }: { children: React.ReactNode }) {
-  const isMobile = useMobile();
-  if (isMobile) return null;
-  return children;
-}
-
-function MobileOnly({ children }: { children: React.ReactNode }) {
-  const isMobile = useMobile();
-  if (!isMobile) return null;
-  return children;
-}
-
 export function WorkCaseStudyGallery({
   onOpen,
 }: {
   onOpen: (study: CaseStudy) => void;
 }) {
-  const featuredCount = WORK_FEATURED_CASE_STUDIES.length;
-
   return (
     <div className="work-gallery">
       <div className="work-featured-grid" aria-label="Featured case studies">
@@ -175,50 +117,6 @@ export function WorkCaseStudyGallery({
           <FeaturedTile key={study.id} study={study} index={index} onOpen={onOpen} />
         ))}
       </div>
-
-      {WORK_TEXT_STACK_CASE_STUDIES.length > 0 ? (
-        <>
-          <MobileOnly>
-            <div className="work-text-shell">
-              <p className="work-text-kicker">
-                {WORK_TEXT_STACK_CASE_STUDIES.length} more case{' '}
-                {WORK_TEXT_STACK_CASE_STUDIES.length === 1 ? 'study' : 'studies'}
-              </p>
-
-              <ul className="work-text-stack" aria-label="Additional case studies">
-                {WORK_TEXT_STACK_CASE_STUDIES.map((study, index) => (
-                  <TextStackRow
-                    key={study.id}
-                    study={study}
-                    index={featuredCount + index}
-                    onOpen={onOpen}
-                  />
-                ))}
-              </ul>
-            </div>
-          </MobileOnly>
-
-          <DesktopOnly>
-            <div className="work-text-shell work-gallery-desktop">
-              <p className="work-text-kicker">
-                {WORK_TEXT_STACK_CASE_STUDIES.length} more case{' '}
-                {WORK_TEXT_STACK_CASE_STUDIES.length === 1 ? 'study' : 'studies'}
-              </p>
-
-              <ul className="work-text-stack" aria-label="Additional case studies">
-                {WORK_TEXT_STACK_CASE_STUDIES.map((study, index) => (
-                  <TextStackRow
-                    key={study.id}
-                    study={study}
-                    index={featuredCount + index}
-                    onOpen={onOpen}
-                  />
-                ))}
-              </ul>
-            </div>
-          </DesktopOnly>
-        </>
-      ) : null}
     </div>
   );
 }

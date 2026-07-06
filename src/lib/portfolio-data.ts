@@ -1193,10 +1193,6 @@ export const FEATURED_CASE_STUDIES = FEATURED_CASE_STUDY_IDS.map((id) =>
 
 export const WORK_FEATURED_CASE_STUDIES = FEATURED_CASE_STUDIES;
 
-export const WORK_TEXT_STACK_CASE_STUDIES = WORK_CASE_STUDIES.filter(
-  (study) => !FEATURED_CASE_STUDY_IDS.includes(study.id as (typeof FEATURED_CASE_STUDY_IDS)[number]),
-);
-
 export function getCaseStudyGallery(study: CaseStudy): CaseStudyImage[] {
   return study.gallery ?? [];
 }

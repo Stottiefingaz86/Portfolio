@@ -2259,6 +2259,12 @@
     gap: 0.5rem;
   }
 
+  .site-footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
   .site-footer-name {
     font-weight: 500;
     color: var(--x-ink);
@@ -2567,6 +2573,73 @@
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: clamp(0.75rem, 2vw, 1rem);
+  }
+
+  .case-figures__stack--compare {
+    gap: clamp(0.75rem, 2vw, 1rem);
+    max-width: 44rem;
+  }
+
+  .case-figures__compare-header {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    align-items: center;
+    gap: clamp(0.5rem, 1.5vw, 0.875rem);
+    margin-bottom: 0.125rem;
+  }
+
+  .case-figures__compare-label {
+    margin: 0;
+    font-family: var(--font-hud);
+    font-size: 0.5625rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  .case-figures__compare-label--before {
+    color: oklch(0.97 0.004 260 / 0.48);
+  }
+
+  .case-figures__compare-label--after {
+    color: var(--x-hud-cyan);
+  }
+
+  .case-figures__compare-divider {
+    width: 1.75rem;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      oklch(0.97 0.004 260 / 0.12),
+      oklch(0.82 0.14 195 / 0.45),
+      oklch(0.97 0.004 260 / 0.12)
+    );
+  }
+
+  .case-figures__compare-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(0.5rem, 1.5vw, 0.875rem);
+    align-items: start;
+  }
+
+  .case-figure--compare {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  .case-figure__media--compare {
+    position: relative;
+    aspect-ratio: 16 / 10;
+  }
+
+  .case-figure__caption--compare {
+    margin-top: 0.4rem;
+    font-size: 0.5rem;
+    line-height: 1.45;
+    letter-spacing: 0.05em;
+    text-wrap: balance;
   }
 
   @media (min-width: 900px) {
