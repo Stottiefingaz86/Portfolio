@@ -60,6 +60,7 @@ export function SiteCursor() {
   const [hovering, setHovering] = useState(false);
   const [pressing, setPressing] = useState(false);
   const [hiddenForText, setHiddenForText] = useState(false);
+  const [hiddenForCollab, setHiddenForCollab] = useState(false);
   const [pulses, setPulses] = useState<Pulse[]>([]);
 
   const x = useMotionValue(-100);
@@ -88,9 +89,12 @@ export function SiteCursor() {
     let visibleRef = false;
     let hoveringRef = false;
     let hiddenForTextRef = false;
+    let hiddenForCollabRef = false;
 
     const applyCursorState = (target: EventTarget | null) => {
       const state = getCursorState(target);
+      const inCollab =
+        target instanceof Element && Boolean(target.closest('#testimonials'));
 
       if (hoveringRef !== state.hover) {
         hoveringRef = state.hover;
@@ -100,6 +104,11 @@ export function SiteCursor() {
       if (hiddenForTextRef !== state.text) {
         hiddenForTextRef = state.text;
         setHiddenForText(state.text);
+      }
+
+      if (hiddenForCollabRef !== inCollab) {
+        hiddenForCollabRef = inCollab;
+        setHiddenForCollab(inCollab);
       }
     };
 
@@ -152,7 +161,12 @@ export function SiteCursor() {
 
   return (
     <motion.div
-      className={cn('site-cursor-wrap', visible && 'is-visible', hiddenForText && 'is-hidden')}
+      className={cn(
+        'site-cursor-wrap',
+        visible && 'is-visible',
+        hiddenForText && 'is-hidden',
+        hiddenForCollab && 'is-collab-hidden',
+      )}
       aria-hidden
       style={{ x, y }}
     >

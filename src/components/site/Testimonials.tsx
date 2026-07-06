@@ -6,6 +6,11 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { GlitchText } from '@/components/site/hud/GlitchText';
 import { HudSectionShell } from '@/components/site/hud/HudSection';
+import {
+  TestimonialsCollabProvider,
+  useTestimonialsCollabOptional,
+} from '@/components/site/TestimonialsCollabContext';
+import { TestimonialsCollaborationCursors } from '@/components/site/TestimonialsCollaborationCursors';
 import { useHudHoverLight } from '@/components/site/useHudHoverLight';
 import { TESTIMONIALS } from '@/lib/portfolio-data';
 import { cn } from '@/lib/utils';
@@ -31,18 +36,42 @@ function TestimonialCard({
   active: boolean;
 }) {
   const hoverLight = useHudHoverLight();
+  const collab = useTestimonialsCollabOptional();
+  const isCyrusLive = collab?.enabled && testimonial.id === collab.cyrusId;
+  const showLiveQuote = isCyrusLive && !collab.isComplete;
+  const quoteText = isCyrusLive ? collab.typedText : testimonial.quote;
 
   return (
     <article
-      className={cn('testimonial-card hud-hover-surface', active && 'is-active')}
+      className={cn(
+        'testimonial-card hud-hover-surface',
+        active && 'is-active',
+        isCyrusLive && collab.isTyping && 'testimonial-card--live',
+      )}
+      data-collab-card={testimonial.id}
       aria-current={active ? 'true' : undefined}
       onPointerMove={hoverLight.onPointerMove}
       onPointerLeave={hoverLight.onPointerLeave}
     >
       <span className="hud-hover-light" aria-hidden />
+      {isCyrusLive && collab.isTyping ? (
+        <p className="testimonial-card__live-badge" aria-hidden>
+          <span className="testimonial-card__live-dot" />
+          Cyrus is typing
+        </p>
+      ) : null}
       <p className="testimonial-card__index">{String(index + 1).padStart(2, '0')}</p>
       <blockquote className="testimonial-card__quote">
-        <p>&ldquo;{testimonial.quote}&rdquo;</p>
+        <p>
+          &ldquo;{quoteText}
+          {showLiveQuote ? (
+            <>
+              <span ref={collab.anchorRef} className="testimonial-live-anchor" aria-hidden />
+              <span className="testimonial-live-caret" aria-hidden />
+            </>
+          ) : null}
+          {!showLiveQuote ? '\u201D' : null}
+        </p>
       </blockquote>
       <footer className="testimonial-card__author">
         <span className="testimonial-card__avatar" aria-hidden>
@@ -62,7 +91,7 @@ function TestimonialCard({
   );
 }
 
-export function Testimonials() {
+function TestimonialsContent() {
   const reduced = useReducedMotion();
   const items = TESTIMONIALS.items;
   const trackRef = useRef<HTMLDivElement>(null);
@@ -147,64 +176,76 @@ export function Testimonials() {
   }, [goNext, goPrev]);
 
   return (
+    <>
+      <TestimonialsCollaborationCursors />
+
+      <div className="testimonials-header">
+        <motion.div
+          className="testimonials-intro"
+          initial={reduced ? false : { opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-10%' }}
+          transition={{ duration: 0.65, ease: EASE }}
+        >
+          <p className="section-kicker">{TESTIMONIALS.kicker}</p>
+          <h2 className="section-title">
+            <GlitchText as="span">{TESTIMONIALS.title}</GlitchText>
+          </h2>
+          <p className="section-lead">{TESTIMONIALS.lead}</p>
+        </motion.div>
+
+        {total > 1 ? (
+          <div className="testimonials-controls">
+            <button
+              type="button"
+              className="testimonials-controls__btn"
+              aria-label="Previous testimonial"
+              onClick={goPrev}
+            >
+              <ChevronLeftIcon aria-hidden />
+            </button>
+            <p className="testimonials-controls__counter" aria-live="polite">
+              {String(activeIndex + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}
+            </p>
+            <button
+              type="button"
+              className="testimonials-controls__btn"
+              aria-label="Next testimonial"
+              onClick={goNext}
+            >
+              <ChevronRightIcon aria-hidden />
+            </button>
+          </div>
+        ) : null}
+      </div>
+
+      <div className="testimonials-carousel" aria-label="Testimonials carousel">
+        <div ref={trackRef} className="testimonials-track">
+          {items.map((testimonial, index) => (
+            <TestimonialCard
+              key={testimonial.id}
+              testimonial={testimonial}
+              index={index}
+              active={index === activeIndex}
+            />
+          ))}
+        </div>
+      </div>
+    </>
+  );
+}
+
+export function Testimonials() {
+  return (
     <HudSectionShell
       id="testimonials"
       code="SEC_06 // TESTIMONIALS"
       className="testimonials-section"
     >
-      <div className="shell testimonials-layout">
-        <div className="testimonials-header">
-          <motion.div
-            className="testimonials-intro"
-            initial={reduced ? false : { opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-10%' }}
-            transition={{ duration: 0.65, ease: EASE }}
-          >
-            <p className="section-kicker">{TESTIMONIALS.kicker}</p>
-            <h2 className="section-title">
-              <GlitchText as="span">{TESTIMONIALS.title}</GlitchText>
-            </h2>
-            <p className="section-lead">{TESTIMONIALS.lead}</p>
-          </motion.div>
-
-          {total > 1 ? (
-            <div className="testimonials-controls">
-              <button
-                type="button"
-                className="testimonials-controls__btn"
-                aria-label="Previous testimonial"
-                onClick={goPrev}
-              >
-                <ChevronLeftIcon aria-hidden />
-              </button>
-              <p className="testimonials-controls__counter" aria-live="polite">
-                {String(activeIndex + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}
-              </p>
-              <button
-                type="button"
-                className="testimonials-controls__btn"
-                aria-label="Next testimonial"
-                onClick={goNext}
-              >
-                <ChevronRightIcon aria-hidden />
-              </button>
-            </div>
-          ) : null}
-        </div>
-
-        <div className="testimonials-carousel" aria-label="Testimonials carousel">
-          <div ref={trackRef} className="testimonials-track">
-            {items.map((testimonial, index) => (
-              <TestimonialCard
-                key={testimonial.id}
-                testimonial={testimonial}
-                index={index}
-                active={index === activeIndex}
-              />
-            ))}
-          </div>
-        </div>
+      <div className="shell testimonials-layout testimonials-layout--collab">
+        <TestimonialsCollabProvider>
+          <TestimonialsContent />
+        </TestimonialsCollabProvider>
       </div>
     </HudSectionShell>
   );
