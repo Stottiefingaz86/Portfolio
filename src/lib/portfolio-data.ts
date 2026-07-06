@@ -487,6 +487,7 @@ I'm building out shadcn-based workflows using the Figma MCP, so designers can cr
 
 export const FEATURED_CASE_STUDY_IDS = [
   'betonline-transformation',
+  'betheat-web3',
   'loyalty-rewards',
   'jurnii-ai',
   'casino-jackpots',
@@ -901,6 +902,80 @@ export const CASE_STUDIES: CaseStudy[] = [
           'Performance as a first-class design concern',
           'Multi-brand governance with shared components',
           'Design and tech driving decisions together',
+        ],
+      },
+    ],
+  },
+  {
+    id: 'betheat-web3',
+    title: 'Transform Betheat Front End to Web 3.0',
+    subtitle: 'From legacy gambling UI to a crypto-native experience — sportsbook, casino and wallet in one shadcn system.',
+    client: 'Betheat',
+    scope: 'Web 3.0 · Sportsbook · Casino · Wallet',
+    outcome: 'An elevated crypto gambling product with a cohesive shadcn design system',
+    summary:
+      'Betheat reached out with a clear brief: make the product look and feel like a Web 3.0 gambling site — the dark, fast, crypto-native energy of Stake, Rainbet and the brands players now expect. I benchmarked the crypto gambling landscape, defined a new visual and interaction direction, and designed a full front-end vision across sportsbook, casino and wallet — all built on a shadcn-based design system that elevated the brand without losing clarity.',
+    tags: ['Web 3.0', 'Crypto', 'Design System'],
+    category: 'Transformation',
+    image: '/case-studies/betheat1.png',
+    tileImage: '/case-studies/betheat1.png',
+    bannerImage: '/case-studies/betheat3.png',
+    bannerImageFit: 'cover',
+    imagePosition: 'top',
+    gallery: [
+      {
+        src: '/case-studies/betheat1.png',
+        alt: 'Betheat sportsbook — live events, racing and sports navigation',
+        caption: '01 · Sportsbook — live events, racing and sports navigation',
+      },
+      {
+        src: '/case-studies/betheat2.png',
+        alt: 'Betheat sports lobby — leagues, level progress and in-play journeys',
+        caption: '02 · Sports lobby — leagues, XP progress and player navigation',
+      },
+      {
+        src: '/case-studies/betheat3.png',
+        alt: 'Betheat casino lobby with crypto wallet deposit flow',
+        caption: '03 · Casino and crypto wallet — deposits, networks and game discovery',
+      },
+    ],
+    context:
+      'Betheat wanted to reposition the product for a crypto-native audience. The existing experience did not match the visual language, speed or trust signals players associate with modern Web 3.0 gambling brands.',
+    problem:
+      'The front end felt behind the category. Sportsbook, casino and wallet did not feel like one product, the brand lacked premium crypto credibility, and there was no shared system to scale the new direction across verticals.',
+    myRole:
+      'As design consultant, I led research and benchmarking, set the Web 3.0 experience direction and designed new sportsbook, casino and wallet surfaces on top of a shadcn-based design system.',
+    whatChanged:
+      'I researched Stake, Rainbet and leading crypto gambling products, translated those patterns into a Betheat-specific system, and designed a dark, high-contrast product language with clearer hierarchy, stronger navigation and a wallet experience that felt native to crypto — not bolted onto a legacy shell.',
+    decisions:
+      'Benchmarking came first — understanding what players trust in crypto gambling before designing anything. shadcn gave us a disciplined component foundation: consistent buttons, inputs, drawers and cards that engineering could implement quickly. Sportsbook, casino and wallet shared the same tokens, spacing and interaction patterns so the brand felt elevated and unified. The wallet was treated as a core product surface, not a cashier afterthought — deposit, network selection and address copy needed the same polish as the lobby.',
+    impact:
+      'Delivered a cohesive Web 3.0 front-end vision across sportsbook, casino and wallet, with a shadcn design system the team could build from — raising brand perception and giving Betheat a credible crypto-native product story.',
+    leadership:
+      'Shows how I take a repositioning brief, benchmark the category, and translate trend-led expectations into a governed design system and product surfaces that teams can actually ship.',
+    stages: [
+      {
+        title: 'Category research',
+        items: [
+          'Benchmarked Stake, Rainbet and leading crypto gambling products',
+          'Mapped the visual and UX patterns players now expect',
+          'Defined what Web 3.0 meant for Betheat — not a skin, a product shift',
+        ],
+      },
+      {
+        title: 'shadcn design system',
+        items: [
+          'Built a dark, high-contrast component foundation on shadcn',
+          'Shared tokens across sportsbook, casino and wallet',
+          'Elevated brand feel with consistent hierarchy and interaction craft',
+        ],
+      },
+      {
+        title: 'Product surfaces',
+        items: [
+          'New sportsbook with live events, racing and sports navigation',
+          'Casino lobby with promotions, providers and game discovery',
+          'Crypto wallet with deposit, network selection and address flows',
         ],
       },
     ],
