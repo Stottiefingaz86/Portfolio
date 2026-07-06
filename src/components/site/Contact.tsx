@@ -5,7 +5,7 @@ import { SITE } from '@/lib/portfolio-data';
 
 export function Contact() {
   return (
-    <HudSectionShell id="contact" code="SEC_07 // CONTACT" className="contact-section">
+    <HudSectionShell id="contact" code="SEC_09 // CONTACT" className="contact-section">
       <div className="shell">
         <SectionHeader
           kicker="Contact"

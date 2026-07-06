@@ -10,7 +10,7 @@ const PERSONAL_PARAGRAPHS = ABOUT.personal.split('\n\n');
 
 export function AboutSection() {
   return (
-    <HudSectionShell id="about" code="SEC_06 // ABOUT" className="about-section">
+    <HudSectionShell id="about" code="SEC_07 // ABOUT" className="about-section">
       <div className="shell about-shell">
         <Reveal className="about-intro">
           <p className="section-kicker">{ABOUT.personalTitle}</p>

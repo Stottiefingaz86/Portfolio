@@ -97,16 +97,16 @@ export interface WhatIBringCard {
 export const SITE = {
   name: 'Christopher Hunt',
   legalName: 'Christopher Hunt',
-  role: 'VP of UI/UX · Creative Director',
-  roleLines: ['VP of UI/UX.', 'Creative Director.'],
-  tagline: 'VP of UI/UX & Creative Director',
+  role: 'Head of UI/UX · Creative Director · iGaming Expert',
+  roleLines: ['Head of UI/UX.', 'Creative Director.', 'iGaming Expert.'],
+  tagline: 'Head of UI/UX · Creative Director · iGaming Expert',
   heroLead:
     'An iGaming product UI/UX expert with 16 years in the industry — designing, modernising and scaling casino, sportsbook, poker, loyalty, rewards retention, payments and player experience.',
   heroLeadMobile:
     '16 years in iGaming. Product UI/UX expert across casino, sportsbook, loyalty, rewards retention and player experience.',
   heroBody:
     '16 years from hands-on game design and UI through product leadership, directing UI/UX teams and design systems — then founding Jurnii.io and building AI-assisted design-to-dev workflows at BetOnline.',
-  heroKickerMobile: 'VP of UI/UX · Creative Director',
+  heroKickerMobile: 'Head of UI/UX / Creative Director / iGaming Expert',
   credibilityLine:
     '16 years in iGaming · VP of UI/UX · BetOnline · Founder of Jurnii.io · Remote from Sotogrande, Spain',
   portfolioYear: '2K26',
@@ -157,7 +157,9 @@ export const NAV_SECTIONS = [
   { id: 'expertise', label: 'Expertise' },
   { id: 'work', label: 'Work' },
   { id: 'leadership', label: 'Leadership' },
+  { id: 'testimonials', label: 'Testimonials' },
   { id: 'about', label: 'About' },
+  { id: 'blog', label: 'Blog' },
   { id: 'contact', label: 'Contact' },
 ] as const;
 
@@ -300,6 +302,41 @@ export const DESIGN_LEADERSHIP = {
   },
 } as const;
 
+export interface Testimonial {
+  id: string;
+  quote: string;
+  name: string;
+  role: string;
+  company: string;
+  context?: string;
+}
+
+export const TESTIMONIALS = {
+  kicker: 'Testimonials',
+  title: 'What collaborators say',
+  lead: 'Recommendations from product and design leaders — more coming soon.',
+  items: [
+    {
+      id: 'cyrus-moreno',
+      quote:
+        'Chris has a great understanding of UI/UX design. He is constantly working on new ideas & thinking outside the box in order to come up with solutions that both resolve design and layout issues and future proof them. I personally worked with Chris on 15 mobile games, I hope to be able to work on more with him in the future.',
+      name: 'Cyrus Moreno',
+      role: 'iGaming Executive Leader',
+      company: 'Product & Casino Strategy',
+      context: 'May 2014 · Worked together on the same team',
+    },
+    {
+      id: 'richard-sagman',
+      quote:
+        'Chris is a top notch creative designer, who can both follow a brief or come up with a unique angle to create something fresh and original. He is able to manage projects independently and also works well within a team. He is great in brainstorms and excels at games, layouts, UX and much more. He was a pleasure to work with and will be missed. I hope to work with Chris again in the future!',
+      name: 'Richard Sagman',
+      role: 'SVP Product Management',
+      company: 'EVERI',
+      context: 'May 2014 · Managed Christopher directly',
+    },
+  ] satisfies Testimonial[],
+} as const;
+
 export const GAMBLING_EXPERTISE = {
   title: 'Gambling product expertise',
   intro: `Deep experience inside regulated gambling products, from game interfaces to full multi-brand ecosystems.`,
@@ -388,6 +425,35 @@ I work closely with tools like Figma, Cursor and Mixpanel, combining design syst
       'AI design-to-dev',
     ],
   },
+} as const;
+
+import { BLOG_POSTS } from '@/lib/blog-posts';
+
+export interface BlogListItem {
+  id: string;
+  slug: string;
+  title: string;
+  date: string;
+  excerpt: string;
+  tag: string;
+  readTime: string;
+  heroImage?: string;
+}
+
+export const BLOG = {
+  kicker: 'Blog',
+  title: 'Writing & notes',
+  lead: 'Stories from the early days of building online — and what they taught me about product, community and craft.',
+  posts: BLOG_POSTS.map(({ id, slug, title, date, excerpt, tag, readTime, heroImage }) => ({
+    id,
+    slug,
+    title,
+    date,
+    excerpt,
+    tag,
+    readTime,
+    heroImage,
+  })) satisfies BlogListItem[],
 } as const;
 
 export const LEADERSHIP_PHILOSOPHY = {

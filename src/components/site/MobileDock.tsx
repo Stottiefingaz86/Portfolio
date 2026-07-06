@@ -12,7 +12,9 @@ const TRACKER_SECTIONS = [
   { id: 'expertise' },
   { id: 'work' },
   { id: 'leadership' },
+  { id: 'testimonials' },
   { id: 'about' },
+  { id: 'blog' },
   { id: 'contact' },
 ] as const;
 

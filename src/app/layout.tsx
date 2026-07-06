@@ -6,6 +6,7 @@ import '@fontsource-variable/bricolage-grotesque';
 
 import { SmoothScroll } from '@/components/portfolio/SmoothScroll';
 import { ScrollGuard } from '@/components/site/ScrollGuard';
+import { SiteCursor } from '@/components/site/SiteCursor';
 import { SiteSounds } from '@/components/site/SiteSounds';
 import { TooltipProvider } from '@/components/ui/tooltip';
 import { SEO } from '@/lib/portfolio-data';
@@ -34,6 +35,7 @@ export default function RootLayout({
       <body className="site-canvas min-h-full">
         <TooltipProvider>
           <ScrollGuard />
+          <SiteCursor />
           <SiteSounds />
           <SmoothScroll>{children}</SmoothScroll>
         </TooltipProvider>
