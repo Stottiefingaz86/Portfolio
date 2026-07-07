@@ -8,6 +8,7 @@ import { CaseStudyGallery } from '@/components/case-study/CaseStudyGallery';
 import { CaseStudyHeroImage } from '@/components/case-study/CaseStudyHeroImage';
 import { CaseStudyLinks } from '@/components/case-study/CaseStudyLinks';
 import { CaseStudyPdfViewer } from '@/components/case-study/CaseStudyPdfViewer';
+import { CaseStudyVideos } from '@/components/case-study/CaseStudyVideos';
 import { RetroMediaFx } from '@/components/case-study/RetroMediaFx';
 import { getCaseStudyGallery, getCaseStudyLinks, type CaseStudy } from '@/lib/portfolio-data';
 import { cn } from '@/lib/utils';
@@ -139,6 +140,7 @@ function CaseStudyModalLayout({
 }) {
   const hasLinks = getCaseStudyLinks(study).length > 0;
   const hasGallery = getCaseStudyGallery(study).length > 0;
+  const hasVideos = (study.videos?.length ?? 0) > 0;
   const bannerFit = study.bannerImageFit ?? 'cover';
   const bannerPosition =
     study.imagePosition === 'top'
@@ -184,6 +186,12 @@ function CaseStudyModalLayout({
         {hasLinks ? (
           <div className="case-modal-section case-modal-section--links">
             <CaseStudyLinks study={study} />
+          </div>
+        ) : null}
+
+        {hasVideos ? (
+          <div className="case-modal-section case-modal-section--videos">
+            <CaseStudyVideos study={study} />
           </div>
         ) : null}
 

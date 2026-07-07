@@ -38,6 +38,12 @@ export interface CaseStudyLink {
   external?: boolean;
 }
 
+export interface CaseStudyVideo {
+  youtubeId: string;
+  title: string;
+  caption?: string;
+}
+
 export interface CaseStudy {
   id: string;
   title: string;
@@ -54,6 +60,7 @@ export interface CaseStudy {
   tileVideoPoster?: string;
   bannerImage?: string;
   gallery?: CaseStudyImage[];
+  videos?: CaseStudyVideo[];
   links?: CaseStudyLink[];
   previewUrl?: string;
   previewLabel?: string;
@@ -501,6 +508,7 @@ export const FEATURED_CASE_STUDY_IDS = [
   'jurnii-ai',
   'maximbet-carousel',
   'casino-jackpots',
+  'chomp-casino-html5',
 ] as const;
 
 export interface AboutJourneyFrame {
@@ -1402,6 +1410,79 @@ export const CASE_STUDIES: CaseStudy[] = [
           'Registration and player journey clarity',
           'Experience shaped for regulated state rollout',
           'Foundation for teams to execute against',
+        ],
+      },
+    ],
+  },
+  {
+    id: 'chomp-casino-html5',
+    title: 'Chomp Casino — First HTML5 Game Studio',
+    subtitle: 'Leading UI/UX and game design on one of iGaming\u2019s first in-house HTML5 game catalogues.',
+    client: 'Nektan · Chomp Casino',
+    scope: 'HTML5 games · White-label casino · Game design',
+    outcome: 'A 15-title HTML5 catalogue and a mobile-first B2C casino brand',
+    summary:
+      'Around twelve years ago, while the rest of the industry was still shipping casino games in Flash, I led UI/UX and game design at Nektan on one of the first in-house HTML5 game catalogues. We built a white-label casino platform and launched Chomp Casino as our own B2C brand on top of it. HTML5 was a genuine shift in how people would gamble online — games running natively in a mobile browser instead of a desktop plugin — and we designed and built fifteen games from scratch, including blackjack and roulette.',
+    tags: ['HTML5 Games', 'Game Design', 'Mobile'],
+    category: 'Games',
+    image: '/case-studies/chomp%20casino_nektan_cover/chomp%20cover.png',
+    tileImage: '/case-studies/chomp%20casino_nektan_cover/chomp%20cover.png',
+    bannerImage: '/case-studies/chomp%20casino_nektan_cover/chomp%20cover.png',
+    bannerImageFit: 'contain',
+    imageFit: 'contain',
+    imagePosition: 'center',
+    videos: [
+      {
+        youtubeId: 'NpC6rj7x6is',
+        title: 'Chomp Casino — HTML5 gameplay',
+        caption: '01 · Chomp Casino — HTML5 games running natively in the mobile browser',
+      },
+      {
+        youtubeId: 'xOk92iXp7_A',
+        title: 'Chomp Casino — game catalogue',
+        caption: '02 · Part of the in-house HTML5 catalogue — 15 games including blackjack and roulette',
+      },
+    ],
+    context:
+      'Nektan operated a white-label casino platform, powering branded casinos for partners. Chomp Casino was our own consumer-facing brand built on that platform — the shop window for what the technology and the games could do. This was roughly twelve years ago, at the moment HTML5 was starting to challenge Flash as the way rich, interactive gambling games reached players.',
+    problem:
+      'Casino games had grown up in Flash on the desktop. As players moved to smartphones, that model broke — plugins were dying, performance on mobile browsers was poor, and the industry had very little proven experience building genuinely mobile-first casino games. We needed a catalogue of games that felt premium and responsive, built in a new technology, with almost no established playbook to follow.',
+    myRole:
+      'I was the lead UI/UX and game designer for the project. I owned the look, feel and interaction of the games and the surrounding casino, and worked hands-on through the build. My background designing interactive IPTV games at Digiquest turned out to be a direct advantage — the constraints and build process were remarkably similar, so I could bring real experience to a problem most of the team was seeing for the first time.',
+    whatChanged:
+      'We moved game production in-house and built the catalogue in HTML5 from the ground up rather than porting Flash titles. I designed the game interfaces, the casino lobby and the player experience for touch-first, small-screen play — reworking controls, layouts and feedback that had only ever been designed for a mouse and a large monitor. In total we shipped fifteen games, including table classics like blackjack and roulette alongside slots.',
+    decisions:
+      'The core decision was to design for the mobile browser first, not adapt desktop games down to it. That meant rethinking bet controls, spin and deal interactions, readability and animation performance for touch and constrained hardware. We built in-house so design and engineering sat together and could iterate on feel — the responsiveness of a spin, the timing of a payout — rather than accepting whatever a third-party studio handed over. HTML5 was chosen deliberately as the future-proof path as Flash declined.',
+    impact:
+      'We delivered one of the early in-house HTML5 casino catalogues in the industry — fifteen games and a live B2C brand in Chomp Casino — at a point when most operators were still tied to Flash. It proved that a full, premium casino experience could run natively in a mobile browser, and gave Nektan a modern game studio capability and a brand to showcase it.',
+    leadership:
+      'This is where my iGaming game-design foundation was set. It shows I can lead design into brand-new technology with no established playbook, build a catalogue of products hands-on, and bring hard-won experience from an adjacent field — interactive IPTV games — to de-risk a shift the rest of the market was still figuring out.',
+    stages: [
+      {
+        title: 'The HTML5 shift',
+        items: [
+          'Industry still shipping casino games in Flash',
+          'Players moving to smartphones and mobile browsers',
+          'Plugins dying, little proven mobile-first game craft',
+          'HTML5 chosen as the future-proof path',
+        ],
+      },
+      {
+        title: 'Building the studio in-house',
+        items: [
+          'Game production brought in-house at Nektan',
+          'Design and engineering iterating on feel together',
+          'IPTV game experience from Digiquest applied directly',
+          'White-label platform with Chomp Casino as the B2C brand',
+        ],
+      },
+      {
+        title: 'The catalogue',
+        items: [
+          '15 HTML5 games designed and shipped',
+          'Table classics — blackjack and roulette',
+          'Slots built for touch-first play',
+          'Mobile-first lobby and player experience',
         ],
       },
     ],
