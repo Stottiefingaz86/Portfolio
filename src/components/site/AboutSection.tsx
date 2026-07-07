@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useRef } from 'react';
 
 import { AboutJourneyPortrait } from '@/components/site/AboutJourneyPortrait';
@@ -8,6 +9,8 @@ import { HudSectionShell } from '@/components/site/hud/HudSection';
 import { Reveal } from '@/components/site/Reveal';
 import { useMobile } from '@/hooks/use-mobile';
 import { ABOUT, SITE } from '@/lib/portfolio-data';
+
+const ABOUT_BG = '/images/about-me-bg.png';
 
 const LEAD_PARAGRAPHS = ABOUT.lead.split('\n\n');
 const PERSONAL_PARAGRAPHS = ABOUT.personal.split('\n\n');
@@ -18,6 +21,23 @@ export function AboutSection() {
 
   return (
     <HudSectionShell id="about" code="SEC_07 // ABOUT" className="about-section">
+      <div className="about-bg" aria-hidden>
+        <div className="about-bg-image">
+          <Image
+            src={ABOUT_BG}
+            alt=""
+            fill
+            className="about-bg-photo"
+            sizes="100vw"
+          />
+          <div className="hero-bg-fx" aria-hidden>
+            <span className="hero-bg-fx__grain" />
+            <span className="hero-bg-fx__scanlines" />
+            <span className="hero-bg-fx__tv-pulse" />
+          </div>
+        </div>
+      </div>
+
       <div className="shell about-shell">
         <Reveal className="about-intro" y={isMobile ? 0 : 32}>
           <p className="section-kicker">{ABOUT.personalTitle}</p>

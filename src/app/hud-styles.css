@@ -1968,7 +1968,7 @@ body.site-cursor-active [contenteditable="true"] {
     linear-gradient(90deg, oklch(0.82 0.14 195 / 0.05) 1px, transparent 1px);
 }
 
-/* About — corner dot accent only */
+/* About — corner dot accent + faded background photo with hero FX */
 .about-section {
   --hud-bg-opacity: 0.3;
   --hud-bg-size: 40px 40px;
@@ -1981,6 +1981,112 @@ body.site-cursor-active [contenteditable="true"] {
     oklch(0.82 0.14 195 / 0.14) 1px,
     transparent 1px
   );
+}
+
+.about-section .about-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  opacity: 0.6;
+  mask-image: linear-gradient(
+    180deg,
+    transparent 0%,
+    black 18%,
+    black 82%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    180deg,
+    transparent 0%,
+    black 18%,
+    black 82%,
+    transparent 100%
+  );
+}
+
+.about-section .about-bg-image {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.about-bg-photo {
+  object-fit: cover;
+  object-position: center 28%;
+}
+
+/* Vignette + scrim below the FX so grain/scanlines read on top.
+   Strong edge falloff frames the image so it reads as a deliberate panel
+   instead of bleeding seamlessly into the neighbouring black sections. */
+.about-section .about-bg-image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      ellipse 72% 60% at 50% 44%,
+      transparent 0%,
+      oklch(0.015 0.01 250 / 0.55) 42%,
+      oklch(0.005 0.006 250 / 0.98) 100%
+    ),
+    linear-gradient(
+      180deg,
+      oklch(0.005 0.006 250 / 1) 0%,
+      oklch(0.005 0.006 250 / 1) 14%,
+      oklch(0.015 0.01 250 / 0.6) 38%,
+      oklch(0.015 0.01 250 / 0.6) 72%,
+      oklch(0.005 0.006 250 / 1) 100%
+    );
+}
+
+/* Push the TV FX above the scrim. On this dark image the FX must be
+   LIGHT lines (screen blend) to be visible, unlike the hero's dark lines. */
+.about-section .hero-bg-fx {
+  z-index: 2;
+  mix-blend-mode: screen;
+}
+
+.about-section .hero-bg-fx__grain {
+  opacity: 0.12;
+  mix-blend-mode: screen;
+}
+
+.about-section .hero-bg-fx__scanlines {
+  opacity: 0.55;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0,
+    transparent 2px,
+    oklch(0.82 0.14 195 / 0.14) 2px,
+    oklch(0.82 0.14 195 / 0.14) 3px
+  );
+  mix-blend-mode: screen;
+}
+
+.about-section .hero-bg-fx__tv-pulse {
+  opacity: 0.35;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0,
+    transparent 3px,
+    oklch(0.97 0.004 260 / 0.08) 3px,
+    oklch(0.97 0.004 260 / 0.08) 4px
+  );
+  mix-blend-mode: screen;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-section .about-bg {
+    opacity: 0.5;
+  }
+
+  .about-section .hero-bg-fx__grain {
+    opacity: 0.08;
+  }
 }
 
 /* Blog — subtle grid wash */
@@ -3158,10 +3264,20 @@ body.site-cursor-active [contenteditable="true"] {
 }
 
 .site-main--hud .work-section,
-.site-main--hud .leadership-section,
 .site-main--hud .about-section,
 .site-main--hud .blog-section {
   padding-block: var(--section-gap);
+}
+
+/* Leadership is a sparse, focused section — tighten its seams so it doesn't
+   read as dead space between Expertise and Testimonials. Also trim the
+   Expertise bottom padding so the two sections don't stack full gaps. */
+.site-main--hud .leadership-section {
+  padding-block: clamp(2.75rem, 6vw, 4.5rem);
+}
+
+.site-main--hud .expertise-section {
+  padding-bottom: clamp(3rem, 6vw, 4.5rem);
 }
 
 .site-main--hud .work-shell {
