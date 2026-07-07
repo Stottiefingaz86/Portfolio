@@ -84,19 +84,19 @@ export function ScrollGuard() {
     const onScroll = () => {
       const currentY = window.scrollY;
       const delta = currentY - lastYRef.current;
-      const jumped = Math.abs(delta) > 100;
-      const inGrace = Date.now() - mountedAt < INIT_LOCK_MS;
-      const atWork = scrollToWorkTop();
 
-      if (
-        jumped &&
-        atWork &&
-        delta > 0 &&
+      // Only the cheap checks run on every scroll frame. The layout-reading
+      // scrollToWorkTop() (getBoundingClientRect) is deferred until a large
+      // downward jump with no user/nav intent could actually be a spurious
+      // auto-scroll worth cancelling — avoiding forced reflow while scrolling.
+      const suspiciousJump =
+        delta > 100 &&
         !userIntentRef.current &&
         !navIntentRef.current &&
         !hasRecentNavIntent() &&
-        !inGrace
-      ) {
+        Date.now() - mountedAt >= INIT_LOCK_MS;
+
+      if (suspiciousJump && scrollToWorkTop()) {
         window.scrollTo({ top: lastYRef.current, behavior: 'instant' });
         return;
       }

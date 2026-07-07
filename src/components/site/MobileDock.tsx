@@ -9,8 +9,8 @@ import { cn } from '@/lib/utils';
 const TRACKER_SECTIONS = [
   { id: 'top' },
   { id: 'journey' },
-  { id: 'expertise' },
   { id: 'work' },
+  { id: 'expertise' },
   { id: 'leadership' },
   { id: 'testimonials' },
   { id: 'about' },

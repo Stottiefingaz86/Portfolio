@@ -3,7 +3,7 @@
 const ITEMS = [
   'Head of Design · Offshore',
   'Founder of Jurnii AI',
-  'Casino · Sportsbook · Poker',
+  'Casino · Sportsbook · Loyalty',
   'Design systems · Governance',
   'Customer research · VoC',
   'Remote · Sotogrande, Spain',

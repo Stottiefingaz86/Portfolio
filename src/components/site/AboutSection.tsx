@@ -8,7 +8,6 @@ import { HudSectionShell } from '@/components/site/hud/HudSection';
 import { Reveal } from '@/components/site/Reveal';
 import { useMobile } from '@/hooks/use-mobile';
 import { ABOUT, SITE } from '@/lib/portfolio-data';
-import { getAge } from '@/lib/utils';
 
 const LEAD_PARAGRAPHS = ABOUT.lead.split('\n\n');
 const PERSONAL_PARAGRAPHS = ABOUT.personal.split('\n\n');
@@ -26,8 +25,7 @@ export function AboutSection() {
             <GlitchText as="span">{ABOUT.title}</GlitchText>
           </h2>
           <p className="about-meta">
-            {SITE.role} · {ABOUT.persona.location} · {ABOUT.birthDateLabel} ·{' '}
-            {getAge(ABOUT.birthDate)}
+            {SITE.role} · {ABOUT.persona.location}
           </p>
         </Reveal>
 

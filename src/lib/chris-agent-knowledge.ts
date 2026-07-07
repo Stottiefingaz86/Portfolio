@@ -167,11 +167,11 @@ ${blog}
 
 export const CHRIS_AGENT_STARTER_PROMPTS = [
   'How do you lead design in a complex gambling organisation?',
-  'Tell me about the BetOnline product transformation',
+  'Tell me about the offshore gaming brand transformation',
   'What is your approach to design systems and governance?',
   'How do you use AI in design-to-dev workflows?',
   'Why did you found Jurnii AI?',
 ] as const;
 
 export const CHRIS_AGENT_GREETING =
-  "Hi — I'm Chris Agent. Interview me on anything here: leadership, BetOnline, design systems, Jurnii, AI workflows, or iGaming product depth.";
+  "Hi — I'm Chris Agent. Interview me on anything here: leadership, the offshore brand transformation, design systems, Jurnii, AI workflows, or iGaming product depth.";

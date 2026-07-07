@@ -91,6 +91,15 @@ export function Hero() {
             {SITE.heroLeadMobile}
           </motion.p>
 
+          <motion.p
+            initial={enterMotion ? { opacity: 0, y: 14 } : false}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.18, ease: EASE }}
+            className="hero-hud-cred"
+          >
+            {SITE.heroProofLine}
+          </motion.p>
+
           <motion.div
             initial={enterMotion ? { opacity: 0, y: 12 } : false}
             animate={{ opacity: 1, y: 0 }}

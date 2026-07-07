@@ -2,7 +2,7 @@
 
 import { ArrowUpRightIcon } from 'lucide-react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState, type PointerEvent as ReactPointerEvent } from 'react';
 import { createPortal } from 'react-dom';
 
 import type { CareerPhaseCompany } from '@/lib/portfolio-data';
@@ -67,6 +67,7 @@ export function PhaseCompanyTrigger({
   const [open, setOpen] = useState(false);
   const [position, setPosition] = useState<CardPosition | null>(null);
   const [mounted, setMounted] = useState(false);
+  const [canHover, setCanHover] = useState(false);
   const hasCard = Boolean(company.role || company.summary);
 
   const updatePosition = useCallback(() => {
@@ -82,6 +83,7 @@ export function PhaseCompanyTrigger({
 
   useEffect(() => {
     setMounted(true);
+    setCanHover(window.matchMedia('(hover: hover) and (pointer: fine)').matches);
   }, []);
 
   useEffect(() => {
@@ -89,26 +91,70 @@ export function PhaseCompanyTrigger({
 
     updatePosition();
 
-    const onLayoutChange = () => updatePosition();
-    window.addEventListener('scroll', onLayoutChange, true);
-    window.addEventListener('resize', onLayoutChange);
+    // On hover-capable devices, keep the card pinned to the trigger as the
+    // page moves. On touch, any scroll or outside tap dismisses it.
+    const onScroll = () => {
+      if (canHover) {
+        updatePosition();
+      } else {
+        setOpen(false);
+      }
+    };
+    const onOutsidePointerDown = (event: PointerEvent) => {
+      if (canHover) return;
+      const trigger = triggerRef.current;
+      if (trigger && event.target instanceof Node && trigger.contains(event.target)) {
+        return;
+      }
+      setOpen(false);
+    };
+
+    window.addEventListener('scroll', onScroll, true);
+    window.addEventListener('resize', updatePosition);
+    document.addEventListener('pointerdown', onOutsidePointerDown, true);
 
     return () => {
-      window.removeEventListener('scroll', onLayoutChange, true);
-      window.removeEventListener('resize', onLayoutChange);
+      window.removeEventListener('scroll', onScroll, true);
+      window.removeEventListener('resize', updatePosition);
+      document.removeEventListener('pointerdown', onOutsidePointerDown, true);
     };
-  }, [open, updatePosition]);
+  }, [open, updatePosition, canHover]);
 
-  const onEnter = useCallback(() => {
+  const onEnter = useCallback(
+    (event: ReactPointerEvent) => {
+      if (!hasCard || event.pointerType !== 'mouse') return;
+      updatePosition();
+      setOpen(true);
+      playCaseStudyHoverSound();
+    },
+    [hasCard, updatePosition],
+  );
+
+  const onLeave = useCallback(
+    (event: ReactPointerEvent) => {
+      if (event.pointerType !== 'mouse') return;
+      setOpen(false);
+    },
+    [],
+  );
+
+  const onFocus = useCallback(() => {
     if (!hasCard) return;
     updatePosition();
     setOpen(true);
-    playCaseStudyHoverSound();
   }, [hasCard, updatePosition]);
 
-  const onLeave = useCallback(() => {
+  const onBlur = useCallback(() => {
     setOpen(false);
   }, []);
+
+  // Tap-to-toggle on touch/pen. A horizontal swipe on the scroller never
+  // fires click, so this only responds to a deliberate tap.
+  const onClick = useCallback(() => {
+    if (!hasCard || canHover) return;
+    updatePosition();
+    setOpen((value) => !value);
+  }, [hasCard, canHover, updatePosition]);
 
   if (!hasCard) {
     return (
@@ -126,8 +172,9 @@ export function PhaseCompanyTrigger({
         className={cn('phase-company-trigger', open && 'is-open', className)}
         onPointerEnter={onEnter}
         onPointerLeave={onLeave}
-        onFocus={onEnter}
-        onBlur={onLeave}
+        onFocus={onFocus}
+        onBlur={onBlur}
+        onClick={onClick}
         tabIndex={0}
       >
         <span className="phase-company-trigger__head">

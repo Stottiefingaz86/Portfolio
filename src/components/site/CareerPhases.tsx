@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView, useReducedMotion } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 
 import { GlitchText } from '@/components/site/hud/GlitchText';
@@ -25,6 +25,7 @@ function PhaseBlock({
   setActiveId: (id: string) => void;
 }) {
   const ref = useRef<HTMLElement>(null);
+  const reduced = useReducedMotion();
   const inView = useInView(ref, { margin: '-40% 0px -40% 0px' });
   const hoverLight = useHudHoverLight();
   useSiteAmbienceOnActive(inView);
@@ -40,8 +41,8 @@ function PhaseBlock({
       ref={ref}
       id={phase.id}
       initial={false}
-      animate={{ opacity: inView ? 1 : 0.32 }}
-      transition={{ duration: 0.35 }}
+      animate={{ opacity: inView ? 1 : reduced ? 0.75 : 0.32 }}
+      transition={{ duration: reduced ? 0 : 0.35 }}
       className={cn('phase-block', inView && 'is-active')}
     >
       <HudRow code={`[ ${code} ]`} className="hud-row--phase">

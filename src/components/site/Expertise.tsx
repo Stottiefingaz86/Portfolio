@@ -152,7 +152,7 @@ export function Expertise() {
   }, []);
 
   return (
-    <HudSectionShell id="expertise" code="SEC_03 // EXPERTISE" className="expertise-section">
+    <HudSectionShell id="expertise" code="SEC_04 // EXPERTISE" className="expertise-section">
       <div className="shell expertise-layout">
         <div className="expertise-intro">
           <div className="expertise-intro-backdrop" aria-hidden />

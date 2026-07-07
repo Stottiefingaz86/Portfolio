@@ -27,7 +27,7 @@ export function Work() {
 
   return (
     <>
-      <HudSectionShell id="work" code="SEC_04 // WORK" className="work-section">
+      <HudSectionShell id="work" code="SEC_03 // WORK" className="work-section">
         <div className="shell work-shell">
           <div className="work-intro">
             <motion.div

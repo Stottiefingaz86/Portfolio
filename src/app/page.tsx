@@ -18,8 +18,8 @@ export default function Home() {
       <main className="site-main site-main--hud">
         <Hero />
         <CareerPhases />
-        <Expertise />
         <Work />
+        <Expertise />
         <Leadership />
         <Testimonials />
         <AboutSection />
