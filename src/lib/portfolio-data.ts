@@ -509,6 +509,7 @@ export const FEATURED_CASE_STUDY_IDS = [
   'maximbet-carousel',
   'casino-jackpots',
   'chomp-casino-html5',
+  'williamhill-vegas',
 ] as const;
 
 export interface AboutJourneyFrame {
@@ -1483,6 +1484,83 @@ export const CASE_STUDIES: CaseStudy[] = [
           'Table classics — blackjack and roulette',
           'Slots built for touch-first play',
           'Mobile-first lobby and player experience',
+        ],
+      },
+    ],
+  },
+  {
+    id: 'williamhill-vegas',
+    title: 'William Hill Vegas — Exclusive Slots Trilogy',
+    subtitle: 'Lead designer on a trilogy of Flash slots built exclusively for William Hill Vegas Casino.',
+    client: 'Nektan · William Hill Vegas',
+    scope: 'Slot game design · Flash · Animation & sound',
+    outcome: 'A three-game slot trilogy shipped exclusively for a Tier 1 operator',
+    summary:
+      'Before the HTML5 era, when slots were still authored in Flash, Nektan was commissioned to build slot games exclusively for William Hill Vegas Casino — one of the biggest names in UK gambling. Working with our in-house design team and developers, I was the lead designer across a trilogy of games. I covered the whole experience — layout, reels, bonus rounds, animation and sound — piecing it all together in Flash on the timeline.',
+    tags: ['Slot Design', 'Flash', 'Animation'],
+    category: 'Games',
+    image: '/case-studies/williamhill/william%20hill%20cover.png',
+    tileImage: '/case-studies/williamhill/william%20hill%20cover.png',
+    bannerImage: '/case-studies/williamhill/william-hill-vegas-casino-banner.jpg',
+    bannerImageFit: 'cover',
+    imagePosition: 'center',
+    videos: [
+      {
+        youtubeId: 'uFSRPByBH2Q',
+        title: 'William Hill Vegas slot — game one',
+        caption: '01 · Exclusive slot for William Hill Vegas — reels, bonus round and animation',
+      },
+      {
+        youtubeId: '_KlXGk-c5DE',
+        title: 'William Hill Vegas slot — game two',
+        caption: '02 · Second title in the trilogy — layout, motion and sound design',
+      },
+      {
+        youtubeId: 'm-5EATVcK3w',
+        title: 'William Hill Vegas slot — game three',
+        caption: '03 · Third title in the trilogy — full game experience built in Flash',
+      },
+    ],
+    context:
+      'William Hill is one of the biggest and most established names in UK gambling, and its Vegas casino is a flagship destination for slots players. Nektan was commissioned to build games exclusively for that casino. This was before Chomp Casino and the HTML5 shift — slots were still authored in Adobe Flash, assembled frame by frame on the timeline.',
+    problem:
+      'Making games for a Tier 1 operator meant the bar for polish, entertainment and reliability was high — these titles would sit next to the best in the market on a brand players already trusted. Everything had to be crafted by hand in Flash: the reel mechanics, the bonus rounds, every animation and every sound cue, all timed and layered on the timeline with no modern game engine to lean on.',
+    myRole:
+      'I was the lead designer across the trilogy, working alongside our in-house design team and developers. I owned the full game experience end to end — the layout and reel presentation, the bonus round design, the animation and the sound — and pieced it all together in Flash on the timeline, so the pacing, feedback and payoff all felt right.',
+    whatChanged:
+      'We delivered a trilogy of bespoke slots exclusively for William Hill Vegas — not reskinned templates, but games designed and built from the ground up. Each title had its own layout, bonus mechanics, animation language and audio, crafted to feel premium and entertaining while fitting the William Hill Vegas environment.',
+    decisions:
+      'In Flash-era slot production the feel of a game lives in the timeline — the timing of a spin, the anticipation before a bonus, the reward of a win. I focused on getting that pacing and feedback right, treating animation and sound as core to the experience rather than decoration. Designing the layout, bonus rounds, motion and audio together kept each game cohesive instead of a set of parts stitched at the end.',
+    impact:
+      'Nektan shipped a trilogy of slots exclusively for one of the UK\u2019s biggest operators — games polished enough to sit inside the William Hill Vegas casino alongside established studios. It established the in-house design and development capability that later carried into the HTML5 work on Chomp Casino.',
+    leadership:
+      'This is the foundation of my iGaming craft — leading the design of real, shipped slot products for a Tier 1 brand, owning the whole experience from layout to sound, and doing it hands-on in the demanding Flash-timeline era before modern tooling existed.',
+    stages: [
+      {
+        title: 'The commission',
+        items: [
+          'William Hill Vegas — a Tier 1 UK casino brand',
+          'Nektan commissioned to build games exclusively',
+          'Flash-era production, before the HTML5 shift',
+          'A trilogy of bespoke slot titles',
+        ],
+      },
+      {
+        title: 'Lead design — end to end',
+        items: [
+          'Layout and reel presentation',
+          'Bonus round design and mechanics',
+          'Animation crafted on the Flash timeline',
+          'Sound design integrated into the experience',
+        ],
+      },
+      {
+        title: 'Shipped and set the foundation',
+        items: [
+          'Three bespoke games delivered for William Hill Vegas',
+          'Premium feel fit for a flagship casino',
+          'In-house design and dev capability proven',
+          'Foundation for the later HTML5 game studio',
         ],
       },
     ],
