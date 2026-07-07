@@ -7,6 +7,7 @@ import '@fontsource-variable/bricolage-grotesque';
 import { SmoothScroll } from '@/components/portfolio/SmoothScroll';
 import { ChrisAgentWidget } from '@/components/site/ChrisAgentWidget';
 import { ScrollGuard } from '@/components/site/ScrollGuard';
+import { SitePreloader } from '@/components/site/SitePreloader';
 import { SiteCursor } from '@/components/site/SiteCursor';
 import { SiteSounds } from '@/components/site/SiteSounds';
 import { TooltipProvider } from '@/components/ui/tooltip';
@@ -36,6 +37,7 @@ export default function RootLayout({
       <body className="site-canvas min-h-full">
         <TooltipProvider>
           <ScrollGuard />
+          <SitePreloader />
           <SiteCursor />
           <SiteSounds />
           <ChrisAgentWidget />

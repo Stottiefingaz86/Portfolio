@@ -8,6 +8,7 @@ import { GlitchText } from '@/components/site/hud/GlitchText';
 import { HeroLogoMark } from '@/components/site/hud/HeroLogoMark';
 import { HudFrame } from '@/components/site/hud/HudFrame';
 import { SITE } from '@/lib/portfolio-data';
+import { markPreloaderForNextPage } from '@/lib/preload-assets';
 
 function LoginBackground() {
   return (
@@ -80,6 +81,7 @@ function LoginForm() {
       }
 
       const nextPath = searchParams.get('from') || '/';
+      markPreloaderForNextPage();
       router.replace(nextPath);
       router.refresh();
     } catch {

@@ -43,14 +43,25 @@ export function MobileDock() {
   useEffect(() => {
     if (!isMobile) return;
 
-    const update = () => setActiveId(getActiveSectionId());
+    let ticking = false;
+
+    const update = () => {
+      setActiveId(getActiveSectionId());
+      ticking = false;
+    };
+
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(update);
+    };
 
     update();
-    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', update);
 
     return () => {
-      window.removeEventListener('scroll', update);
+      window.removeEventListener('scroll', onScroll);
       window.removeEventListener('resize', update);
     };
   }, [isMobile]);

@@ -55,6 +55,12 @@
     overflow-anchor: none;
   }
 
+  html.site-preloading,
+  html.site-preloading body {
+    overflow: hidden;
+    height: 100%;
+  }
+
   body {
     font-family: var(--font-body);
     font-size: 17px;
@@ -2101,26 +2107,15 @@
     z-index: 2;
   }
 
-  /* Dissolve content scrolling behind the pinned portrait's top edge.
-     Opaque fade (not backdrop-filter) because the sticky wrap carries a
-     framer-motion transform, which would break backdrop sampling. */
   @media (max-width: 1023px) {
-    .about-portrait-wrap::before {
-      content: "";
-      position: absolute;
-      left: -1px;
-      right: -1px;
-      bottom: calc(100% - 8px);
-      height: calc(7.5rem + env(safe-area-inset-top, 0px));
-      z-index: 3;
-      pointer-events: none;
-      background: linear-gradient(
-        to top,
-        oklch(0.06 0.012 260 / 1) 0%,
-        oklch(0.06 0.012 260 / 1) 30%,
-        oklch(0.06 0.012 260 / 0.85) 55%,
-        oklch(0.06 0.012 260 / 0) 100%
-      );
+    .about-portrait-wrap {
+      position: relative;
+      top: auto;
+      z-index: auto;
+    }
+
+    .about-portrait {
+      min-height: min(48vh, 26rem);
     }
   }
 

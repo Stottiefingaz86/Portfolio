@@ -23,11 +23,14 @@ export function ScrollGuard() {
   const userIntentRef = useRef(false);
   const navIntentRef = useRef(false);
   const lastYRef = useRef(0);
+  const touchIntentUntilRef = useRef(0);
 
   useEffect(() => {
     if ('scrollRestoration' in history) {
       history.scrollRestoration = 'manual';
     }
+
+    const coarsePointer = window.matchMedia('(pointer: coarse)').matches;
 
     stripHash();
 
@@ -48,6 +51,11 @@ export function ScrollGuard() {
       userIntentRef.current = true;
     };
 
+    const markTouchIntent = () => {
+      touchIntentUntilRef.current = Date.now() + 900;
+      markUserIntent();
+    };
+
     const markNavIntent = (event: Event) => {
       const target = event.target;
       if (!(target instanceof Element)) return;
@@ -57,8 +65,8 @@ export function ScrollGuard() {
     };
 
     window.addEventListener('wheel', markUserIntent, { passive: true });
-    window.addEventListener('touchstart', markUserIntent, { passive: true });
-    window.addEventListener('touchmove', markUserIntent, { passive: true });
+    window.addEventListener('touchstart', markTouchIntent, { passive: true });
+    window.addEventListener('touchmove', markTouchIntent, { passive: true });
     window.addEventListener('keydown', (event) => {
       if (
         ['ArrowDown', 'ArrowUp', 'PageDown', 'PageUp', ' ', 'Home', 'End'].includes(
@@ -89,14 +97,16 @@ export function ScrollGuard() {
       // scrollToWorkTop() (getBoundingClientRect) is deferred until a large
       // downward jump with no user/nav intent could actually be a spurious
       // auto-scroll worth cancelling — avoiding forced reflow while scrolling.
+      const hasTouchIntent = Date.now() < touchIntentUntilRef.current;
       const suspiciousJump =
+        !coarsePointer &&
         delta > 100 &&
         !userIntentRef.current &&
         !navIntentRef.current &&
         !hasRecentNavIntent() &&
         Date.now() - mountedAt >= INIT_LOCK_MS;
 
-      if (suspiciousJump && scrollToWorkTop()) {
+      if (suspiciousJump && !hasTouchIntent && scrollToWorkTop()) {
         window.scrollTo({ top: lastYRef.current, behavior: 'instant' });
         return;
       }
@@ -126,8 +136,8 @@ export function ScrollGuard() {
 
     return () => {
       window.removeEventListener('wheel', markUserIntent);
-      window.removeEventListener('touchstart', markUserIntent);
-      window.removeEventListener('touchmove', markUserIntent);
+      window.removeEventListener('touchstart', markTouchIntent);
+      window.removeEventListener('touchmove', markTouchIntent);
       document.removeEventListener('click', markNavIntent, true);
       window.removeEventListener('hashchange', onHashChange);
       window.removeEventListener('scroll', onScroll);

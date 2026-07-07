@@ -36,19 +36,35 @@ export function AboutSection() {
             ))}
           </Reveal>
 
-          <Reveal className="about-portrait-wrap about-layout__portrait">
-            <figure className="about-portrait">
-              <div className="about-portrait-stage" aria-hidden>
-                <span className="about-portrait-orb" />
-                <span className="about-portrait-grid" />
-              </div>
-              <AboutJourneyPortrait
-                frames={ABOUT.journeyFrames}
-                progressRef={journeyRef}
-              />
-              <div className="about-portrait-shade" aria-hidden />
-            </figure>
-          </Reveal>
+          {isMobile ? (
+            <div className="about-portrait-wrap about-layout__portrait">
+              <figure className="about-portrait">
+                <div className="about-portrait-stage" aria-hidden>
+                  <span className="about-portrait-orb" />
+                  <span className="about-portrait-grid" />
+                </div>
+                <AboutJourneyPortrait
+                  frames={ABOUT.journeyFrames}
+                  progressRef={journeyRef}
+                />
+                <div className="about-portrait-shade" aria-hidden />
+              </figure>
+            </div>
+          ) : (
+            <Reveal className="about-portrait-wrap about-layout__portrait">
+              <figure className="about-portrait">
+                <div className="about-portrait-stage" aria-hidden>
+                  <span className="about-portrait-orb" />
+                  <span className="about-portrait-grid" />
+                </div>
+                <AboutJourneyPortrait
+                  frames={ABOUT.journeyFrames}
+                  progressRef={journeyRef}
+                />
+                <div className="about-portrait-shade" aria-hidden />
+              </figure>
+            </Reveal>
+          )}
 
           <div ref={journeyRef} className="about-journey about-layout__journey" aria-label="Personal journey">
             <p className="about-personal-label">The journey</p>
