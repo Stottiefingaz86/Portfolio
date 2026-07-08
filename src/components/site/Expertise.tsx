@@ -11,6 +11,7 @@ import { useHudHoverLight } from '@/components/site/useHudHoverLight';
 import { useSiteAmbienceOnActive } from '@/components/site/useSiteAmbienceOnActive';
 import { useMobile } from '@/hooks/use-mobile';
 import { WHAT_I_BRING, type WhatIBringCard } from '@/lib/portfolio-data';
+import { playExpertiseSelectSound } from '@/lib/site-sounds';
 import { cn } from '@/lib/utils';
 
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -27,6 +28,18 @@ function ExpertiseStickyIntro({
   reduced: boolean | null;
 }) {
   const code = `[ CAP_${String(index + 1).padStart(2, '0')} ]`;
+  const prevIndexRef = useRef(index);
+
+  useEffect(() => {
+    if (prevIndexRef.current === index) return;
+    prevIndexRef.current = index;
+
+    const timer = window.setTimeout(() => {
+      playExpertiseSelectSound();
+    }, 140);
+
+    return () => window.clearTimeout(timer);
+  }, [index]);
 
   return (
     <div className="expertise-intro-stage">

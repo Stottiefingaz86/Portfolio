@@ -6,7 +6,7 @@ import { useCallback, useEffect, useRef, useState, type PointerEvent as ReactPoi
 import { createPortal } from 'react-dom';
 
 import type { CareerPhaseCompany } from '@/lib/portfolio-data';
-import { playCaseStudyHoverSound } from '@/lib/site-sounds';
+import { playJourneyHoverSound } from '@/lib/site-sounds';
 import { cn } from '@/lib/utils';
 
 function companyMeta(company: CareerPhaseCompany) {
@@ -125,7 +125,7 @@ export function PhaseCompanyTrigger({
       if (!hasCard || event.pointerType !== 'mouse') return;
       updatePosition();
       setOpen(true);
-      playCaseStudyHoverSound();
+      playJourneyHoverSound();
     },
     [hasCard, updatePosition],
   );

@@ -20,7 +20,7 @@ export function ChrisAgentWidget() {
         type="button"
         className="chris-agent__launcher"
         onClick={() => scrollToSection('contact')}
-        aria-label="Hire me — go to contact form"
+        aria-label="Let's talk — go to contact form"
         whileTap={reduced ? undefined : { scale: 0.96 }}
       >
         <span className="chris-agent__launcher-avatar">
@@ -34,7 +34,7 @@ export function ChrisAgentWidget() {
         </span>
         <span className="chris-agent__launcher-copy">
           <Sparkles aria-hidden className="chris-agent__launcher-icon" />
-          <span>Hire Me</span>
+          <span>Let&apos;s Talk</span>
         </span>
         <span className="chris-agent__launcher-pulse" aria-hidden />
       </motion.button>

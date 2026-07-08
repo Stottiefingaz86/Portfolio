@@ -3,24 +3,32 @@ export const SITE_SOUNDS = {
   firstTime: '/sound/firsttime.mp3',
   hoverHighlight: '/sound/hover-highlight.wav',
   caseStudyHover: '/sound/case-study-hover.wav',
+  journeyHover: '/sound/journey-hover.mp3',
+  expertiseSelect: '/sound/expertise-select.mp3',
   popupOpen: '/sound/popup-open.mp3',
-  bgMusic: '/sound/bgsound.mp3',
+  bgMusic: '/sound/bgsound3.mp3',
 } as const;
 
 export type SiteSoundKey = keyof typeof SITE_SOUNDS;
 
 const INTRO_STORAGE_KEY = 'ch-portfolio-intro-sound-v3';
 const MUTE_STORAGE_KEY = 'ch-portfolio-sound-muted-v1';
-const BG_VOLUME = 0.08;
+const BG_VOLUME = 0.025;
 const INTRO_VOLUME = 0.52;
-const HIGHLIGHT_VOLUME = 0.045;
-const CASE_STUDY_HOVER_VOLUME = 0.065;
+const HIGHLIGHT_VOLUME = 0.025;
+const CASE_STUDY_HOVER_VOLUME = 0.035;
+const JOURNEY_HOVER_VOLUME = 0.03;
+const EXPERTISE_SELECT_VOLUME = 0.055;
 const CASE_STUDY_HOVER_COOLDOWN_MS = 200;
+const JOURNEY_HOVER_COOLDOWN_MS = 220;
+const EXPERTISE_SELECT_COOLDOWN_MS = 180;
 
 const audioCache = new Map<SiteSoundKey, HTMLAudioElement>();
 let introPending = false;
 let audioUnlocked = false;
 let lastCaseStudyHoverAt = 0;
+let lastJourneyHoverAt = 0;
+let lastExpertiseSelectAt = 0;
 let soundMuted = false;
 const muteListeners = new Set<(muted: boolean) => void>();
 
@@ -160,6 +168,52 @@ export function playCaseStudyHoverSound() {
   const audio = getCachedAudio('caseStudyHover');
   audio.volume = CASE_STUDY_HOVER_VOLUME;
   audio.currentTime = 0;
+
+  void audio
+    .play()
+    .then(() => {
+      markAudioUnlocked();
+    })
+    .catch(() => {});
+
+  return true;
+}
+
+export function playJourneyHoverSound() {
+  if (!shouldPlaySound()) return false;
+
+  const now = Date.now();
+  if (now - lastJourneyHoverAt < JOURNEY_HOVER_COOLDOWN_MS) return false;
+  lastJourneyHoverAt = now;
+
+  const audio = getCachedAudio('journeyHover');
+  audio.volume = JOURNEY_HOVER_VOLUME;
+  audio.currentTime = 0;
+
+  void audio
+    .play()
+    .then(() => {
+      markAudioUnlocked();
+    })
+    .catch(() => {});
+
+  return true;
+}
+
+export function playExpertiseSelectSound() {
+  if (!shouldPlaySound()) return false;
+
+  const now = Date.now();
+  if (now - lastExpertiseSelectAt < EXPERTISE_SELECT_COOLDOWN_MS) return false;
+  lastExpertiseSelectAt = now;
+
+  const audio = getCachedAudio('expertiseSelect');
+  audio.volume = EXPERTISE_SELECT_VOLUME;
+  audio.currentTime = 0;
+
+  if (audio.readyState < HTMLMediaElement.HAVE_CURRENT_DATA) {
+    audio.load();
+  }
 
   void audio
     .play()
